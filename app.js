@@ -482,6 +482,13 @@ class ShipTracker {
     this.markers = {};
     this.placeAllShips();
     this.drawRaceLines();
+
+    // Re-apply focus filter if active
+    if (this.focusedParticipant) {
+      const name = this.focusedParticipant;
+      this.focusedParticipant = null; // reset so showParticipantShips doesn't toggle off
+      this.showParticipantShips(name);
+    }
   }
 
   // ============================================
@@ -962,36 +969,92 @@ class ShipTracker {
   }
 
   showParticipantShips(name) {
+    // Toggle off if already focused on this participant
+    if (this.focusedParticipant === name) {
+      this.clearFocus();
+      return;
+    }
+
     const participant = PARTICIPANTS.find((p) => p.name === name);
     if (!participant) return;
 
-    // Close all existing popups
-    Object.values(this.markers).forEach((m) => m.closePopup());
+    this.focusedParticipant = name;
+    const imos = new Set(participant.ships.map((s) => s.imo));
 
-    // Collect positions and open popups for this participant's ships
-    const bounds = [];
-    participant.ships.forEach((s) => {
-      const pos = this.state.positions[s.imo];
-      if (pos && this.markers[s.imo]) {
-        bounds.push([pos.lat, pos.lng]);
-        this.markers[s.imo].openPopup();
+    // Hide all other markers, show only this participant's
+    Object.entries(this.markers).forEach(([imo, marker]) => {
+      if (imos.has(imo)) {
+        marker.setOpacity(1);
+        marker.getElement().style.display = "";
+      } else {
+        marker.closePopup();
+        marker.setOpacity(0);
+        marker.getElement().style.display = "none";
       }
     });
 
-    if (bounds.length === 0) return;
+    // Hide race lines for other participants
+    this.raceLines.forEach((l) => this.map.removeLayer(l));
+    this.raceLines = [];
+    participant.ships.forEach((s) => {
+      if (this.state.passed[s.imo]) return;
+      const route = this.getRouteToFinish(s.imo);
+      if (!route) return;
+      const line = L.polyline(route, {
+        color: participant.color,
+        weight: 2,
+        dashArray: "6, 8",
+        opacity: 0.6,
+      }).addTo(this.map);
+      this.raceLines.push(line);
+    });
 
-    // Fit map to show all their ships
+    // Fit map to this participant's ships
+    const bounds = [];
+    participant.ships.forEach((s) => {
+      const pos = this.state.positions[s.imo];
+      if (pos) bounds.push([pos.lat, pos.lng]);
+    });
+
     if (bounds.length === 1) {
       this.map.setView(bounds[0], 10, { animate: true });
-    } else {
+    } else if (bounds.length > 1) {
       this.map.fitBounds(bounds, { padding: [50, 50], animate: true, maxZoom: 10 });
     }
+
+    // Show "Show All" button on map
+    this.showFocusBanner(participant);
 
     // Switch to map tab on mobile
     const mapTab = document.querySelector('.tab[data-tab="map"]');
     if (mapTab && window.innerWidth <= 768) {
       mapTab.click();
     }
+  }
+
+  clearFocus() {
+    this.focusedParticipant = null;
+
+    // Remove focus banner
+    const existing = document.getElementById("focus-banner");
+    if (existing) existing.remove();
+
+    // Restore all markers and race lines
+    this.updateMapMarkers();
+  }
+
+  showFocusBanner(participant) {
+    let banner = document.getElementById("focus-banner");
+    if (!banner) {
+      banner = document.createElement("div");
+      banner.id = "focus-banner";
+      document.getElementById("map").parentElement.appendChild(banner);
+    }
+    banner.innerHTML = `
+      <span style="color:${participant.color};font-weight:700">${participant.name}</span>'s ships
+      <button onclick="tracker.clearFocus()">Show All</button>
+    `;
+    banner.style.display = "flex";
   }
 
   // ============================================
