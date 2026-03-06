@@ -31,6 +31,86 @@ body {
 }
 
 /* ============================================
+   PASSWORD GATE
+   ============================================ */
+#password-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#password-gate.hidden {
+  display: none;
+}
+
+.gate-box {
+  text-align: center;
+  padding: 40px;
+}
+
+.gate-title {
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.gate-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+#gate-input {
+  display: block;
+  width: 240px;
+  margin: 0 auto 12px;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-family: inherit;
+  text-align: center;
+  outline: none;
+}
+
+#gate-input:focus {
+  border-color: var(--accent);
+}
+
+#gate-btn {
+  padding: 10px 32px;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+#gate-btn:hover {
+  opacity: 0.85;
+}
+
+#gate-error {
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: 12px;
+  height: 20px;
+}
+
+/* ============================================
    HEADER (slim)
    ============================================ */
 .header {

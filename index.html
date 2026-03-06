@@ -18,6 +18,17 @@
 </head>
 <body>
 
+  <!-- Password Gate -->
+  <div id="password-gate">
+    <div class="gate-box">
+      <div class="gate-title">HORMUZ RACE</div>
+      <div class="gate-subtitle">Enter password to continue</div>
+      <input type="password" id="gate-input" placeholder="Password" autofocus>
+      <button id="gate-btn">Enter</button>
+      <div id="gate-error"></div>
+    </div>
+  </div>
+
   <!-- Header (slim) -->
   <header class="header">
     <div class="header-left">
@@ -95,8 +106,57 @@
   <!-- Celebration Banner -->
   <div class="celebration-banner" id="celebration-banner"></div>
 
-  <!-- App scripts -->
-  <script src="data.js?v=7"></script>
-  <script src="app.js?v=7"></script>
+  <!-- Password gate script -->
+  <script>
+    (function() {
+      const PASS = "race";
+      const gate = document.getElementById("password-gate");
+      const input = document.getElementById("gate-input");
+      const btn = document.getElementById("gate-btn");
+      const error = document.getElementById("gate-error");
+
+      if (sessionStorage.getItem("hormuz-auth") === "1") {
+        gate.classList.add("hidden");
+        return;
+      }
+
+      // Prevent app scripts from loading until authenticated
+      document.body.dataset.locked = "1";
+
+      function tryUnlock() {
+        if (input.value === PASS) {
+          sessionStorage.setItem("hormuz-auth", "1");
+          gate.classList.add("hidden");
+          delete document.body.dataset.locked;
+          // Load app scripts
+          var s1 = document.createElement("script");
+          s1.src = "data.js?v=8";
+          document.body.appendChild(s1);
+          s1.onload = function() {
+            var s2 = document.createElement("script");
+            s2.src = "app.js?v=8";
+            document.body.appendChild(s2);
+          };
+        } else {
+          error.textContent = "Wrong password";
+          input.value = "";
+          input.focus();
+        }
+      }
+
+      btn.addEventListener("click", tryUnlock);
+      input.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") tryUnlock();
+      });
+    })();
+  </script>
+
+  <!-- App scripts (loaded by gate if not already authenticated) -->
+  <script>
+    if (!document.body.dataset.locked) {
+      document.write('<scr' + 'ipt src="data.js?v=8"><\/scr' + 'ipt>');
+      document.write('<scr' + 'ipt src="app.js?v=8"><\/scr' + 'ipt>');
+    }
+  </script>
 </body>
 </html>
