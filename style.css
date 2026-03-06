@@ -588,6 +588,55 @@ body {
   border-left-color: var(--passed);
 }
 
+.log-entry.movement {
+  border-left-color: var(--accent);
+}
+
+.log-movement-header {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-secondary);
+}
+
+.log-movers {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.log-mover {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+.log-mover .log-ship {
+  font-weight: 700;
+}
+
+.log-mover .log-delta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.log-mover.moving-closer .log-delta {
+  color: var(--passed);
+}
+
+.log-mover.moving-further .log-delta {
+  color: var(--danger);
+}
+
+.log-mover .log-dist {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
 .log-text {
   font-size: 13px;
   line-height: 1.4;

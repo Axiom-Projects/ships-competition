@@ -672,6 +672,27 @@ class ShipTracker {
             </div>`;
         }
 
+        if (entry.type === "movement") {
+          const lines = entry.movers.map((m) => {
+            const dir = m.delta > 0 ? "closer" : "further";
+            const arrow = m.delta > 0 ? "\u25B2" : "\u25BC";
+            const cls = m.delta > 0 ? "moving-closer" : "moving-further";
+            return `<div class="log-mover ${cls}">
+              <span class="log-ship">${m.shipName}</span>
+              <span class="log-owner" style="color:${m.ownerColor}">${m.ownerName}</span>
+              <span class="log-delta">${arrow} ${Math.abs(m.delta).toFixed(1)} nm ${dir}</span>
+              <span class="log-dist">${m.newDist.toFixed(1)} nm left</span>
+            </div>`;
+          }).join("");
+
+          return `
+            <div class="log-entry movement">
+              <div class="log-text log-movement-header">Position update &mdash; ${entry.movers.length} ship${entry.movers.length > 1 ? "s" : ""} moved</div>
+              <div class="log-movers">${lines}</div>
+              <div class="log-time">${time}</div>
+            </div>`;
+        }
+
         return "";
       })
       .join("");
@@ -681,6 +702,49 @@ class ShipTracker {
     if (!this.state.raceLog) this.state.raceLog = [];
     this.state.raceLog.unshift(entry);
     this.state.raceLog.sort((a, b) => b.timestamp - a.timestamp);
+    // Keep log from growing unbounded
+    if (this.state.raceLog.length > 50) {
+      this.state.raceLog = this.state.raceLog.slice(0, 50);
+    }
+  }
+
+  logMovements(oldDistances) {
+    const movers = [];
+
+    PARTICIPANTS.forEach((p) => {
+      p.ships.forEach((s) => {
+        if (this.state.passed[s.imo]) return;
+        const oldDist = oldDistances[s.imo];
+        if (oldDist === undefined || oldDist === Infinity) return;
+        const newDist = this.distanceCache[s.imo];
+        if (newDist === undefined || newDist === Infinity) return;
+
+        const delta = oldDist - newDist; // positive = moved closer
+        if (Math.abs(delta) < 0.5) return; // skip negligible movement
+
+        movers.push({
+          imo: s.imo,
+          shipName: s.name,
+          ownerName: p.name,
+          ownerColor: p.color,
+          delta,
+          newDist,
+        });
+      });
+    });
+
+    if (movers.length === 0) return;
+
+    // Sort by most movement toward finish
+    movers.sort((a, b) => b.delta - a.delta);
+
+    this.addRaceLogEntry({
+      type: "movement",
+      movers,
+      timestamp: Date.now(),
+    });
+
+    this.saveState();
   }
 
   // ============================================
@@ -1108,6 +1172,16 @@ class ShipTracker {
     statusEl.textContent = "Fetching live positions...";
     statusEl.style.display = "block";
 
+    // Snapshot distances before refresh for movement detection
+    const oldDistances = {};
+    PARTICIPANTS.forEach((p) => {
+      p.ships.forEach((s) => {
+        if (!this.state.passed[s.imo]) {
+          oldDistances[s.imo] = this.distanceCache[s.imo] || Infinity;
+        }
+      });
+    });
+
     const allShips = [];
     PARTICIPANTS.forEach((p) => p.ships.forEach((s) => allShips.push(s)));
 
@@ -1138,6 +1212,8 @@ class ShipTracker {
 
     this.saveState();
     this.checkFinishCrossings();
+    this.computeAllDistances();
+    this.logMovements(oldDistances);
     this.refresh();
 
     const now = new Date();
