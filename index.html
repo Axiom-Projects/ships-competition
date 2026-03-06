@@ -14,22 +14,19 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- App styles -->
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header (slim) -->
   <header class="header">
     <div class="header-left">
-      <div>
-        <div class="logo">HORMUZ RACE</div>
-        <div class="logo-sub">Strait of Hormuz Ship Competition</div>
-      </div>
+      <div class="logo">HORMUZ RACE</div>
     </div>
     <div class="header-right">
       <div id="clock"></div>
       <div class="header-actions">
-        <button class="header-btn refresh-btn" id="refresh-btn" onclick="tracker.refreshPositions()">Refresh Positions</button>
+        <button class="header-btn refresh-btn" id="refresh-btn" onclick="tracker.refreshPositions()">Refresh</button>
         <button class="header-btn" onclick="tracker.exportState()">Export</button>
         <button class="header-btn" onclick="document.getElementById('import-file').click()">Import</button>
         <button class="header-btn" onclick="tracker.resetAll()">Reset</button>
@@ -39,48 +36,68 @@
     </div>
   </header>
 
-  <!-- Stats Bar -->
-  <div class="stats-bar">
-    <div class="stat-item">
-      <div class="stat-value total-val" id="total-ships">35</div>
-      <div class="stat-label">Total Ships</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-value passed-val" id="total-passed">0</div>
-      <div class="stat-label">Passed</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-value moving-val" id="total-moving">0</div>
-      <div class="stat-label">Moving</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-value waiting-val" id="total-waiting">35</div>
-      <div class="stat-label">Waiting</div>
+  <!-- Race Banner -->
+  <div class="race-banner">
+    <div class="finish-slots" id="finish-slots"></div>
+    <div class="race-info">
+      <div class="closest-ship" id="closest-ship"></div>
+      <div class="race-progress" id="race-progress">0 of 5 ships have crossed</div>
     </div>
   </div>
 
-  <!-- Main Layout -->
-  <div class="main-layout">
-    <!-- Sidebar: Scoreboard -->
-    <aside class="sidebar">
-      <div class="sidebar-title">Leaderboard</div>
+  <!-- Winner Banner -->
+  <div class="winner-banner" id="winner-banner" style="display:none"></div>
+
+  <!-- Mobile Tabs -->
+  <div class="mobile-tabs" id="mobile-tabs">
+    <button class="tab active" data-tab="leaderboard">Leaderboard</button>
+    <button class="tab" data-tab="map">Map</button>
+    <button class="tab" data-tab="ships">Ships</button>
+    <button class="tab" data-tab="log">Log</button>
+  </div>
+
+  <!-- Main 3-Column Layout -->
+  <div class="race-layout">
+    <!-- Leaderboard -->
+    <aside class="race-leaderboard panel" id="panel-leaderboard">
+      <div class="panel-title">Leaderboard</div>
       <div id="scoreboard"></div>
     </aside>
 
-    <!-- Content: Map + Ship List -->
-    <main class="content">
+    <!-- Map -->
+    <main class="race-map-container panel" id="panel-map">
       <div id="map"></div>
-      <div class="ship-list-container">
-        <div class="ship-list-header">
-          <div class="ship-list-title">All Ships</div>
-        </div>
-        <div id="ship-list"></div>
-      </div>
     </main>
+
+    <!-- Race Log -->
+    <aside class="race-log panel" id="panel-log">
+      <div class="panel-title">Race Log</div>
+      <div id="race-log"></div>
+    </aside>
   </div>
 
+  <!-- Ship List (full-width) -->
+  <div class="ship-list-section panel" id="panel-ships">
+    <div class="ship-list-header">
+      <div class="ship-list-title">All Ships</div>
+      <div class="sort-controls">
+        <span class="sort-label">Sort:</span>
+        <button class="sort-btn active" data-sort="distance" onclick="tracker.setSort('distance')">Distance</button>
+        <button class="sort-btn" data-sort="owner" onclick="tracker.setSort('owner')">Owner</button>
+        <button class="sort-btn" data-sort="status" onclick="tracker.setSort('status')">Status</button>
+      </div>
+    </div>
+    <div id="ship-list"></div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Celebration Banner -->
+  <div class="celebration-banner" id="celebration-banner"></div>
+
   <!-- App scripts -->
-  <script src="data.js?v=6"></script>
-  <script src="app.js?v=6"></script>
+  <script src="data.js?v=7"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>

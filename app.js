@@ -1,23 +1,30 @@
-// Ship Competition Tracker - Main Application
+// Hormuz Race Tracker - Main Application
 
 class ShipTracker {
   constructor() {
     this.map = null;
     this.markers = {};
-    this.gateLine = null;
+    this.raceLines = [];
+    this.finishGlow = null;
+    this.sortBy = "distance";
     this.state = this.loadState();
+    this.distanceCache = {};
     this.init();
   }
 
+  // ============================================
+  // STATE MANAGEMENT
+  // ============================================
+
   loadState() {
-    const DATA_VERSION = 6; // Bump to force position refresh
+    const DATA_VERSION = 7;
     const saved = localStorage.getItem("hormuz-race-state");
     if (saved) {
       const state = JSON.parse(saved);
       if (!state.positions) state.positions = {};
       if (!state.passed) state.passed = {};
       if (!state.moving) state.moving = {};
-      // If data version changed, clear positions to reload real ones
+      if (!state.raceLog) state.raceLog = [];
       if (state.version !== DATA_VERSION) {
         state.positions = {};
         state.version = DATA_VERSION;
@@ -29,6 +36,7 @@ class ShipTracker {
       passed: {},
       positions: {},
       moving: {},
+      raceLog: [],
     };
   }
 
@@ -36,17 +44,17 @@ class ShipTracker {
     localStorage.setItem("hormuz-race-state", JSON.stringify(this.state));
   }
 
-  // Load real AIS positions for all ships
   ensureAllPositions() {
     let changed = false;
     PARTICIPANTS.forEach((p) => {
       p.ships.forEach((s) => {
         if (REAL_POSITIONS[s.imo]) {
-          // Always use real positions from data
           const real = REAL_POSITIONS[s.imo];
-          if (!this.state.positions[s.imo] ||
-              this.state.positions[s.imo].lat !== real.lat ||
-              this.state.positions[s.imo].lng !== real.lng) {
+          if (
+            !this.state.positions[s.imo] ||
+            this.state.positions[s.imo].lat !== real.lat ||
+            this.state.positions[s.imo].lng !== real.lng
+          ) {
             this.state.positions[s.imo] = {
               lat: real.lat,
               lng: real.lng,
@@ -61,14 +69,168 @@ class ShipTracker {
     if (changed) this.saveState();
   }
 
+  ensureRaceLog() {
+    if (!this.state.raceLog) this.state.raceLog = [];
+    const loggedImos = new Set(
+      this.state.raceLog.filter((e) => e.type === "crossed").map((e) => e.imo)
+    );
+    const passedEntries = Object.entries(this.state.passed)
+      .filter(([imo]) => !loggedImos.has(imo))
+      .sort(([, a], [, b]) => a.timestamp - b.timestamp);
+
+    passedEntries.forEach(([imo, data]) => {
+      const info = this.getShipInfo(imo);
+      const position = this.getFinishPosition(imo);
+      this.state.raceLog.push({
+        type: "crossed",
+        imo,
+        shipName: info.shipName,
+        ownerName: info.ownerName,
+        ownerColor: info.ownerColor,
+        position,
+        timestamp: data.timestamp,
+      });
+    });
+
+    this.state.raceLog.sort((a, b) => b.timestamp - a.timestamp);
+  }
+
+  // ============================================
+  // UTILITY
+  // ============================================
+
+  getShipInfo(imo) {
+    for (const p of PARTICIPANTS) {
+      for (const s of p.ships) {
+        if (s.imo === imo) {
+          return {
+            ship: s,
+            shipName: s.name,
+            ownerName: p.name,
+            ownerColor: p.color,
+            flag: s.flag,
+            participant: p,
+          };
+        }
+      }
+    }
+    return {
+      ship: null,
+      shipName: "Unknown",
+      ownerName: "Unknown",
+      ownerColor: "#888",
+      flag: "",
+      participant: null,
+    };
+  }
+
+  haversineDistance(lat1, lng1, lat2, lng2) {
+    const R = 3440.065; // Earth radius in nautical miles
+    const dLat = ((lat2 - lat1) * Math.PI) / 180;
+    const dLng = ((lng2 - lng1) * Math.PI) / 180;
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((lat1 * Math.PI) / 180) *
+        Math.cos((lat2 * Math.PI) / 180) *
+        Math.sin(dLng / 2) *
+        Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  getDistanceToFinish(imo) {
+    const pos = this.state.positions[imo];
+    if (!pos) return Infinity;
+    return this.haversineDistance(
+      pos.lat,
+      pos.lng,
+      FINISH_LINE.lat,
+      FINISH_LINE.lng
+    );
+  }
+
+  computeAllDistances() {
+    this.distanceCache = {};
+    PARTICIPANTS.forEach((p) => {
+      p.ships.forEach((s) => {
+        this.distanceCache[s.imo] = this.getDistanceToFinish(s.imo);
+      });
+    });
+  }
+
+  getFinishedShips() {
+    return Object.entries(this.state.passed)
+      .sort(([, a], [, b]) => a.timestamp - b.timestamp)
+      .map(([imo, data], i) => ({ imo, timestamp: data.timestamp, position: i + 1 }));
+  }
+
+  getFinishPosition(imo) {
+    const sorted = Object.entries(this.state.passed).sort(
+      ([, a], [, b]) => a.timestamp - b.timestamp
+    );
+    const idx = sorted.findIndex(([id]) => id === imo);
+    return idx >= 0 ? idx + 1 : null;
+  }
+
+  ordinal(n) {
+    const s = ["th", "st", "nd", "rd"];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
+
+  // ============================================
+  // INITIALIZATION
+  // ============================================
+
   init() {
     this.ensureAllPositions();
+    this.ensureRaceLog();
+    this.computeAllDistances();
     this.initMap();
-    this.renderScoreboard();
+    this.renderFinishSlots();
+    this.renderClosestShip();
+    this.renderLeaderboard();
     this.renderShipList();
-    this.updateLeaderboard();
+    this.renderRaceLog();
+    this.detectWinner();
+    this.initMobileTabs();
     this.startClock();
   }
+
+  initMobileTabs() {
+    const tabs = document.querySelectorAll(".mobile-tabs .tab");
+    const panelMap = {
+      leaderboard: "panel-leaderboard",
+      map: "panel-map",
+      ships: "panel-ships",
+      log: "panel-log",
+    };
+
+    // Set initial active panel
+    document.getElementById("panel-leaderboard").classList.add("active");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        Object.values(panelMap).forEach((id) => {
+          document.getElementById(id).classList.remove("active");
+        });
+        const targetId = panelMap[tab.dataset.tab];
+        document.getElementById(targetId).classList.add("active");
+
+        // Invalidate map size when showing map
+        if (tab.dataset.tab === "map" && this.map) {
+          setTimeout(() => this.map.invalidateSize(), 100);
+        }
+      });
+    });
+  }
+
+  // ============================================
+  // MAP
+  // ============================================
 
   initMap() {
     this.map = L.map("map", {
@@ -77,7 +239,6 @@ class ShipTracker {
       zoomControl: true,
     });
 
-    // Dark nautical style tiles
     L.tileLayer(
       "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
       {
@@ -87,12 +248,40 @@ class ShipTracker {
       }
     ).addTo(this.map);
 
-    // Draw the Strait of Hormuz gate line
-    this.gateLine = L.polyline(HORMUZ.gateLine, {
+    // Finished zone (green shading east of finish line)
+    L.polygon(
+      [
+        [24.5, 56.42],
+        [24.5, 58.5],
+        [27.5, 58.5],
+        [27.5, 56.42],
+      ],
+      {
+        color: "#10b981",
+        fillColor: "#10b981",
+        fillOpacity: 0.06,
+        weight: 0,
+      }
+    ).addTo(this.map);
+
+    // Glowing finish line (3 layers)
+    this.finishGlow = L.polyline(HORMUZ.gateLine, {
       color: "#ff4757",
-      weight: 3,
+      weight: 14,
+      opacity: 0.12,
+    }).addTo(this.map);
+
+    L.polyline(HORMUZ.gateLine, {
+      color: "#ff4757",
+      weight: 6,
+      opacity: 0.35,
+    }).addTo(this.map);
+
+    L.polyline(HORMUZ.gateLine, {
+      color: "#ff4757",
+      weight: 2,
       dashArray: "10, 10",
-      opacity: 0.8,
+      opacity: 0.9,
     }).addTo(this.map);
 
     // Gate label
@@ -105,7 +294,7 @@ class ShipTracker {
       }),
     }).addTo(this.map);
 
-    // Add labels for key locations
+    // Location labels
     const locations = [
       { pos: [27.18, 56.25], name: "Iran" },
       { pos: [25.35, 55.4], name: "UAE" },
@@ -125,10 +314,8 @@ class ShipTracker {
       }).addTo(this.map);
     });
 
-    // Place all ships on the map
     this.placeAllShips();
-
-    // Add map legend
+    this.drawRaceLines();
     this.addMapLegend();
   }
 
@@ -156,12 +343,28 @@ class ShipTracker {
     legend.addTo(this.map);
   }
 
-  createShipIcon(ship, participant) {
+  getClosestUnpassedImos(n) {
+    const unpassed = [];
+    PARTICIPANTS.forEach((p) => {
+      p.ships.forEach((s) => {
+        if (!this.state.passed[s.imo]) {
+          unpassed.push({ imo: s.imo, distance: this.distanceCache[s.imo] || Infinity });
+        }
+      });
+    });
+    unpassed.sort((a, b) => a.distance - b.distance);
+    return new Set(unpassed.slice(0, n).map((s) => s.imo));
+  }
+
+  createShipIcon(ship, participant, isClose) {
     const isPassed = !!this.state.passed[ship.imo];
     const isMoving = !!this.state.moving[ship.imo];
 
     let borderGlow = "";
     let opacity = "";
+    const size = isClose && !isPassed ? 40 : 32;
+    const closeClass = isClose && !isPassed ? " close-ship" : "";
+
     if (isPassed) {
       opacity = "opacity:0.35;";
     } else if (isMoving) {
@@ -170,11 +373,11 @@ class ShipTracker {
 
     return L.divIcon({
       className: "ship-marker",
-      html: `<div class="ship-icon" style="background:${participant.color};${opacity}${borderGlow}">
+      html: `<div class="ship-icon${closeClass}" style="background:${participant.color};${opacity}${borderGlow}width:${size}px;height:${size}px;">
         <span class="ship-icon-text">${ship.name.substring(0, 2).toUpperCase()}</span>
       </div>`,
-      iconSize: [32, 32],
-      iconAnchor: [16, 16],
+      iconSize: [size, size],
+      iconAnchor: [size / 2, size / 2],
     });
   }
 
@@ -182,6 +385,7 @@ class ShipTracker {
     const isPassed = !!this.state.passed[ship.imo];
     const isMoving = !!this.state.moving[ship.imo];
     const pos = this.state.positions[ship.imo];
+    const distance = this.distanceCache[ship.imo];
     const status = isPassed ? "PASSED" : isMoving ? "MOVING" : "WAITING";
     const statusColor = isPassed ? "#10b981" : isMoving ? "#f59e0b" : "#64748b";
 
@@ -195,17 +399,25 @@ class ShipTracker {
       <div style="font-size:12px;color:#94a3b8">
         Owner: <span style="color:${participant.color};font-weight:600">${participant.name}</span>
       </div>
+      ${
+        !isPassed && distance !== Infinity
+          ? `<div style="font-size:12px;color:#3b82f6;font-weight:600;margin-top:4px">${distance.toFixed(1)} nm to finish</div>`
+          : ""
+      }
       ${pos ? `<div style="font-size:11px;color:#64748b;margin-top:4px">${pos.lat.toFixed(4)}N, ${pos.lng.toFixed(4)}E</div>` : ""}
     </div>`;
   }
 
   placeAllShips() {
+    const closeImos = this.getClosestUnpassedImos(5);
+
     PARTICIPANTS.forEach((participant) => {
       participant.ships.forEach((ship) => {
         const pos = this.state.positions[ship.imo];
         if (!pos) return;
 
-        const icon = this.createShipIcon(ship, participant);
+        const isClose = closeImos.has(ship.imo);
+        const icon = this.createShipIcon(ship, participant, isClose);
         const marker = L.marker([pos.lat, pos.lng], { icon })
           .addTo(this.map)
           .bindPopup(this.createShipPopup(ship, participant));
@@ -215,142 +427,419 @@ class ShipTracker {
     });
   }
 
+  drawRaceLines() {
+    // Remove existing race lines
+    this.raceLines.forEach((l) => this.map.removeLayer(l));
+    this.raceLines = [];
+
+    const closeImos = this.getClosestUnpassedImos(5);
+
+    PARTICIPANTS.forEach((p) => {
+      p.ships.forEach((s) => {
+        if (this.state.passed[s.imo]) return;
+        const pos = this.state.positions[s.imo];
+        if (!pos) return;
+
+        const isClose = closeImos.has(s.imo);
+        const line = L.polyline(
+          [
+            [pos.lat, pos.lng],
+            [FINISH_LINE.lat, FINISH_LINE.lng],
+          ],
+          {
+            color: p.color,
+            weight: isClose ? 1.5 : 0.8,
+            dashArray: isClose ? "6, 8" : "3, 10",
+            opacity: isClose ? 0.5 : 0.15,
+          }
+        ).addTo(this.map);
+
+        this.raceLines.push(line);
+      });
+    });
+  }
+
   updateMapMarkers() {
-    // Remove all existing markers and re-add them (to pick up status changes)
     Object.values(this.markers).forEach((m) => this.map.removeLayer(m));
     this.markers = {};
     this.placeAllShips();
+    this.drawRaceLines();
   }
 
-  renderScoreboard() {
+  // ============================================
+  // RACE BANNER - FINISH SLOTS
+  // ============================================
+
+  renderFinishSlots() {
+    const container = document.getElementById("finish-slots");
+    const finished = this.getFinishedShips();
+    const labels = ["1st", "2nd", "3rd", "4th", "5th"];
+
+    let html = "";
+    for (let i = 0; i < 5; i++) {
+      const pos = i + 1;
+      const ship = finished[i];
+
+      if (ship) {
+        const info = this.getShipInfo(ship.imo);
+        const time = new Date(ship.timestamp).toLocaleTimeString();
+        html += `
+          <div class="finish-slot filled" data-position="${pos}">
+            <div class="slot-position">${labels[i]}</div>
+            <div class="slot-ship">${info.shipName}</div>
+            <div class="slot-owner" style="color:${info.ownerColor}">${info.ownerName}</div>
+            <div class="slot-time">${time}</div>
+          </div>`;
+      } else {
+        html += `
+          <div class="finish-slot" data-position="${pos}">
+            <div class="slot-position">${labels[i]}</div>
+            <div class="slot-empty">---</div>
+          </div>`;
+      }
+    }
+    container.innerHTML = html;
+
+    // Update progress text
+    const count = finished.length;
+    document.getElementById("race-progress").textContent =
+      `${Math.min(count, 5)} of 5 ships have crossed`;
+  }
+
+  renderClosestShip() {
+    const container = document.getElementById("closest-ship");
+
+    // Find closest unpassed ship
+    let closest = null;
+    let closestDist = Infinity;
+
+    PARTICIPANTS.forEach((p) => {
+      p.ships.forEach((s) => {
+        if (!this.state.passed[s.imo]) {
+          const d = this.distanceCache[s.imo] || Infinity;
+          if (d < closestDist) {
+            closestDist = d;
+            closest = { ship: s, participant: p, distance: d };
+          }
+        }
+      });
+    });
+
+    if (closest) {
+      container.innerHTML = `Closest: <span class="ship-highlight">${closest.ship.name}</span> &mdash; <span class="distance-highlight">${closest.distance.toFixed(1)} nm</span>`;
+    } else {
+      container.innerHTML = "All ships have finished!";
+    }
+  }
+
+  // ============================================
+  // LEADERBOARD
+  // ============================================
+
+  renderLeaderboard() {
     const container = document.getElementById("scoreboard");
     container.innerHTML = "";
 
-    const sorted = [...PARTICIPANTS].sort((a, b) => {
-      const aPassed = a.ships.filter((s) => this.state.passed[s.imo]).length;
-      const bPassed = b.ships.filter((s) => this.state.passed[s.imo]).length;
-      return bPassed - aPassed;
+    // Calculate max distance for progress bars
+    let maxDistance = 0;
+    PARTICIPANTS.forEach((p) => {
+      p.ships.forEach((s) => {
+        if (!this.state.passed[s.imo]) {
+          const d = this.distanceCache[s.imo] || 0;
+          if (d > maxDistance && d !== Infinity) maxDistance = d;
+        }
+      });
     });
+    if (maxDistance === 0) maxDistance = 1;
 
-    sorted.forEach((participant, index) => {
-      const passedCount = participant.ships.filter(
-        (s) => this.state.passed[s.imo]
-      ).length;
-      const movingCount = participant.ships.filter(
-        (s) => this.state.moving[s.imo] && !this.state.passed[s.imo]
-      ).length;
-      const waitingCount = 5 - passedCount - movingCount;
+    // Sort participants: passed count desc, then closest ship distance asc
+    const sorted = [...PARTICIPANTS]
+      .map((p) => {
+        const passedCount = p.ships.filter(
+          (s) => this.state.passed[s.imo]
+        ).length;
+
+        // Find closest unpassed ship
+        let bestShip = null;
+        let bestDist = Infinity;
+        p.ships.forEach((s) => {
+          if (!this.state.passed[s.imo]) {
+            const d = this.distanceCache[s.imo] || Infinity;
+            if (d < bestDist) {
+              bestDist = d;
+              bestShip = s;
+            }
+          }
+        });
+
+        return { participant: p, passedCount, bestShip, bestDist };
+      })
+      .sort((a, b) => {
+        if (b.passedCount !== a.passedCount)
+          return b.passedCount - a.passedCount;
+        return a.bestDist - b.bestDist;
+      });
+
+    sorted.forEach((entry, index) => {
+      const p = entry.participant;
+      const progressPct =
+        entry.bestDist === Infinity
+          ? 100
+          : Math.max(0, Math.min(100, ((maxDistance - entry.bestDist) / maxDistance) * 100));
 
       const card = document.createElement("div");
       card.className = "score-card";
-      card.style.borderLeftColor = participant.color;
+      card.style.borderLeftColor = p.color;
+
       card.innerHTML = `
-        <div class="score-rank">#${index + 1}</div>
-        <div class="score-info">
-          <div class="score-name" style="color:${participant.color}">${participant.name}</div>
-          <div class="score-stats">
-            <span class="stat passed-stat">${passedCount} passed</span>
-            <span class="stat moving-stat">${movingCount} moving</span>
-            <span class="stat waiting-stat">${waitingCount} waiting</span>
-          </div>
-          <div class="score-progress">
-            ${participant.ships
-              .map((s) => {
-                const status = this.state.passed[s.imo]
-                  ? "passed"
-                  : this.state.moving[s.imo]
-                    ? "moving"
-                    : "waiting";
-                return `<div class="progress-dot ${status}" title="${s.name}"></div>`;
-              })
-              .join("")}
-          </div>
+        <div class="score-card-top">
+          <div class="score-rank">#${index + 1}</div>
+          <div class="score-name" style="color:${p.color}">${p.name}</div>
+          ${entry.passedCount > 0 ? `<div class="score-passed-badge">${entry.passedCount} passed</div>` : ""}
+        </div>
+        ${
+          entry.bestShip
+            ? `<div class="score-best-ship">
+                Best: <span class="best-name">${entry.bestShip.name}</span>
+                &mdash; <span class="best-distance">${entry.bestDist.toFixed(1)} nm</span>
+              </div>
+              <div class="score-progress-bar">
+                <div class="score-progress-fill" style="width:${progressPct}%;background:${p.color}"></div>
+              </div>`
+            : `<div class="score-best-ship" style="color:#10b981">All ships finished!</div>`
+        }
+        <div class="score-dots">
+          ${p.ships
+            .map((s) => {
+              const status = this.state.passed[s.imo]
+                ? "passed"
+                : this.state.moving[s.imo]
+                  ? "moving"
+                  : "waiting";
+              return `<div class="progress-dot ${status}" title="${s.name}"></div>`;
+            })
+            .join("")}
         </div>
       `;
 
-      card.addEventListener("click", () => this.scrollToParticipant(participant.name));
+      card.addEventListener("click", () =>
+        this.scrollToParticipant(p.name)
+      );
       container.appendChild(card);
     });
   }
+
+  // ============================================
+  // RACE LOG
+  // ============================================
+
+  renderRaceLog() {
+    const container = document.getElementById("race-log");
+
+    if (!this.state.raceLog || this.state.raceLog.length === 0) {
+      container.innerHTML =
+        '<div class="log-empty">No events yet. Mark a ship as passed to see activity here.</div>';
+      return;
+    }
+
+    container.innerHTML = this.state.raceLog
+      .map((entry) => {
+        const time = new Date(entry.timestamp).toLocaleString();
+
+        if (entry.type === "crossed") {
+          return `
+            <div class="log-entry crossed" style="border-left-color:${entry.ownerColor}">
+              <div class="log-text">
+                <span class="log-ship">${entry.shipName}</span> crossed the finish line!
+                <span class="log-owner" style="color:${entry.ownerColor}">${entry.ownerName}</span>
+                takes <span class="log-position">${this.ordinal(entry.position)}</span>!
+              </div>
+              <div class="log-time">${time}</div>
+            </div>`;
+        }
+
+        return "";
+      })
+      .join("");
+  }
+
+  addRaceLogEntry(entry) {
+    if (!this.state.raceLog) this.state.raceLog = [];
+    this.state.raceLog.unshift(entry);
+    this.state.raceLog.sort((a, b) => b.timestamp - a.timestamp);
+  }
+
+  // ============================================
+  // SHIP LIST
+  // ============================================
 
   renderShipList() {
     const container = document.getElementById("ship-list");
     container.innerHTML = "";
 
-    PARTICIPANTS.forEach((participant) => {
+    // Build flat list
+    const allShips = [];
+    PARTICIPANTS.forEach((p) => {
+      p.ships.forEach((s) => {
+        allShips.push({
+          ship: s,
+          participant: p,
+          distance: this.distanceCache[s.imo] || Infinity,
+          isPassed: !!this.state.passed[s.imo],
+          isMoving: !!this.state.moving[s.imo],
+          passedTime: this.state.passed[s.imo]?.timestamp,
+        });
+      });
+    });
+
+    // Compute distance rank for non-passed ships
+    const unpassedSorted = allShips
+      .filter((s) => !s.isPassed)
+      .sort((a, b) => a.distance - b.distance);
+    const distanceRank = {};
+    unpassedSorted.forEach((s, i) => {
+      distanceRank[s.ship.imo] = i + 1;
+    });
+
+    if (this.sortBy === "owner") {
+      this.renderShipListByOwner(allShips, distanceRank);
+    } else {
+      this.renderShipListFlat(allShips, distanceRank);
+    }
+  }
+
+  renderShipListFlat(allShips, distanceRank) {
+    const container = document.getElementById("ship-list");
+
+    // Sort
+    if (this.sortBy === "distance") {
+      allShips.sort((a, b) => {
+        if (a.isPassed && !b.isPassed) return 1;
+        if (!a.isPassed && b.isPassed) return -1;
+        if (a.isPassed && b.isPassed)
+          return a.passedTime - b.passedTime;
+        return a.distance - b.distance;
+      });
+    } else if (this.sortBy === "status") {
+      allShips.sort((a, b) => {
+        const order = (s) => (s.isPassed ? 0 : s.isMoving ? 1 : 2);
+        const diff = order(a) - order(b);
+        if (diff !== 0) return diff;
+        if (a.isPassed && b.isPassed)
+          return a.passedTime - b.passedTime;
+        return a.distance - b.distance;
+      });
+    }
+
+    allShips.forEach((entry) => {
+      container.appendChild(
+        this.createShipCardElement(entry, distanceRank, true)
+      );
+    });
+  }
+
+  renderShipListByOwner(allShips, distanceRank) {
+    const container = document.getElementById("ship-list");
+
+    PARTICIPANTS.forEach((p) => {
       const section = document.createElement("div");
       section.className = "participant-section";
-      section.id = `participant-${participant.name}`;
+      section.id = `participant-${p.name}`;
 
       const header = document.createElement("div");
       header.className = "participant-header";
-      header.style.borderLeftColor = participant.color;
-      header.innerHTML = `<h3 style="color:${participant.color}">${participant.name}</h3>`;
+      header.style.borderLeftColor = p.color;
+      header.innerHTML = `<h3 style="color:${p.color}">${p.name}</h3>`;
       section.appendChild(header);
 
-      participant.ships.forEach((ship) => {
-        const isPassed = !!this.state.passed[ship.imo];
-        const isMoving = !!this.state.moving[ship.imo];
-        const flagEmoji = FLAG_EMOJIS[ship.flag] || "\u{1F3F4}";
+      const shipsDiv = document.createElement("div");
+      shipsDiv.className = "participant-ships";
 
-        const shipCard = document.createElement("div");
-        shipCard.className = `ship-card ${isPassed ? "ship-passed" : isMoving ? "ship-moving" : "ship-waiting"}`;
-        shipCard.innerHTML = `
-          <div class="ship-card-main">
-            <div class="ship-status-indicator ${isPassed ? "passed" : isMoving ? "moving" : "waiting"}"></div>
-            <div class="ship-details">
-              <div class="ship-name">${ship.name}</div>
-              <div class="ship-meta">
-                ${flagEmoji} ${ship.flag} &middot; IMO ${ship.imo}
-                &middot; <a href="https://www.marinetraffic.com/en/ais/details/ships/imo:${ship.imo}" target="_blank" class="ship-link">Track</a>
-                &middot; <a href="#" class="ship-link" onclick="event.preventDefault();tracker.locateShip('${ship.imo}')">Locate</a>
-              </div>
-              ${isPassed ? `<div class="ship-passed-time">Passed: ${new Date(this.state.passed[ship.imo].timestamp).toLocaleString()}</div>` : ""}
-            </div>
-            <div class="ship-actions">
-              ${
-                !isPassed
-                  ? `
-                <button class="btn btn-move ${isMoving ? "active" : ""}" onclick="tracker.toggleMoving('${ship.imo}')" title="Toggle moving">
-                  ${isMoving ? "MOVING" : "WAITING"}
-                </button>
-                <button class="btn btn-pass" onclick="tracker.markPassed('${ship.imo}')" title="Mark as passed">
-                  PASSED
-                </button>
-              `
-                  : `
-                <button class="btn btn-undo" onclick="tracker.undoPassed('${ship.imo}')" title="Undo passed">
-                  UNDO
-                </button>
-              `
-              }
-            </div>
-          </div>
-        `;
+      const ships = allShips
+        .filter((s) => s.participant.name === p.name)
+        .sort((a, b) => a.distance - b.distance);
 
-        section.appendChild(shipCard);
+      ships.forEach((entry) => {
+        shipsDiv.appendChild(
+          this.createShipCardElement(entry, distanceRank, false)
+        );
       });
 
+      section.appendChild(shipsDiv);
       container.appendChild(section);
     });
   }
 
-  locateShip(imo) {
-    const pos = this.state.positions[imo];
-    if (pos && this.markers[imo]) {
-      this.map.setView([pos.lat, pos.lng], 10, { animate: true });
-      this.markers[imo].openPopup();
-      // Scroll map into view
-      document.getElementById("map").scrollIntoView({ behavior: "smooth" });
-    }
+  createShipCardElement(entry, distanceRank, showOwner) {
+    const { ship, participant, distance, isPassed, isMoving } = entry;
+    const flagEmoji = FLAG_EMOJIS[ship.flag] || "\u{1F3F4}";
+    const rank = distanceRank[ship.imo];
+    const finishPos = isPassed ? this.getFinishPosition(ship.imo) : null;
+
+    const card = document.createElement("div");
+    card.className = `ship-card ${isPassed ? "ship-passed" : isMoving ? "ship-moving" : "ship-waiting"}`;
+
+    card.innerHTML = `
+      <div class="ship-card-main">
+        <div class="ship-status-indicator ${isPassed ? "passed" : isMoving ? "moving" : "waiting"}"></div>
+        <div class="ship-details">
+          <div class="ship-name-row">
+            <span class="ship-name">${ship.name}</span>
+            ${
+              !isPassed && distance !== Infinity
+                ? `<span class="ship-distance">${distance.toFixed(1)} nm</span>`
+                : ""
+            }
+            ${
+              isPassed && finishPos
+                ? `<span class="ship-distance" style="color:#10b981">${this.ordinal(finishPos)} place</span>`
+                : ""
+            }
+          </div>
+          <div class="ship-meta">
+            ${flagEmoji} ${ship.flag}
+            ${showOwner ? ` &middot; <span style="color:${participant.color};font-weight:600">${participant.name}</span>` : ""}
+            &middot; <a href="https://www.marinetraffic.com/en/ais/details/ships/imo:${ship.imo}" target="_blank" class="ship-link">Track</a>
+            &middot; <a href="#" class="ship-link" onclick="event.preventDefault();tracker.locateShip('${ship.imo}')">Locate</a>
+            ${!isPassed && rank ? ` &middot; <span class="ship-rank">#${rank} closest</span>` : ""}
+          </div>
+          ${isPassed ? `<div class="ship-passed-time">Crossed: ${new Date(this.state.passed[ship.imo].timestamp).toLocaleString()}</div>` : ""}
+        </div>
+        <div class="ship-actions">
+          ${
+            !isPassed
+              ? `
+            <button class="btn btn-move ${isMoving ? "active" : ""}" onclick="tracker.toggleMoving('${ship.imo}')" title="Toggle moving">
+              ${isMoving ? "MOVING" : "WAIT"}
+            </button>
+            <button class="btn btn-pass" onclick="tracker.markPassed('${ship.imo}')" title="Mark as passed">
+              PASSED
+            </button>
+          `
+              : `
+            <button class="btn btn-undo" onclick="tracker.undoPassed('${ship.imo}')" title="Undo passed">
+              UNDO
+            </button>
+          `
+          }
+        </div>
+      </div>
+    `;
+
+    return card;
   }
 
-  scrollToParticipant(name) {
-    const el = document.getElementById(`participant-${name}`);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  setSort(sortBy) {
+    this.sortBy = sortBy;
+    document.querySelectorAll(".sort-btn").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.sort === sortBy);
+    });
+    this.renderShipList();
   }
+
+  // ============================================
+  // SHIP ACTIONS
+  // ============================================
 
   toggleMoving(imo) {
     if (this.state.moving[imo]) {
@@ -363,41 +852,193 @@ class ShipTracker {
   }
 
   markPassed(imo) {
-    this.state.passed[imo] = {
-      timestamp: Date.now(),
-    };
+    const finishedCount = Object.keys(this.state.passed).length;
+    const position = finishedCount + 1;
+
+    this.state.passed[imo] = { timestamp: Date.now() };
     delete this.state.moving[imo];
+
+    const info = this.getShipInfo(imo);
+
+    // Race log entry
+    this.addRaceLogEntry({
+      type: "crossed",
+      imo,
+      shipName: info.shipName,
+      ownerName: info.ownerName,
+      ownerColor: info.ownerColor,
+      position,
+      timestamp: Date.now(),
+    });
+
     this.saveState();
     this.refresh();
-    this.showNotification(imo);
+
+    // Celebration for top 5
+    if (position <= 5) {
+      this.triggerCelebration(info, position);
+    } else {
+      this.showNotification(imo);
+    }
+
+    // Winner detection
+    if (position >= 5) {
+      setTimeout(() => this.detectWinner(), 3500);
+    }
   }
 
   undoPassed(imo) {
     delete this.state.passed[imo];
+    // Remove from race log
+    this.state.raceLog = (this.state.raceLog || []).filter(
+      (e) => !(e.type === "crossed" && e.imo === imo)
+    );
     this.saveState();
     this.refresh();
+    // Hide winner banner if applicable
+    document.getElementById("winner-banner").style.display = "none";
+  }
+
+  locateShip(imo) {
+    const pos = this.state.positions[imo];
+    if (pos && this.markers[imo]) {
+      this.map.setView([pos.lat, pos.lng], 10, { animate: true });
+      this.markers[imo].openPopup();
+      document.getElementById("map").scrollIntoView({ behavior: "smooth" });
+
+      // On mobile, switch to map tab
+      const mapTab = document.querySelector('.tab[data-tab="map"]');
+      if (mapTab && window.innerWidth <= 768) {
+        mapTab.click();
+      }
+    }
+  }
+
+  scrollToParticipant(name) {
+    const el = document.getElementById(`participant-${name}`);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  // ============================================
+  // CELEBRATIONS
+  // ============================================
+
+  triggerCelebration(info, position) {
+    this.triggerConfetti();
+    this.showCelebrationBanner(info, position);
+    this.flashFinishLine();
+  }
+
+  triggerConfetti() {
+    const canvas = document.getElementById("confetti-canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.display = "block";
+
+    const colors = [
+      "#ffd700",
+      "#ff4757",
+      "#10b981",
+      "#3b82f6",
+      "#f59e0b",
+      "#ff6b81",
+      "#06b6d4",
+      "#8b5cf6",
+    ];
+    const particles = [];
+
+    for (let i = 0; i < 200; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: -20 - Math.random() * 200,
+        w: 4 + Math.random() * 10,
+        h: 3 + Math.random() * 6,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speed: 2 + Math.random() * 5,
+        angle: Math.random() * 360,
+        spin: (Math.random() - 0.5) * 12,
+        wobble: Math.random() * 10,
+        drift: (Math.random() - 0.5) * 2,
+      });
+    }
+
+    let frame = 0;
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let active = false;
+
+      particles.forEach((p) => {
+        p.y += p.speed;
+        p.x += Math.sin(frame * 0.03 + p.wobble) * 1.5 + p.drift;
+        p.angle += p.spin;
+        p.speed += 0.02; // gravity
+
+        if (p.y < canvas.height + 20) active = true;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.angle * Math.PI) / 180);
+        ctx.globalAlpha = Math.max(0, 1 - p.y / canvas.height);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+
+      frame++;
+      if (active && frame < 350) {
+        requestAnimationFrame(animate);
+      } else {
+        canvas.style.display = "none";
+      }
+    };
+    requestAnimationFrame(animate);
+  }
+
+  showCelebrationBanner(info, position) {
+    const banner = document.getElementById("celebration-banner");
+    banner.className = "celebration-banner";
+    banner.style.background = info.ownerColor;
+    banner.innerHTML = `${info.shipName} crosses the line! <span style="opacity:0.8">${info.ownerName}</span> takes ${this.ordinal(position)}!`;
+
+    // Trigger animation
+    requestAnimationFrame(() => {
+      banner.classList.add("show");
+    });
+
+    setTimeout(() => {
+      banner.classList.remove("show");
+    }, 3200);
+  }
+
+  flashFinishLine() {
+    if (!this.finishGlow) return;
+    let flashes = 0;
+    const flash = () => {
+      this.finishGlow.setStyle({
+        opacity: flashes % 2 === 0 ? 0.6 : 0.12,
+      });
+      flashes++;
+      if (flashes < 8) {
+        setTimeout(flash, 200);
+      } else {
+        this.finishGlow.setStyle({ opacity: 0.12 });
+      }
+    };
+    flash();
   }
 
   showNotification(imo) {
-    let shipName = "";
-    let ownerName = "";
-    let ownerColor = "";
-    PARTICIPANTS.forEach((p) => {
-      p.ships.forEach((s) => {
-        if (s.imo === imo) {
-          shipName = s.name;
-          ownerName = p.name;
-          ownerColor = p.color;
-        }
-      });
-    });
+    const info = this.getShipInfo(imo);
 
     const notification = document.createElement("div");
     notification.className = "notification";
     notification.innerHTML = `
-      <div class="notification-content" style="border-left: 4px solid ${ownerColor}">
-        <strong>${shipName}</strong> has passed through the Strait!
-        <br><span style="color:${ownerColor}">${ownerName}</span> scores a point!
+      <div class="notification-content" style="border-left: 4px solid ${info.ownerColor}">
+        <strong>${info.shipName}</strong> has passed through the Strait!
+        <br><span style="color:${info.ownerColor}">${info.ownerName}</span> scores!
       </div>
     `;
     document.body.appendChild(notification);
@@ -409,39 +1050,46 @@ class ShipTracker {
     }, 4000);
   }
 
-  updateLeaderboard() {
-    const totalShips = PARTICIPANTS.reduce(
-      (sum, p) => sum + p.ships.length,
-      0
-    );
-    const totalPassed = Object.keys(this.state.passed).length;
-    const totalMoving = Object.keys(this.state.moving).length;
-
-    document.getElementById("total-ships").textContent = totalShips;
-    document.getElementById("total-passed").textContent = totalPassed;
-    document.getElementById("total-moving").textContent = totalMoving;
-    document.getElementById("total-waiting").textContent =
-      totalShips - totalPassed - totalMoving;
+  detectWinner() {
+    const finished = this.getFinishedShips();
+    if (finished.length >= 5) {
+      const first = finished[0];
+      const info = this.getShipInfo(first.imo);
+      const banner = document.getElementById("winner-banner");
+      banner.innerHTML = `RACE COMPLETE! ${info.ownerName.toUpperCase()} WINS WITH ${info.shipName.toUpperCase()}!`;
+      banner.style.display = "block";
+    }
   }
 
+  // ============================================
+  // REFRESH
+  // ============================================
+
   refresh() {
-    this.renderScoreboard();
+    this.computeAllDistances();
+    this.renderFinishSlots();
+    this.renderClosestShip();
+    this.renderLeaderboard();
     this.renderShipList();
-    this.updateLeaderboard();
+    this.renderRaceLog();
     this.updateMapMarkers();
   }
 
   startClock() {
     const updateClock = () => {
       const now = new Date();
-      document.getElementById("clock").textContent =
-        now.toUTCString().replace("GMT", "UTC");
+      document.getElementById("clock").textContent = now
+        .toUTCString()
+        .replace("GMT", "UTC");
     };
     updateClock();
     setInterval(updateClock, 1000);
   }
 
-  // Export state for sharing
+  // ============================================
+  // IMPORT / EXPORT
+  // ============================================
+
   exportState() {
     const data = JSON.stringify(this.state, null, 2);
     const blob = new Blob([data], { type: "application/json" });
@@ -453,13 +1101,14 @@ class ShipTracker {
     URL.revokeObjectURL(url);
   }
 
-  // Import state
   importState(file) {
     const reader = new FileReader();
     reader.onload = (e) => {
       try {
         this.state = JSON.parse(e.target.result);
+        if (!this.state.raceLog) this.state.raceLog = [];
         this.saveState();
+        this.ensureRaceLog();
         this.refresh();
       } catch (err) {
         alert("Invalid file format");
@@ -468,7 +1117,6 @@ class ShipTracker {
     reader.readAsText(file);
   }
 
-  // Refresh positions from live AIS data via CORS proxy
   async refreshPositions() {
     const btn = document.getElementById("refresh-btn");
     const statusEl = document.getElementById("refresh-status");
@@ -483,7 +1131,6 @@ class ShipTracker {
     let updated = 0;
     let failed = 0;
 
-    // Process ships in batches of 5 to avoid hammering
     for (let i = 0; i < allShips.length; i += 5) {
       const batch = allShips.slice(i, i + 5);
       const promises = batch.map(async (ship) => {
@@ -501,7 +1148,6 @@ class ShipTracker {
       });
       await Promise.all(promises);
       statusEl.textContent = `Updated ${updated}/${allShips.length} ships... (${failed} failed)`;
-      // Small delay between batches
       if (i + 5 < allShips.length) {
         await new Promise((r) => setTimeout(r, 1000));
       }
@@ -513,7 +1159,7 @@ class ShipTracker {
     const now = new Date();
     statusEl.textContent = `Last refresh: ${now.toLocaleTimeString()} - ${updated} updated, ${failed} failed`;
     btn.disabled = false;
-    btn.textContent = "Refresh Positions";
+    btn.textContent = "Refresh";
 
     setTimeout(() => {
       statusEl.style.display = "none";
@@ -521,28 +1167,31 @@ class ShipTracker {
   }
 
   async fetchShipPosition(ship) {
-    // Use allorigins as a CORS proxy to fetch myshiptracking vessel page
     const searchName = ship.name.replace(/ /g, "+");
     const searchUrl = `https://www.myshiptracking.com/vessels?name=${searchName}&imo=${ship.imo}`;
     const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(searchUrl)}`;
 
     try {
-      const searchResp = await fetch(proxyUrl, { signal: AbortSignal.timeout(15000) });
+      const searchResp = await fetch(proxyUrl, {
+        signal: AbortSignal.timeout(15000),
+      });
       if (!searchResp.ok) return null;
       const searchHtml = await searchResp.text();
 
-      // Find vessel page link
-      const linkMatch = searchHtml.match(new RegExp(`href="(/vessels/[^"]*imo-${ship.imo}[^"]*)"`));
+      const linkMatch = searchHtml.match(
+        new RegExp(`href="(/vessels/[^"]*imo-${ship.imo}[^"]*)"`)
+      );
       if (!linkMatch) return null;
 
       const vesselUrl = `https://www.myshiptracking.com${linkMatch[1]}`;
       const vesselProxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(vesselUrl)}`;
 
-      const vesselResp = await fetch(vesselProxyUrl, { signal: AbortSignal.timeout(15000) });
+      const vesselResp = await fetch(vesselProxyUrl, {
+        signal: AbortSignal.timeout(15000),
+      });
       if (!vesselResp.ok) return null;
       const vesselHtml = await vesselResp.text();
 
-      // Extract lat/lng
       const coordMatch = vesselHtml.match(/lat=([\d.-]+)&lng=([\d.-]+)/);
       if (!coordMatch) return null;
 
@@ -558,12 +1207,17 @@ class ShipTracker {
     }
   }
 
-  // Reset all state
   resetAll() {
     if (confirm("Are you sure you want to reset all tracking data?")) {
-      this.state = { passed: {}, positions: {}, moving: {} };
+      this.state = {
+        passed: {},
+        positions: {},
+        moving: {},
+        raceLog: [],
+      };
       this.ensureAllPositions();
       this.saveState();
+      document.getElementById("winner-banner").style.display = "none";
       this.refresh();
     }
   }

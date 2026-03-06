@@ -1,4 +1,4 @@
-/* Ship Competition Tracker - Styles */
+/* Hormuz Race Tracker - Styles */
 
 :root {
   --bg-primary: #0a0e17;
@@ -14,6 +14,9 @@
   --waiting: #64748b;
   --danger: #ef4444;
   --accent: #3b82f6;
+  --gold: #ffd700;
+  --silver: #c0c0c0;
+  --bronze: #cd7f32;
 }
 
 * {
@@ -23,18 +26,19 @@
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
 }
 
-/* Header */
+/* ============================================
+   HEADER (slim)
+   ============================================ */
 .header {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   border-bottom: 1px solid var(--border);
-  padding: 16px 24px;
+  padding: 8px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -46,11 +50,10 @@ body {
 .header-left {
   display: flex;
   align-items: center;
-  gap: 16px;
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 800;
   background: linear-gradient(135deg, #3b82f6, #06b6d4);
   -webkit-background-clip: text;
@@ -58,42 +61,35 @@ body {
   letter-spacing: -0.5px;
 }
 
-.logo-sub {
-  font-size: 12px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
 .header-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 #clock {
-  font-family: "JetBrains Mono", "Fira Code", monospace;
-  font-size: 13px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
   color: var(--text-secondary);
   background: var(--bg-primary);
-  padding: 6px 12px;
+  padding: 4px 10px;
   border-radius: 6px;
   border: 1px solid var(--border);
 }
 
 .header-actions {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 
 .header-btn {
   background: var(--bg-card);
   border: 1px solid var(--border);
   color: var(--text-secondary);
-  padding: 6px 12px;
+  padding: 4px 10px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
   transition: all 0.2s;
 }
 
@@ -122,85 +118,220 @@ body {
   font-size: 11px;
   color: var(--text-muted);
   text-align: right;
-  padding: 4px 0;
-  width: 100%;
+  padding: 2px 0;
 }
 
-/* Stats Bar */
-.stats-bar {
-  display: flex;
-  gap: 2px;
-  padding: 0 24px;
+#import-file {
+  display: none;
+}
+
+/* ============================================
+   RACE BANNER
+   ============================================ */
+.race-banner {
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
-.stat-item {
+.finish-slots {
+  display: flex;
+  gap: 10px;
   flex: 1;
-  padding: 16px 20px;
-  text-align: center;
 }
 
-.stat-value {
-  font-size: 28px;
+.finish-slot {
+  flex: 1;
+  background: var(--bg-card);
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 10px 8px;
+  text-align: center;
+  min-width: 0;
+  transition: all 0.3s;
+}
+
+.finish-slot.filled {
+  border-style: solid;
+}
+
+.finish-slot[data-position="1"].filled {
+  border-color: var(--gold);
+  background: rgba(255, 215, 0, 0.08);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+}
+
+.finish-slot[data-position="2"].filled {
+  border-color: var(--silver);
+  background: rgba(192, 192, 192, 0.06);
+}
+
+.finish-slot[data-position="3"].filled {
+  border-color: var(--bronze);
+  background: rgba(205, 127, 50, 0.06);
+}
+
+.finish-slot[data-position="4"].filled,
+.finish-slot[data-position="5"].filled {
+  border-color: var(--accent);
+  background: rgba(59, 130, 246, 0.06);
+}
+
+.slot-position {
+  font-size: 10px;
   font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.finish-slot[data-position="1"] .slot-position { color: var(--gold); }
+.finish-slot[data-position="2"] .slot-position { color: var(--silver); }
+.finish-slot[data-position="3"] .slot-position { color: var(--bronze); }
+.finish-slot[data-position="4"] .slot-position,
+.finish-slot[data-position="5"] .slot-position { color: var(--accent); }
+
+.slot-empty {
+  font-size: 18px;
+  color: var(--text-muted);
+  letter-spacing: 4px;
+}
+
+.slot-ship {
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.slot-owner {
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+.slot-time {
+  font-size: 9px;
+  color: var(--text-muted);
+  margin-top: 2px;
   font-family: "JetBrains Mono", monospace;
 }
 
-.stat-value.passed-val {
-  color: var(--passed);
-}
-.stat-value.moving-val {
-  color: var(--moving);
-}
-.stat-value.waiting-val {
-  color: var(--waiting);
-}
-.stat-value.total-val {
-  color: var(--accent);
+.race-info {
+  text-align: right;
+  min-width: 200px;
+  flex-shrink: 0;
 }
 
-.stat-label {
+.closest-ship {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.closest-ship .ship-highlight {
+  color: var(--moving);
+  font-weight: 700;
+}
+
+.closest-ship .distance-highlight {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.race-progress {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   WINNER BANNER
+   ============================================ */
+.winner-banner {
+  background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+  color: #000;
+  text-align: center;
+  padding: 16px 24px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  animation: winnerGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes winnerGlow {
+  from { box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1); }
+  to { box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.3); }
+}
+
+/* ============================================
+   MOBILE TABS
+   ============================================ */
+.mobile-tabs {
+  display: none;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.mobile-tabs .tab {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.mobile-tabs .tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ============================================
+   3-COLUMN RACE LAYOUT
+   ============================================ */
+.race-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr 280px;
+  height: calc(100vh - 145px);
+  overflow: hidden;
+}
+
+.panel-title {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--text-muted);
-  margin-top: 4px;
+  margin-bottom: 12px;
+  padding: 0 4px;
+  font-weight: 700;
 }
 
-/* Main Layout */
-.main-layout {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  height: calc(100vh - 130px);
-}
-
-/* Sidebar - Scoreboard */
-.sidebar {
+/* ============================================
+   LEADERBOARD PANEL
+   ============================================ */
+.race-leaderboard {
   background: var(--bg-secondary);
   border-right: 1px solid var(--border);
   overflow-y: auto;
   padding: 16px;
 }
 
-.sidebar-title {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--text-muted);
-  margin-bottom: 12px;
-  padding: 0 4px;
-}
-
 .score-card {
   background: var(--bg-card);
   border-radius: 8px;
-  padding: 12px 14px;
+  padding: 10px 12px;
   margin-bottom: 8px;
   border-left: 3px solid;
-  display: flex;
-  align-items: center;
-  gap: 12px;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -210,58 +341,78 @@ body {
   transform: translateX(2px);
 }
 
-.score-rank {
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--text-muted);
-  min-width: 32px;
-  font-family: "JetBrains Mono", monospace;
-}
-
-.score-info {
-  flex: 1;
-}
-
-.score-name {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.score-stats {
+.score-card-top {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 6px;
 }
 
-.stat {
-  font-size: 11px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-weight: 600;
+.score-rank {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-muted);
+  min-width: 28px;
+  font-family: "JetBrains Mono", monospace;
 }
 
-.passed-stat {
+.score-name {
+  font-size: 15px;
+  font-weight: 700;
+  flex: 1;
+}
+
+.score-passed-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
   background: rgba(16, 185, 129, 0.15);
   color: var(--passed);
 }
-.moving-stat {
-  background: rgba(245, 158, 11, 0.15);
-  color: var(--moving);
-}
-.waiting-stat {
-  background: rgba(100, 116, 139, 0.15);
-  color: var(--waiting);
+
+.score-best-ship {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  padding-left: 38px;
 }
 
-.score-progress {
+.score-best-ship .best-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.score-best-ship .best-distance {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.score-progress-bar {
+  height: 4px;
+  background: var(--bg-primary);
+  border-radius: 2px;
+  margin-left: 38px;
+  overflow: hidden;
+}
+
+.score-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.score-dots {
   display: flex;
-  gap: 4px;
+  gap: 3px;
+  padding-left: 38px;
+  margin-top: 6px;
 }
 
 .progress-dot {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   border: 2px solid;
 }
@@ -270,45 +421,223 @@ body {
   background: var(--passed);
   border-color: var(--passed);
 }
+
 .progress-dot.moving {
   background: var(--moving);
   border-color: var(--moving);
   animation: pulse 1.5s ease-in-out infinite;
 }
+
 .progress-dot.waiting {
   background: transparent;
   border-color: var(--waiting);
 }
 
 @keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
-/* Content Area */
-.content {
-  display: flex;
-  flex-direction: column;
+/* ============================================
+   MAP CONTAINER
+   ============================================ */
+.race-map-container {
   overflow: hidden;
 }
 
-/* Map */
 #map {
-  height: 50%;
-  min-height: 400px;
-  border-bottom: 1px solid var(--border);
+  height: 100%;
+  width: 100%;
 }
 
-/* Ship list */
-.ship-list-container {
-  flex: 1;
+/* Map custom styles */
+.ship-marker {
+  background: none !important;
+  border: none !important;
+}
+
+.ship-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-size: 10px;
+  font-weight: 800;
+  color: white;
+  transition: all 0.3s;
+}
+
+.ship-icon.close-ship {
+  width: 40px;
+  height: 40px;
+  font-size: 12px;
+  border-width: 3px;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.ship-icon-text {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.gate-label {
+  background: none !important;
+  border: none !important;
+}
+
+.gate-label-text {
+  color: #ff4757;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+  text-align: center;
+}
+
+.location-label {
+  background: none !important;
+  border: none !important;
+}
+
+.location-label-text {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.map-legend {
+  background: rgba(17, 24, 39, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  backdrop-filter: blur(8px);
+}
+
+.legend-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.legend-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0;
+}
+
+/* Leaflet popup override */
+.leaflet-popup-content-wrapper {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--bg-card) !important;
+}
+
+.leaflet-popup-content {
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+}
+
+/* ============================================
+   RACE LOG PANEL
+   ============================================ */
+.race-log {
+  background: var(--bg-secondary);
+  border-left: 1px solid var(--border);
   overflow-y: auto;
+  padding: 16px;
+}
+
+.log-entry {
+  padding: 10px 12px;
+  background: var(--bg-card);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  border-left: 3px solid;
+  animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.log-entry.crossed {
+  border-left-color: var(--passed);
+}
+
+.log-entry.moving {
+  border-left-color: var(--moving);
+}
+
+.log-text {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.log-text .log-ship {
+  font-weight: 700;
+}
+
+.log-text .log-owner {
+  font-weight: 600;
+}
+
+.log-text .log-position {
+  font-weight: 800;
+}
+
+.log-time {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.log-empty {
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+  padding: 24px 12px;
+  font-style: italic;
+}
+
+/* ============================================
+   SHIP LIST (full-width)
+   ============================================ */
+.ship-list-section {
   padding: 16px 24px;
+  border-top: 1px solid var(--border);
 }
 
 .ship-list-header {
@@ -323,53 +652,78 @@ body {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--text-muted);
+  font-weight: 700;
 }
 
-.filter-bar {
+.sort-controls {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 6px;
 }
 
-.filter-btn {
+.sort-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+
+.sort-btn {
   background: var(--bg-card);
   border: 1px solid var(--border);
   color: var(--text-secondary);
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 11px;
+  font-weight: 600;
   transition: all 0.2s;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
+.sort-btn:hover,
+.sort-btn.active {
   background: var(--accent);
   color: white;
   border-color: var(--accent);
 }
 
-/* Participant Sections */
+#ship-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 8px;
+}
+
+/* Participant sections (for owner sort) */
 .participant-section {
-  margin-bottom: 24px;
+  grid-column: 1 / -1;
 }
 
 .participant-header {
   border-left: 3px solid;
-  padding: 8px 12px;
+  padding: 6px 12px;
   margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+.participant-header:first-child {
+  margin-top: 0;
 }
 
 .participant-header h3 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
+}
+
+.participant-ships {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 8px;
 }
 
 /* Ship Cards */
 .ship-card {
   background: var(--bg-card);
   border-radius: 8px;
-  padding: 12px 16px;
-  margin-bottom: 6px;
+  padding: 10px 14px;
   transition: all 0.2s;
 }
 
@@ -380,7 +734,7 @@ body {
 .ship-card-main {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .ship-status-indicator {
@@ -394,34 +748,72 @@ body {
   background: var(--passed);
   box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
 }
+
 .ship-status-indicator.moving {
   background: var(--moving);
   box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
   animation: pulse 1.5s ease-in-out infinite;
 }
+
 .ship-status-indicator.waiting {
   background: var(--waiting);
 }
 
 .ship-details {
   flex: 1;
+  min-width: 0;
+}
+
+.ship-name-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 2px;
 }
 
 .ship-name {
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ship-distance {
+  font-size: 11px;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--accent);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ship-owner-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
 }
 
 .ship-meta {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-muted);
 }
 
 .ship-passed-time {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--passed);
   margin-top: 2px;
+}
+
+.ship-rank {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--accent);
+  white-space: nowrap;
 }
 
 .ship-actions {
@@ -438,12 +830,22 @@ body {
   opacity: 0.9;
 }
 
+.ship-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.ship-link:hover {
+  text-decoration: underline;
+}
+
 /* Buttons */
 .btn {
-  padding: 6px 12px;
+  padding: 4px 10px;
   border-radius: 6px;
   border: 1px solid;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
@@ -490,61 +892,60 @@ body {
   color: var(--danger);
 }
 
-/* Map custom styles */
-.ship-marker {
-  background: none !important;
-  border: none !important;
+/* ============================================
+   CONFETTI CANVAS
+   ============================================ */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 3000;
+  display: none;
 }
 
-.ship-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  font-size: 10px;
+/* ============================================
+   CELEBRATION BANNER
+   ============================================ */
+.celebration-banner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 2500;
+  padding: 24px 48px;
+  border-radius: 16px;
+  font-size: 22px;
   font-weight: 800;
   color: white;
-}
-
-.ship-icon-text {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.gate-label {
-  background: none !important;
-  border: none !important;
-}
-
-.gate-label-text {
-  color: #ff4757;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
   text-align: center;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: none;
 }
 
-.location-label {
-  background: none !important;
-  border: none !important;
+.celebration-banner.show {
+  animation: celebrationPop 3s ease forwards;
 }
 
-.location-label-text {
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  text-align: center;
+@keyframes celebrationPop {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  10% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+  15% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  80% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
 }
 
-/* Notifications */
+/* ============================================
+   NOTIFICATIONS
+   ============================================ */
 .notification {
   position: fixed;
-  top: 80px;
+  top: 60px;
   right: 24px;
   z-index: 2000;
   transform: translateX(400px);
@@ -557,14 +958,24 @@ body {
 
 .notification-content {
   background: var(--bg-card);
-  padding: 16px 20px;
+  padding: 14px 18px;
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  font-size: 14px;
-  min-width: 280px;
+  font-size: 13px;
+  min-width: 260px;
 }
 
-/* Scrollbar */
+/* ============================================
+   FINISH LINE FLASH
+   ============================================ */
+@keyframes finishFlash {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.6; }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -582,111 +993,121 @@ body {
   background: var(--text-muted);
 }
 
-/* Leaflet popup override */
-.leaflet-popup-content-wrapper {
-  background: var(--bg-card) !important;
-  color: var(--text-primary) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+/* ============================================
+   RESPONSIVE / MOBILE
+   ============================================ */
+@media (max-width: 1024px) {
+  .race-layout {
+    grid-template-columns: 240px 1fr 240px;
+  }
+
+  .finish-slot {
+    padding: 8px 4px;
+  }
+
+  .slot-ship {
+    font-size: 11px;
+  }
 }
 
-.leaflet-popup-tip {
-  background: var(--bg-card) !important;
-}
-
-.leaflet-popup-content {
-  font-size: 13px !important;
-  line-height: 1.5 !important;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
-  .main-layout {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
-
-  .sidebar {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    max-height: 250px;
-  }
-
-  #map {
-    height: 300px;
-  }
-
-  .stats-bar {
-    flex-wrap: wrap;
-  }
-
-  .stat-item {
-    min-width: 50%;
-  }
-
   .header {
+    padding: 8px 12px;
+  }
+
+  .header-actions {
+    gap: 4px;
+  }
+
+  .header-btn {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  #clock {
+    display: none;
+  }
+
+  /* Race banner: horizontal scroll for slots */
+  .race-banner {
     flex-direction: column;
+    padding: 10px 12px;
+    gap: 10px;
+    position: sticky;
+    top: 40px;
+    z-index: 999;
+  }
+
+  .finish-slots {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     gap: 8px;
+  }
+
+  .finish-slot {
+    min-width: 100px;
+    padding: 8px 6px;
+  }
+
+  .race-info {
+    text-align: center;
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* Show mobile tabs */
+  .mobile-tabs {
+    display: flex;
+    position: sticky;
+    top: 130px;
+    z-index: 998;
+  }
+
+  /* Layout: single column, panels hidden by default */
+  .race-layout {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+
+  .panel {
+    display: none;
+  }
+
+  .panel.active {
+    display: block;
+  }
+
+  .race-leaderboard {
+    border-right: none;
+  }
+
+  .race-log {
+    border-left: none;
+  }
+
+  .race-map-container.active #map {
+    height: calc(100vh - 230px);
+  }
+
+  .ship-list-section {
+    padding: 12px;
+  }
+
+  .ship-list-section.active {
+    display: block;
+  }
+
+  #ship-list {
+    grid-template-columns: 1fr;
   }
 
   .ship-actions {
     flex-direction: column;
   }
-}
 
-/* Map Legend */
-.map-legend {
-  background: rgba(17, 24, 39, 0.92);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 12px;
-  color: var(--text-secondary);
-  backdrop-filter: blur(8px);
-}
-
-.legend-title {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--text-muted);
-  margin-bottom: 6px;
-  font-weight: 700;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 3px;
-  font-size: 12px;
-}
-
-.legend-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  display: inline-block;
-}
-
-.legend-divider {
-  height: 1px;
-  background: var(--border);
-  margin: 8px 0;
-}
-
-.ship-link {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.ship-link:hover {
-  text-decoration: underline;
-}
-
-/* Hidden file input */
-#import-file {
-  display: none;
+  .sort-controls {
+    flex-wrap: wrap;
+  }
 }

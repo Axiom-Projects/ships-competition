@@ -130,6 +130,9 @@ const HORMUZ = {
   ],
 };
 
+// Finish line target point (western edge of gate - ships cross west to east)
+const FINISH_LINE = { lat: 25.94, lng: 56.42 };
+
 // Flag emoji mapping
 const FLAG_EMOJIS = {
   "Portugal (Madeira)": "\u{1F1F5}\u{1F1F9}",
