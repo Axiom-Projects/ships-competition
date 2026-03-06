@@ -109,13 +109,13 @@ const REAL_POSITIONS = {
   "9832262": { lat: 25.54406, lng: 54.90227 },  // Front Shanghai
   "9833735": { lat: 24.52852, lng: 53.58895 },  // Siena
   "9903413": { lat: 25.98660, lng: 55.50498 },  // Karachi
-  "9917828": { lat: 25.75000, lng: 55.10000 },  // Maria (estimated - not found on tracker)
+  "9917828": { lat: 1.26680, lng: 103.58439 },   // Maria (Singapore area)
   "9933547": { lat: 28.71129, lng: 49.30036 },  // Advantage Victory
   "9936549": { lat: 26.01413, lng: 52.71321 },  // Eco Oracle
   "9937103": { lat: 25.62021, lng: 54.98053 },  // Front Beauly
-  "9065077": { lat: 25.50000, lng: 55.20000 },  // Sea Bird (estimated - not found on tracker)
+  "9065077": { lat: 25.96057, lng: 55.38039 },   // Sea Bird
   "9976927": { lat: 25.92130, lng: 52.32326 },  // Lebrethah
-  "9978676": { lat: 27.79698, lng: -92.52320 }, // North Star (Gulf of Mexico)
+  "9978676": { lat: 24.40003, lng: 52.92878 },   // North Star
   "9982536": { lat: 24.43335, lng: 52.43220 },  // Nord Victor
 };
 
