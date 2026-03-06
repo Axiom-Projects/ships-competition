@@ -123,10 +123,10 @@ const REAL_POSITIONS = {
 const HORMUZ = {
   center: [26.0, 54.0],
   zoom: 7,
-  // Gate line - horizontal line from Oman coast across the strait
+  // Gate line - horizontal from Limah, Oman across the strait
   gateLine: [
-    [26.35, 55.9],
-    [26.35, 56.85],
+    [25.94, 56.42],
+    [25.94, 55.8],
   ],
 };
 
