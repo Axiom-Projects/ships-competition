@@ -137,11 +137,11 @@ const FINISH_LINE = { lat: 25.94, lng: 56.42 };
 const MUSANDAM_POLYGON = [
   [25.85, 55.95],  // Southwest base
   [26.4, 56.27],   // Tip (north)
-  [25.85, 56.45],  // Southeast base
+  [25.85, 56.35],  // Southeast base
 ];
 
-// Waypoint for routing through the Strait of Hormuz (north of Musandam tip)
-const STRAIT_WAYPOINT = { lat: 26.5, lng: 56.3 };
+// Waypoint for routing through the Strait of Hormuz (well north+east of Musandam)
+const STRAIT_WAYPOINT = { lat: 26.7, lng: 56.5 };
 
 // Flag emoji mapping
 const FLAG_EMOJIS = {
