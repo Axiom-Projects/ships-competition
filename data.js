@@ -133,6 +133,16 @@ const HORMUZ = {
 // Finish line target point (western edge of gate - ships cross west to east)
 const FINISH_LINE = { lat: 25.94, lng: 56.42 };
 
+// Musandam Peninsula obstacle (simplified triangle for land-avoidance routing)
+const MUSANDAM_POLYGON = [
+  [25.85, 55.95],  // Southwest base
+  [26.4, 56.27],   // Tip (north)
+  [25.85, 56.45],  // Southeast base
+];
+
+// Waypoint for routing through the Strait of Hormuz (north of Musandam tip)
+const STRAIT_WAYPOINT = { lat: 26.5, lng: 56.3 };
+
 // Flag emoji mapping
 const FLAG_EMOJIS = {
   "Portugal (Madeira)": "\u{1F1F5}\u{1F1F9}",

@@ -138,15 +138,63 @@ class ShipTracker {
     return R * c;
   }
 
-  getDistanceToFinish(imo) {
+  // Check if two line segments intersect (using lng as x, lat as y)
+  segmentsIntersect(ax, ay, bx, by, cx, cy, dx, dy) {
+    const det = (bx - ax) * (dy - cy) - (by - ay) * (dx - cx);
+    if (Math.abs(det) < 1e-10) return false;
+    const t = ((cx - ax) * (dy - cy) - (cy - ay) * (dx - cx)) / det;
+    const u = ((cx - ax) * (by - ay) - (cy - ay) * (bx - ax)) / det;
+    return t > 0 && t < 1 && u > 0 && u < 1;
+  }
+
+  // Check if a direct path between two points crosses the Musandam Peninsula
+  pathCrossesLand(lat1, lng1, lat2, lng2) {
+    for (let i = 0; i < MUSANDAM_POLYGON.length; i++) {
+      const j = (i + 1) % MUSANDAM_POLYGON.length;
+      if (
+        this.segmentsIntersect(
+          lng1, lat1, lng2, lat2,
+          MUSANDAM_POLYGON[i][1], MUSANDAM_POLYGON[i][0],
+          MUSANDAM_POLYGON[j][1], MUSANDAM_POLYGON[j][0]
+        )
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Get the route waypoints from a ship to the finish line
+  getRouteToFinish(imo) {
     const pos = this.state.positions[imo];
-    if (!pos) return Infinity;
-    return this.haversineDistance(
-      pos.lat,
-      pos.lng,
-      FINISH_LINE.lat,
-      FINISH_LINE.lng
-    );
+    if (!pos) return null;
+
+    if (this.pathCrossesLand(pos.lat, pos.lng, FINISH_LINE.lat, FINISH_LINE.lng)) {
+      return [
+        [pos.lat, pos.lng],
+        [STRAIT_WAYPOINT.lat, STRAIT_WAYPOINT.lng],
+        [FINISH_LINE.lat, FINISH_LINE.lng],
+      ];
+    }
+
+    return [
+      [pos.lat, pos.lng],
+      [FINISH_LINE.lat, FINISH_LINE.lng],
+    ];
+  }
+
+  getDistanceToFinish(imo) {
+    const route = this.getRouteToFinish(imo);
+    if (!route) return Infinity;
+
+    let total = 0;
+    for (let i = 0; i < route.length - 1; i++) {
+      total += this.haversineDistance(
+        route[i][0], route[i][1],
+        route[i + 1][0], route[i + 1][1]
+      );
+    }
+    return total;
   }
 
   computeAllDistances() {
@@ -437,22 +485,16 @@ class ShipTracker {
     PARTICIPANTS.forEach((p) => {
       p.ships.forEach((s) => {
         if (this.state.passed[s.imo]) return;
-        const pos = this.state.positions[s.imo];
-        if (!pos) return;
+        const route = this.getRouteToFinish(s.imo);
+        if (!route) return;
 
         const isClose = closeImos.has(s.imo);
-        const line = L.polyline(
-          [
-            [pos.lat, pos.lng],
-            [FINISH_LINE.lat, FINISH_LINE.lng],
-          ],
-          {
-            color: p.color,
-            weight: isClose ? 1.5 : 0.8,
-            dashArray: isClose ? "6, 8" : "3, 10",
-            opacity: isClose ? 0.5 : 0.15,
-          }
-        ).addTo(this.map);
+        const line = L.polyline(route, {
+          color: p.color,
+          weight: isClose ? 1.5 : 0.8,
+          dashArray: isClose ? "6, 8" : "3, 10",
+          opacity: isClose ? 0.5 : 0.15,
+        }).addTo(this.map);
 
         this.raceLines.push(line);
       });
