@@ -96,7 +96,7 @@ class ShipTracker {
     }).addTo(this.map);
 
     // Gate label
-    L.marker([26.55, 56.25], {
+    L.marker([26.42, 56.38], {
       icon: L.divIcon({
         className: "gate-label",
         html: '<div class="gate-label-text">FINISH LINE</div>',
