@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Fetches latest ship positions from myshiptracking.com and updates data.js
+// Fetches latest ship positions from myshiptracking.com (primary)
+// and VesselFinder (fallback for ships with stale myshiptracking data)
 
 const fs = require("fs");
 const path = require("path");
@@ -29,7 +30,7 @@ const SHIPS = [
   ["9933547", "Advantage Victory"],
   ["9976927", "Lebrethah"],
   ["9903413", "Karachi"],
-  ["9065077", "Sea Bird"],
+  ["9088536", "Sea Bird"],
   ["9750050", "Diligent Warrior"],
   ["9251585", "Nature Heart"],
   ["9254850", "Camilla"],
@@ -45,6 +46,13 @@ const SHIPS = [
   ["9718777", "Mahadah Silver"],
 ];
 
+// Ships to fetch from VesselFinder instead of myshiptracking (IMO -> MMSI)
+// Used when myshiptracking returns stale/wrong data for a vessel
+const VESSEL_FINDER_SHIPS = {
+  "1120510": "671536100",  // Maria - myshiptracking data is months stale
+  "9088536": "511101458",  // Sea Bird - wrong vessel on myshiptracking with old IMO
+};
+
 async function fetchWithTimeout(url, timeoutMs = 15000) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -53,7 +61,8 @@ async function fetchWithTimeout(url, timeoutMs = 15000) {
       signal: controller.signal,
       headers: {
         "User-Agent":
-          "Mozilla/5.0 (compatible; ShipTracker/1.0; +https://github.com)",
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://www.vesselfinder.com/",
       },
     });
     return resp;
@@ -62,13 +71,35 @@ async function fetchWithTimeout(url, timeoutMs = 15000) {
   }
 }
 
+// Fetch position from VesselFinder's map location API (binary response)
+async function fetchFromVesselFinder(mmsi, name) {
+  try {
+    const url = `https://www.vesselfinder.com/api/pub/ml/${mmsi}`;
+    const resp = await fetchWithTimeout(url);
+    if (!resp.ok) return null;
+
+    const arrayBuf = await resp.arrayBuffer();
+    const buf = Buffer.from(arrayBuf);
+    if (buf.length < 12) return null;
+
+    const CF = 600000;
+    const lat = buf.readInt32BE(7) / CF;
+    const lng = buf.readInt32BE(3) / CF;
+
+    if (lat === 0 && lng === 0) return null;
+
+    return { lat, lng };
+  } catch {
+    return null;
+  }
+}
+
 // Direct vessel page URLs for ships where IMO search doesn't find them
 const DIRECT_URLS = {
-  "1120510": "/vessels/maria-mmsi-671536100-imo-1120510",
-  "9065077": "/vessels/sea-bird-mmsi-370172000-imo-9065077",
 };
 
-async function fetchShipPosition(imo, name) {
+// Fetch position from myshiptracking.com
+async function fetchFromMyShipTracking(imo, name) {
   try {
     let vesselPath = DIRECT_URLS[imo];
 
@@ -102,6 +133,17 @@ async function fetchShipPosition(imo, name) {
   } catch {
     return null;
   }
+}
+
+async function fetchShipPosition(imo, name) {
+  // Use VesselFinder for ships with known stale myshiptracking data
+  const mmsi = VESSEL_FINDER_SHIPS[imo];
+  if (mmsi) {
+    const pos = await fetchFromVesselFinder(mmsi, name);
+    if (pos) return pos;
+    console.log(`    VesselFinder failed for ${name}, trying myshiptracking...`);
+  }
+  return fetchFromMyShipTracking(imo, name);
 }
 
 function sleep(ms) {
