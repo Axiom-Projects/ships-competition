@@ -23,7 +23,7 @@ const SHIPS = [
   ["1137745", "Spade"],
   ["9262912", "Auroura"],
   ["9288095", "Lan Jing"],
-  ["9978676", "North Star"],
+  ["9299563", "North Star"],
   ["1120510", "Maria"],
   ["9220940", "Sands"],
   ["9284960", "Ocean Lily"],
@@ -51,6 +51,7 @@ const SHIPS = [
 const VESSEL_FINDER_SHIPS = {
   "1120510": "671536100",  // Maria - myshiptracking data is months stale
   "9088536": "511101458",  // Sea Bird - wrong vessel on myshiptracking with old IMO
+  "9299563": "314109000",  // North Star - wrong vessel on myshiptracking with old IMO
 };
 
 async function fetchWithTimeout(url, timeoutMs = 15000) {
