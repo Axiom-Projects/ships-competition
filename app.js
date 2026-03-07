@@ -900,6 +900,15 @@ class ShipTracker {
     const FINISH_LNG = 56.42;
     const newCrossings = [];
 
+    // Un-mark ships whose position was corrected back below the finish line
+    Object.keys(this.state.passed).forEach((imo) => {
+      const pos = this.state.positions[imo];
+      if (pos && pos.lng < FINISH_LNG) {
+        delete this.state.passed[imo];
+        this.saveState();
+      }
+    });
+
     PARTICIPANTS.forEach((p) => {
       p.ships.forEach((s) => {
         if (this.state.passed[s.imo]) return;
