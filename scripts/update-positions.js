@@ -7,52 +7,49 @@ const path = require("path");
 
 const DATA_FILE = path.join(__dirname, "..", "data.js");
 
-// All ships: [imo, name]
+// All ships: [imo, name, mmsi]
 const SHIPS = [
-  ["9785835", "Monte Urbasa"],
-  ["9779848", "Shaden"],
-  ["9307750", "Jag Vasant"],
-  ["9275983", "Rose 25"],
-  ["9385037", "Long Wind"],
-  ["9460136", "P.ALIKI"],
-  ["9608867", "Magic Victoria"],
-  ["9982536", "Nord Victor"],
-  ["9936549", "Eco Oracle"],
-  ["9833735", "Siena"],
-  ["9489027", "Abu Dhabi III"],
-  ["1137745", "Spade"],
-  ["9262912", "Auroura"],
-  ["9288095", "Lan Jing"],
-  ["9299563", "North Star"],
-  ["1120510", "Maria"],
-  ["9220940", "Sands"],
-  ["9284960", "Ocean Lily"],
-  ["9933547", "Advantage Victory"],
-  ["9976927", "Lebrethah"],
-  ["9903413", "Karachi"],
-  ["9088536", "Sea Bird"],
-  ["9750050", "Diligent Warrior"],
-  ["9251585", "Nature Heart"],
-  ["9254850", "Camilla"],
-  ["1028762", "Stoic Warrior"],
-  ["9315680", "Pine Gas"],
-  ["9174361", "Galaxy Gas"],
-  ["9832262", "Front Shanghai"],
-  ["9937103", "Front Beauly"],
-  ["9493779", "Smyrni"],
-  ["9308766", "Parimal"],
-  ["9410399", "Serifos"],
-  ["9626285", "GasLog Skagen"],
-  ["9718777", "Mahadah Silver"],
+  ["9785835", "Monte Urbasa", "255806023"],
+  ["9779848", "Shaden", "403530000"],
+  ["9307750", "Jag Vasant", "419001387"],
+  ["9275983", "Rose 25", "511101620"],
+  ["9385037", "Long Wind", "477372500"],
+  ["9460136", "P.ALIKI", "538010229"],
+  ["9608867", "Magic Victoria", "538004722"],
+  ["9982536", "Nord Victor", "352003984"],
+  ["9936549", "Eco Oracle", "538009925"],
+  ["9833735", "Siena", "241836000"],
+  ["9489027", "Abu Dhabi III", "636014923"],
+  ["1137745", "Spade", "613701904"],
+  ["9262912", "Auroura", "352001225"],
+  ["9288095", "Lan Jing", "306254000"],
+  ["9299563", "North Star", "314109000"],
+  ["1120510", "Maria", "671536100"],
+  ["9220940", "Sands", "518998535"],
+  ["9284960", "Ocean Lily", "477178100"],
+  ["9933547", "Advantage Victory", "538010019"],
+  ["9976927", "Lebrethah", "636024681"],
+  ["9903413", "Karachi", "463092101"],
+  ["9088536", "Sea Bird", "511101458"],
+  ["9750050", "Diligent Warrior", "241422000"],
+  ["9251585", "Nature Heart", "650000171"],
+  ["9254850", "Camilla", "636020658"],
+  ["1028762", "Stoic Warrior", null],
+  ["9315680", "Pine Gas", "419001655"],
+  ["9174361", "Galaxy Gas", "256036000"],
+  ["9832262", "Front Shanghai", "477539300"],
+  ["9937103", "Front Beauly", "538010890"],
+  ["9493779", "Smyrni", "636015015"],
+  ["9308766", "Parimal", "511101460"],
+  ["9410399", "Serifos", "636018827"],
+  ["9626285", "GasLog Skagen", "310664000"],
+  ["9718777", "Mahadah Silver", "538006501"],
+  ["9593517", "Safeen Prestige", "249797000"],
+  ["9325049", "Sonangol Namibe", "309072000"],
+  ["9330563", "Sanmar Herald", "419002042"],
+  ["9416422", "Ocean Thunder", "352003620"],
+  ["9397327", "Al Kharaitiyat", "538003352"],
 ];
-
-// Ships to fetch from VesselFinder instead of myshiptracking (IMO -> MMSI)
-// Used when myshiptracking returns stale/wrong data for a vessel
-const VESSEL_FINDER_SHIPS = {
-  "1120510": "671536100",  // Maria - myshiptracking data is months stale
-  "9088536": "511101458",  // Sea Bird - wrong vessel on myshiptracking with old IMO
-  "9299563": "314109000",  // North Star - wrong vessel on myshiptracking with old IMO
-};
 
 async function fetchWithTimeout(url, timeoutMs = 15000) {
   const controller = new AbortController();
@@ -136,14 +133,14 @@ async function fetchFromMyShipTracking(imo, name) {
   }
 }
 
-async function fetchShipPosition(imo, name) {
-  // Use VesselFinder for ships with known stale myshiptracking data
-  const mmsi = VESSEL_FINDER_SHIPS[imo];
+async function fetchShipPosition(imo, name, mmsi) {
+  // Primary: VesselFinder (faster, more up-to-date)
   if (mmsi) {
     const pos = await fetchFromVesselFinder(mmsi, name);
     if (pos) return pos;
     console.log(`    VesselFinder failed for ${name}, trying myshiptracking...`);
   }
+  // Fallback: myshiptracking.com
   return fetchFromMyShipTracking(imo, name);
 }
 
@@ -162,8 +159,8 @@ async function main() {
   for (let i = 0; i < SHIPS.length; i += 5) {
     const batch = SHIPS.slice(i, i + 5);
     const results = await Promise.all(
-      batch.map(async ([imo, name]) => {
-        const pos = await fetchShipPosition(imo, name);
+      batch.map(async ([imo, name, mmsi]) => {
+        const pos = await fetchShipPosition(imo, name, mmsi);
         if (pos) {
           positions[imo] = pos;
           updated++;

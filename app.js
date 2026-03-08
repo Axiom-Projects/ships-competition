@@ -5,6 +5,7 @@ class ShipTracker {
     this.map = null;
     this.markers = {};
     this.raceLines = [];
+    this.trailLines = [];
     this.finishGlow = null;
     this.sortBy = "distance";
     this.state = this.loadState();
@@ -24,6 +25,7 @@ class ShipTracker {
       if (!state.positions) state.positions = {};
       if (!state.passed) state.passed = {};
       if (!state.raceLog) state.raceLog = [];
+      if (!state.positionHistory) state.positionHistory = {};
       delete state.moving;
       if (state.version !== DATA_VERSION) {
         state.positions = {};
@@ -35,12 +37,31 @@ class ShipTracker {
       version: DATA_VERSION,
       passed: {},
       positions: {},
+      positionHistory: {},
       raceLog: [],
     };
   }
 
   saveState() {
     localStorage.setItem("hormuz-race-state", JSON.stringify(this.state));
+  }
+
+  appendPositionHistory(imo, lat, lng) {
+    if (!this.state.positionHistory[imo]) {
+      this.state.positionHistory[imo] = [];
+    }
+    const history = this.state.positionHistory[imo];
+    // Skip if position hasn't changed from last recorded point
+    if (history.length > 0) {
+      const last = history[history.length - 1];
+      if (last.lat === lat && last.lng === lng) return;
+    }
+    history.push({ lat, lng, timestamp: Date.now() });
+    // Prune entries older than 2 hours
+    const twoHoursAgo = Date.now() - 2 * 60 * 60 * 1000;
+    this.state.positionHistory[imo] = history.filter(
+      (p) => p.timestamp >= twoHoursAgo
+    );
   }
 
   ensureAllPositions() {
@@ -60,6 +81,11 @@ class ShipTracker {
               speed: real.speed || 0,
               course: real.course || 0,
             };
+            this.appendPositionHistory(s.imo, real.lat, real.lng);
+            changed = true;
+          } else if (!this.state.positionHistory[s.imo] || this.state.positionHistory[s.imo].length === 0) {
+            // Seed history for ships that already have a position but no history
+            this.appendPositionHistory(s.imo, real.lat, real.lng);
             changed = true;
           }
         }
@@ -346,6 +372,7 @@ class ShipTracker {
 
     this.placeAllShips();
     this.drawRaceLines();
+    this.drawTrails();
     this.addMapLegend();
   }
 
@@ -505,11 +532,36 @@ class ShipTracker {
     });
   }
 
+  drawTrails() {
+    // Remove existing trail lines
+    this.trailLines.forEach((l) => this.map.removeLayer(l));
+    this.trailLines = [];
+
+    PARTICIPANTS.forEach((p) => {
+      p.ships.forEach((s) => {
+        const history = this.state.positionHistory[s.imo];
+        if (!history || history.length < 2) return;
+
+        const latlngs = history.map((pt) => [pt.lat, pt.lng]);
+        const line = L.polyline(latlngs, {
+          color: p.color,
+          weight: 1.5,
+          dashArray: "2, 6",
+          opacity: 0.4,
+        }).addTo(this.map);
+
+        line._participantName = p.name;
+        this.trailLines.push(line);
+      });
+    });
+  }
+
   updateMapMarkers() {
     Object.values(this.markers).forEach((m) => this.map.removeLayer(m));
     this.markers = {};
     this.placeAllShips();
     this.drawRaceLines();
+    this.drawTrails();
 
     // Re-apply focus filter if active
     if (this.focusedParticipant) {
@@ -929,10 +981,18 @@ class ShipTracker {
     const newCrossings = [];
 
     // Un-mark ships whose position was corrected back below the finish line
+    // Also remove ships with no known position or not in any participant list
     Object.keys(this.state.passed).forEach((imo) => {
       const pos = this.state.positions[imo];
-      if (pos && pos.lng < FINISH_LNG) {
+      const info = this.getShipInfo(imo);
+      if (!pos || pos.lng < FINISH_LNG || !info.ship) {
         delete this.state.passed[imo];
+        // Remove stale race log entries for this ship
+        if (this.state.raceLog) {
+          this.state.raceLog = this.state.raceLog.filter(
+            (e) => !(e.type === "crossed" && e.imo === imo)
+          );
+        }
         this.saveState();
       }
     });
@@ -1044,6 +1104,15 @@ class ShipTracker {
         opacity: 0.6,
       }).addTo(this.map);
       this.raceLines.push(line);
+    });
+
+    // Hide trail lines for other participants
+    this.trailLines.forEach((l) => {
+      if (l._participantName === name) {
+        if (!this.map.hasLayer(l)) this.map.addLayer(l);
+      } else {
+        this.map.removeLayer(l);
+      }
     });
 
     // Fit map to this participant's ships
@@ -1321,6 +1390,7 @@ class ShipTracker {
           const pos = await this.fetchShipPosition(ship);
           if (pos) {
             this.state.positions[ship.imo] = pos;
+            this.appendPositionHistory(ship.imo, pos.lat, pos.lng);
             updated++;
           } else {
             failed++;
@@ -1352,6 +1422,38 @@ class ShipTracker {
   }
 
   async fetchShipPosition(ship) {
+    // Primary: VesselFinder binary API (fast, 36 bytes, near-real-time)
+    if (ship.mmsi) {
+      try {
+        const pos = await this.fetchFromVesselFinder(ship.mmsi);
+        if (pos) return pos;
+      } catch {}
+    }
+    // Fallback: myshiptracking.com scraping
+    return this.fetchFromMyShipTracking(ship);
+  }
+
+  async fetchFromVesselFinder(mmsi) {
+    const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(
+      `https://www.vesselfinder.com/api/pub/ml/${mmsi}`
+    )}`;
+    const resp = await fetch(url, { signal: AbortSignal.timeout(15000) });
+    if (!resp.ok) return null;
+
+    const buf = await resp.arrayBuffer();
+    if (buf.byteLength < 12) return null;
+
+    const view = new DataView(buf);
+    const CF = 600000;
+    const lng = view.getInt32(3) / CF;
+    const lat = view.getInt32(7) / CF;
+
+    if (lat === 0 && lng === 0) return null;
+
+    return { lat, lng, speed: 0, course: 0, lastUpdate: Date.now() };
+  }
+
+  async fetchFromMyShipTracking(ship) {
     const searchName = ship.name.replace(/ /g, "+");
     const searchUrl = `https://www.myshiptracking.com/vessels?name=${searchName}&imo=${ship.imo}`;
     const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(searchUrl)}`;
@@ -1397,6 +1499,7 @@ class ShipTracker {
       this.state = {
         passed: {},
         positions: {},
+        positionHistory: {},
         raceLog: [],
       };
       this.ensureAllPositions();

@@ -4,55 +4,55 @@ const PARTICIPANTS = [
     name: "Jhimi",
     color: "#e74c3c",
     ships: [
-      { name: "Monte Urbasa", flag: "Portugal (Madeira)", imo: "9785835" },
-      { name: "Shaden", flag: "Saudi Arabia", imo: "9779848" },
-      { name: "Jag Vasant", flag: "India", imo: "9307750" },
-      { name: "Rose 25", flag: "Palau", imo: "9275983" },
-      { name: "Long Wind", flag: "Hong Kong", imo: "9385037" },
+      { name: "Monte Urbasa", flag: "Portugal (Madeira)", imo: "9785835", mmsi: "255806023" },
+      { name: "Shaden", flag: "Saudi Arabia", imo: "9779848", mmsi: "403530000" },
+      { name: "Jag Vasant", flag: "India", imo: "9307750", mmsi: "419001387" },
+      { name: "Rose 25", flag: "Palau", imo: "9275983", mmsi: "511101620" },
+      { name: "Long Wind", flag: "Hong Kong", imo: "9385037", mmsi: "477372500" },
     ],
   },
   {
     name: "Murph",
     color: "#3498db",
     ships: [
-      { name: "P.ALIKI", flag: "Marshall Islands", imo: "9460136" },
-      { name: "Magic Victoria", flag: "Marshall Islands", imo: "9608867" },
-      { name: "Nord Victor", flag: "Panama", imo: "9982536" },
-      { name: "Eco Oracle", flag: "Marshall Islands", imo: "9936549" },
-      { name: "Siena", flag: "Greece", imo: "9833735" },
+      { name: "P.ALIKI", flag: "Marshall Islands", imo: "9460136", mmsi: "538010229" },
+      { name: "Magic Victoria", flag: "Marshall Islands", imo: "9608867", mmsi: "538004722" },
+      { name: "Nord Victor", flag: "Panama", imo: "9982536", mmsi: "352003984" },
+      { name: "Eco Oracle", flag: "Marshall Islands", imo: "9936549", mmsi: "538009925" },
+      { name: "Siena", flag: "Greece", imo: "9833735", mmsi: "241836000" },
     ],
   },
   {
     name: "Adrian",
     color: "#2ecc71",
     ships: [
-      { name: "Abu Dhabi III", flag: "Liberia", imo: "9489027" },
-      { name: "Spade", flag: "Cameroon", imo: "1137745" },
-      { name: "Auroura", flag: "Panama", imo: "9262912" },
-      { name: "Lan Jing", flag: "Curaçao", imo: "9288095" },
-      { name: "North Star", flag: "Barbados", imo: "9299563" },
+      { name: "Abu Dhabi III", flag: "Liberia", imo: "9489027", mmsi: "636014923" },
+      { name: "Spade", flag: "Cameroon", imo: "1137745", mmsi: "613701904" },
+      { name: "Auroura", flag: "Panama", imo: "9262912", mmsi: "352001225" },
+      { name: "Lan Jing", flag: "Curaçao", imo: "9288095", mmsi: "306254000" },
+      { name: "North Star", flag: "Barbados", imo: "9299563", mmsi: "314109000" },
     ],
   },
   {
     name: "Albert",
     color: "#f39c12",
     ships: [
-      { name: "Maria", flag: "Saudi Arabia", imo: "1120510" },
-      { name: "Sands", flag: "Gambia", imo: "9220940" },
-      { name: "Ocean Lily", flag: "Hong Kong", imo: "9284960" },
-      { name: "Advantage Victory", flag: "Marshall Islands", imo: "9933547" },
-      { name: "Lebrethah", flag: "Liberia", imo: "9976927" },
+      { name: "Maria", flag: "Saudi Arabia", imo: "1120510", mmsi: "671536100" },
+      { name: "Sands", flag: "Gambia", imo: "9220940", mmsi: "518998535" },
+      { name: "Ocean Lily", flag: "Hong Kong", imo: "9284960", mmsi: "477178100" },
+      { name: "Advantage Victory", flag: "Marshall Islands", imo: "9933547", mmsi: "538010019" },
+      { name: "Lebrethah", flag: "Liberia", imo: "9976927", mmsi: "636024681" },
     ],
   },
   {
     name: "Sam",
     color: "#9b59b6",
     ships: [
-      { name: "Karachi", flag: "Pakistan", imo: "9903413" },
-      { name: "Sea Bird", flag: "Palau", imo: "9088536" },
-      { name: "Diligent Warrior", flag: "Greece", imo: "9750050" },
-      { name: "Nature Heart", flag: "Mozambique", imo: "9251585" },
-      { name: "Camilla", flag: "Liberia", imo: "9254850" },
+      { name: "Karachi", flag: "Pakistan", imo: "9903413", mmsi: "463092101" },
+      { name: "Sea Bird", flag: "Palau", imo: "9088536", mmsi: "511101458" },
+      { name: "Diligent Warrior", flag: "Greece", imo: "9750050", mmsi: "241422000" },
+      { name: "Nature Heart", flag: "Mozambique", imo: "9251585", mmsi: "650000171" },
+      { name: "Camilla", flag: "Liberia", imo: "9254850", mmsi: "636020658" },
     ],
   },
   {
@@ -60,21 +60,32 @@ const PARTICIPANTS = [
     color: "#1abc9c",
     ships: [
       { name: "Stoic Warrior", flag: "Liberia", imo: "1028762" },
-      { name: "Pine Gas", flag: "India", imo: "9315680" },
-      { name: "Galaxy Gas", flag: "Haiti", imo: "9174361" },
-      { name: "Front Shanghai", flag: "Hong Kong", imo: "9832262" },
-      { name: "Front Beauly", flag: "Marshall Islands", imo: "9937103" },
+      { name: "Pine Gas", flag: "India", imo: "9315680", mmsi: "419001655" },
+      { name: "Galaxy Gas", flag: "Haiti", imo: "9174361", mmsi: "256036000" },
+      { name: "Front Shanghai", flag: "Hong Kong", imo: "9832262", mmsi: "477539300" },
+      { name: "Front Beauly", flag: "Marshall Islands", imo: "9937103", mmsi: "538010890" },
     ],
   },
   {
     name: "Tuffee",
     color: "#e67e22",
     ships: [
-      { name: "Smyrni", flag: "Liberia", imo: "9493779" },
-      { name: "Parimal", flag: "Palau", imo: "9308766" },
-      { name: "Serifos", flag: "Liberia", imo: "9410399" },
-      { name: "GasLog Skagen", flag: "Bermuda", imo: "9626285" },
-      { name: "Mahadah Silver", flag: "Marshall Islands", imo: "9718777" },
+      { name: "Smyrni", flag: "Liberia", imo: "9493779", mmsi: "636015015" },
+      { name: "Parimal", flag: "Palau", imo: "9308766", mmsi: "511101460" },
+      { name: "Serifos", flag: "Liberia", imo: "9410399", mmsi: "636018827" },
+      { name: "GasLog Skagen", flag: "Bermuda", imo: "9626285", mmsi: "310664000" },
+      { name: "Mahadah Silver", flag: "Marshall Islands", imo: "9718777", mmsi: "538006501" },
+    ],
+  },
+  {
+    name: "Eleanor",
+    color: "#e91e63",
+    ships: [
+      { name: "Safeen Prestige", flag: "Malta", imo: "9593517", mmsi: "249797000" },
+      { name: "Sonangol Namibe", flag: "Bahamas", imo: "9325049", mmsi: "309072000" },
+      { name: "Sanmar Herald", flag: "India", imo: "9330563", mmsi: "419002042" },
+      { name: "Ocean Thunder", flag: "Panama", imo: "9416422", mmsi: "352003620" },
+      { name: "Al Kharaitiyat", flag: "Marshall Islands", imo: "9397327", mmsi: "538003352" },
     ],
   },
 ];
@@ -117,6 +128,11 @@ const REAL_POSITIONS = {
   "9410399": { lat: 25.91635, lng: 55.49706 },  // Serifos
   "9626285": { lat: 24.31238, lng: 52.81546 },  // GasLog Skagen
   "9718777": { lat: 24.69594, lng: 53.80723 },  // Mahadah Silver
+  "9593517": { lat: 25.99198, lng: 55.60598 },  // Safeen Prestige
+  "9325049": { lat: 29.56028, lng: 48.84260 },  // Sonangol Namibe
+  "9330563": { lat: 26.91759, lng: 52.57404 },  // Sanmar Herald
+  "9416422": { lat: 29.62519, lng: 48.86211 },  // Ocean Thunder
+  "9397327": { lat: 25.46826, lng: 52.17656 },  // Al Kharaitiyat
 };
 
 // Strait of Hormuz coordinates
@@ -160,4 +176,6 @@ const FLAG_EMOJIS = {
   Haiti: "\u{1F1ED}\u{1F1F9}",
   Bermuda: "\u{1F1E7}\u{1F1F2}",
   Barbados: "\u{1F1E7}\u{1F1E7}",
+  Malta: "\u{1F1F2}\u{1F1F9}",
+  Bahamas: "\u{1F1E7}\u{1F1F8}",
 };
