@@ -1465,7 +1465,16 @@ class ShipTracker {
 
     if (lat === 0 && lng === 0) return null;
 
-    return { lat, lng, speed: 0, course: 0, lastUpdate: Date.now() };
+    // Extract AIS timestamp from last 4 bytes (Unix seconds)
+    let lastUpdate = Date.now();
+    if (buf.byteLength >= 16) {
+      const aisTimestamp = view.getUint32(buf.byteLength - 4);
+      if (aisTimestamp > 1000000000) { // sanity check: after 2001
+        lastUpdate = aisTimestamp * 1000;
+      }
+    }
+
+    return { lat, lng, speed: 0, course: 0, lastUpdate };
   }
 
   async fetchFromMyShipTracking(ship) {
