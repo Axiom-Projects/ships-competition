@@ -1563,8 +1563,12 @@ class ShipTracker {
   }
 }
 
-// Initialize on page load
+// Initialize on page load (or immediately if DOM already ready, e.g. after password gate)
 let tracker;
-document.addEventListener("DOMContentLoaded", () => {
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    tracker = new ShipTracker();
+  });
+} else {
   tracker = new ShipTracker();
-});
+}
