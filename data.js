@@ -30,7 +30,7 @@ const PARTICIPANTS = [
       { name: "Spade", flag: "Cameroon", imo: "1137745", mmsi: "613701904" },
       { name: "Auroura", flag: "Panama", imo: "9262912", mmsi: "352001225" },
       { name: "Lan Jing", flag: "Curaçao", imo: "9288095", mmsi: "306254000" },
-      { name: "North Star", flag: "Barbados", imo: "9299563", mmsi: "314109000" },
+      { name: "North Star", flag: "Barbados", imo: "9299563" },
     ],
   },
   {
@@ -38,7 +38,7 @@ const PARTICIPANTS = [
     color: "#f39c12",
     ships: [
       { name: "Maria", flag: "Saudi Arabia", imo: "1120510", mmsi: "671536100" },
-      { name: "Sands", flag: "Gambia", imo: "9220940", mmsi: "518998535" },
+      { name: "Sands", flag: "Gambia", imo: "9220940" },
       { name: "Ocean Lily", flag: "Hong Kong", imo: "9284960", mmsi: "477178100" },
       { name: "Advantage Victory", flag: "Marshall Islands", imo: "9933547", mmsi: "538010019" },
       { name: "Lebrethah", flag: "Liberia", imo: "9976927", mmsi: "636024681" },
@@ -52,7 +52,7 @@ const PARTICIPANTS = [
       { name: "Sea Bird", flag: "Palau", imo: "9088536", mmsi: "511101458" },
       { name: "Diligent Warrior", flag: "Greece", imo: "9750050", mmsi: "241422000" },
       { name: "Nature Heart", flag: "Mozambique", imo: "9251585", mmsi: "650000171" },
-      { name: "Camilla", flag: "Liberia", imo: "9254850", mmsi: "636020658" },
+      { name: "Camilla", flag: "Hong Kong", imo: "9254850", mmsi: "477223400" },
     ],
   },
   {
@@ -61,7 +61,7 @@ const PARTICIPANTS = [
     ships: [
       { name: "Stoic Warrior", flag: "Liberia", imo: "1028762" },
       { name: "Pine Gas", flag: "India", imo: "9315680", mmsi: "419001655" },
-      { name: "Galaxy Gas", flag: "Haiti", imo: "9174361", mmsi: "256036000" },
+      { name: "Galaxy Gas", flag: "Haiti", imo: "9174361", mmsi: "336897910" },
       { name: "Front Shanghai", flag: "Hong Kong", imo: "9832262", mmsi: "477539300" },
       { name: "Front Beauly", flag: "Marshall Islands", imo: "9937103", mmsi: "538010890" },
     ],
@@ -107,7 +107,7 @@ const REAL_POSITIONS = {
   "1137745": { lat: 25.63534, lng: 55.12522 },  // Spade
   "9262912": { lat: 25.92260, lng: 55.49397 },  // Auroura
   "9288095": { lat: 25.33871, lng: 54.91071 },  // Lan Jing
-  "9299563": { lat: 38.12080, lng: 48.92448 },  // North Star
+  "9299563": { lat: 26.15237, lng: 55.38628 },  // North Star
   "1120510": { lat: 25.92276, lng: 55.49363 },  // Maria
   "9220940": { lat: 26.07955, lng: 55.78936 },  // Sands
   "9284960": { lat: 26.23181, lng: 52.84602 },  // Ocean Lily
@@ -117,10 +117,10 @@ const REAL_POSITIONS = {
   "9088536": { lat: 25.91084, lng: 55.49964 },  // Sea Bird
   "9750050": { lat: 25.91974, lng: 55.49547 },  // Diligent Warrior
   "9251585": { lat: 25.83104, lng: 53.41272 },  // Nature Heart
-  "9254850": { lat: 25.89417, lng: 55.51167 },  // Camilla
+  "9254850": { lat: 25.59817, lng: 55.56317 },  // Camilla
   "1028762": { lat: 25.90030, lng: 55.49618 },  // Stoic Warrior
   "9315680": { lat: 25.90301, lng: 55.49748 },  // Pine Gas
-  "9174361": { lat: 25.91195, lng: 55.48989 },  // Galaxy Gas
+  "9174361": { lat: 25.90384, lng: 55.50305 },  // Galaxy Gas
   "9832262": { lat: 25.91265, lng: 55.48963 },  // Front Shanghai
   "9937103": { lat: 25.92018, lng: 55.48978 },  // Front Beauly
   "9493779": { lat: 25.92229, lng: 55.49430 },  // Smyrni
