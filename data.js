@@ -101,13 +101,13 @@ const REAL_POSITIONS = {
   "9460136": { lat: 25.88864, lng: 55.66323 },  // P.ALIKI
   "9608867": { lat: 27.50558, lng: 50.75942 },  // Magic Victoria
   "9982536": { lat: 25.22397, lng: 54.58023 },  // Nord Victor
-  "9936549": { lat: 26.14602, lng: 53.44762 },  // Eco Oracle
-  "9833735": { lat: 25.14504, lng: 54.18341 },  // Siena
+  "9936549": { lat: 26.02319, lng: 53.33865 },  // Eco Oracle
+  "9833735": { lat: 25.15313, lng: 54.25600 },  // Siena
   "9489027": { lat: 22.59517, lng: 68.94974 },  // Abu Dhabi III
   "1137745": { lat: 25.63534, lng: 55.12522 },  // Spade
-  "9262912": { lat: 25.59801, lng: 55.09197 },  // Auroura
+  "9262912": { lat: 25.59893, lng: 55.09146 },  // Auroura
   "9288095": { lat: 5.41026, lng: 98.09525 },  // Lan Jing
-  "9299563": { lat: 25.77002, lng: 56.89577 },  // North Star
+  "9299563": { lat: 25.77034, lng: 56.89607 },  // North Star
   "1120510": { lat: 26.03348, lng: 55.93929 },  // Maria
   "9220940": { lat: 24.81876, lng: 56.99120 },  // Sands
   "9284960": { lat: 26.34852, lng: 53.08902 },  // Ocean Lily
@@ -123,7 +123,7 @@ const REAL_POSITIONS = {
   "9174361": { lat: 25.54713, lng: 55.31054 },  // Galaxy Gas
   "9832262": { lat: 24.94142, lng: 54.23176 },  // Front Shanghai
   "9937103": { lat: 25.58781, lng: 54.95856 },  // Front Beauly
-  "9493779": { lat: 24.61246, lng: 57.78132 },  // Smyrni
+  "9493779": { lat: 24.74134, lng: 57.51420 },  // Smyrni
   "9308766": { lat: 25.58387, lng: 56.60236 },  // Parimal
   "9410399": { lat: 25.59509, lng: 54.88031 },  // Serifos
   "9626285": { lat: 28.71286, lng: 48.40774 },  // GasLog Skagen
@@ -131,7 +131,7 @@ const REAL_POSITIONS = {
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 29.56028, lng: 48.84260 },  // Sonangol Namibe
   "9330563": { lat: 25.94390, lng: 55.38265 },  // Sanmar Herald
-  "9416422": { lat: 26.05789, lng: 53.42892 },  // Ocean Thunder
+  "9416422": { lat: 26.05683, lng: 53.42834 },  // Ocean Thunder
   "9397327": { lat: 25.45127, lng: 52.12443 },  // Al Kharaitiyat
 };
 
