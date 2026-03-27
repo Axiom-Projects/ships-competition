@@ -94,23 +94,23 @@ const PARTICIPANTS = [
 // Last updated: 2026-03-27
 const REAL_POSITIONS = {
   "9785835": { lat: 25.62652, lng: 54.64009 },  // Monte Urbasa
-  "9779848": { lat: 25.82663, lng: 53.17531 },  // Shaden
+  "9779848": { lat: 25.81875, lng: 53.17811 },  // Shaden
   "9307750": { lat: 22.54641, lng: 69.60577 },  // Jag Vasant
   "9275983": { lat: 25.42768, lng: 55.03040 },  // Rose 25
-  "9385037": { lat: 25.71235, lng: 53.80010 },  // Long Wind
-  "9460136": { lat: 26.67876, lng: 56.17529 },  // P.ALIKI
+  "9385037": { lat: 25.71248, lng: 53.80049 },  // Long Wind
+  "9460136": { lat: 26.71144, lng: 56.17094 },  // P.ALIKI
   "9608867": { lat: 27.49942, lng: 50.64753 },  // Magic Victoria
   "9982536": { lat: 25.22397, lng: 54.58023 },  // Nord Victor
-  "9936549": { lat: 26.07498, lng: 53.35766 },  // Eco Oracle
+  "9936549": { lat: 26.06708, lng: 53.36845 },  // Eco Oracle
   "9833735": { lat: 25.50356, lng: 55.26139 },  // Siena
   "9489027": { lat: 22.59274, lng: 69.31700 },  // Abu Dhabi III
   "1137745": { lat: 25.63534, lng: 55.12522 },  // Spade
   "9262912": { lat: 25.59739, lng: 55.09450 },  // Auroura
-  "9288095": { lat: 1.75700, lng: 104.75121 },  // Lan Jing
-  "9299563": { lat: 25.76954, lng: 56.90103 },  // North Star
-  "1120510": { lat: 26.03259, lng: 55.94193 },  // Maria
+  "9288095": { lat: 1.75729, lng: 104.75117 },  // Lan Jing
+  "9299563": { lat: 25.76956, lng: 56.90113 },  // North Star
+  "1120510": { lat: 25.95417, lng: 55.69642 },  // Maria
   "9220940": { lat: 24.81876, lng: 56.99120 },  // Sands
-  "9284960": { lat: 26.14307, lng: 53.47716 },  // Ocean Lily
+  "9284960": { lat: 26.13938, lng: 53.48051 },  // Ocean Lily
   "9933547": { lat: 28.04366, lng: 49.62385 },  // Advantage Victory
   "9976927": { lat: 25.92584, lng: 52.32210 },  // Lebrethah
   "9903413": { lat: 24.63934, lng: 66.76532 },  // Karachi
@@ -131,8 +131,8 @@ const REAL_POSITIONS = {
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 29.56028, lng: 48.84260 },  // Sonangol Namibe
   "9330563": { lat: 25.94390, lng: 55.38265 },  // Sanmar Herald
-  "9416422": { lat: 26.08950, lng: 53.84463 },  // Ocean Thunder
-  "9397327": { lat: 25.45108, lng: 52.12670 },  // Al Kharaitiyat
+  "9416422": { lat: 26.08110, lng: 53.84966 },  // Ocean Thunder
+  "9397327": { lat: 25.45118, lng: 52.12751 },  // Al Kharaitiyat
 };
 
 // Strait of Hormuz coordinates
