@@ -94,25 +94,25 @@ const PARTICIPANTS = [
 // Last updated: 2026-03-28
 const REAL_POSITIONS = {
   "9785835": { lat: 25.62808, lng: 54.64293 },  // Monte Urbasa
-  "9779848": { lat: 25.79959, lng: 53.17094 },  // Shaden
+  "9779848": { lat: 25.79360, lng: 53.17181 },  // Shaden
   "9307750": { lat: 22.54641, lng: 69.60577 },  // Jag Vasant
   "9275983": { lat: 25.42643, lng: 55.00727 },  // Rose 25
   "9385037": { lat: 25.71256, lng: 53.80091 },  // Long Wind
-  "9460136": { lat: 26.48174, lng: 56.85992 },  // P.ALIKI
+  "9460136": { lat: 26.40624, lng: 56.85970 },  // P.ALIKI
   "9608867": { lat: 27.49445, lng: 50.72187 },  // Magic Victoria
   "9982536": { lat: 25.22397, lng: 54.58023 },  // Nord Victor
   "9936549": { lat: 25.91427, lng: 53.53355 },  // Eco Oracle
-  "9833735": { lat: 25.48316, lng: 55.02210 },  // Siena
+  "9833735": { lat: 25.48292, lng: 55.01929 },  // Siena
   "9489027": { lat: 22.59274, lng: 69.31700 },  // Abu Dhabi III
   "1137745": { lat: 25.63534, lng: 55.12522 },  // Spade
-  "9262912": { lat: 25.59916, lng: 55.09551 },  // Auroura
-  "9288095": { lat: 1.75528, lng: 104.74995 },  // Lan Jing
-  "9299563": { lat: 25.77011, lng: 56.90079 },  // North Star
+  "9262912": { lat: 25.59820, lng: 55.09547 },  // Auroura
+  "9288095": { lat: 1.75524, lng: 104.74971 },  // Lan Jing
+  "9299563": { lat: 25.77035, lng: 56.90068 },  // North Star
   "1120510": { lat: 26.03202, lng: 55.94263 },  // Maria
   "9220940": { lat: 24.81876, lng: 56.99120 },  // Sands
   "9284960": { lat: 26.08321, lng: 53.65839 },  // Ocean Lily
   "9933547": { lat: 28.04366, lng: 49.62385 },  // Advantage Victory
-  "9976927": { lat: 25.92527, lng: 52.32164 },  // Lebrethah
+  "9976927": { lat: 25.92497, lng: 52.32133 },  // Lebrethah
   "9903413": { lat: 24.47662, lng: 58.25101 },  // Karachi
   "9088536": { lat: 23.61249, lng: 60.94838 },  // Sea Bird
   "9750050": { lat: 24.41494, lng: 52.47459 },  // Diligent Warrior
@@ -125,7 +125,7 @@ const REAL_POSITIONS = {
   "9937103": { lat: 25.58781, lng: 54.95856 },  // Front Beauly
   "9493779": { lat: 23.04393, lng: 60.63814 },  // Smyrni
   "9308766": { lat: 25.39420, lng: 56.45136 },  // Parimal
-  "9410399": { lat: 25.59727, lng: 54.88732 },  // Serifos
+  "9410399": { lat: 25.59777, lng: 54.88705 },  // Serifos
   "9626285": { lat: 26.78181, lng: 51.15520 },  // GasLog Skagen
   "9718777": { lat: 25.46669, lng: 54.75924 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
