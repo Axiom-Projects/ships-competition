@@ -94,25 +94,25 @@ const PARTICIPANTS = [
 // Last updated: 2026-03-28
 const REAL_POSITIONS = {
   "9785835": { lat: 25.62808, lng: 54.64293 },  // Monte Urbasa
-  "9779848": { lat: 25.80570, lng: 53.17087 },  // Shaden
+  "9779848": { lat: 25.79959, lng: 53.17094 },  // Shaden
   "9307750": { lat: 22.54641, lng: 69.60577 },  // Jag Vasant
   "9275983": { lat: 25.42643, lng: 55.00727 },  // Rose 25
   "9385037": { lat: 25.71256, lng: 53.80091 },  // Long Wind
-  "9460136": { lat: 26.56520, lng: 56.85960 },  // P.ALIKI
+  "9460136": { lat: 26.48174, lng: 56.85992 },  // P.ALIKI
   "9608867": { lat: 27.49445, lng: 50.72187 },  // Magic Victoria
   "9982536": { lat: 25.22397, lng: 54.58023 },  // Nord Victor
   "9936549": { lat: 25.91427, lng: 53.53355 },  // Eco Oracle
-  "9833735": { lat: 25.48633, lng: 55.04072 },  // Siena
+  "9833735": { lat: 25.48316, lng: 55.02210 },  // Siena
   "9489027": { lat: 22.59274, lng: 69.31700 },  // Abu Dhabi III
   "1137745": { lat: 25.63534, lng: 55.12522 },  // Spade
-  "9262912": { lat: 25.59839, lng: 55.09542 },  // Auroura
-  "9288095": { lat: 1.75526, lng: 104.74988 },  // Lan Jing
-  "9299563": { lat: 25.76977, lng: 56.90086 },  // North Star
-  "1120510": { lat: 26.03222, lng: 55.94253 },  // Maria
+  "9262912": { lat: 25.59916, lng: 55.09551 },  // Auroura
+  "9288095": { lat: 1.75528, lng: 104.74995 },  // Lan Jing
+  "9299563": { lat: 25.77011, lng: 56.90079 },  // North Star
+  "1120510": { lat: 26.03202, lng: 55.94263 },  // Maria
   "9220940": { lat: 24.81876, lng: 56.99120 },  // Sands
   "9284960": { lat: 26.08321, lng: 53.65839 },  // Ocean Lily
   "9933547": { lat: 28.04366, lng: 49.62385 },  // Advantage Victory
-  "9976927": { lat: 25.92590, lng: 52.32249 },  // Lebrethah
+  "9976927": { lat: 25.92527, lng: 52.32164 },  // Lebrethah
   "9903413": { lat: 24.47662, lng: 58.25101 },  // Karachi
   "9088536": { lat: 23.61249, lng: 60.94838 },  // Sea Bird
   "9750050": { lat: 24.41494, lng: 52.47459 },  // Diligent Warrior
