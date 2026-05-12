@@ -105,7 +105,7 @@ const REAL_POSITIONS = {
   "9833735": { lat: 25.43938, lng: 55.25730 },  // Siena
   "9489027": { lat: 24.06454, lng: 58.36700 },  // Abu Dhabi III
   "1137745": { lat: 25.62539, lng: 55.30915 },  // Spade
-  "9262912": { lat: 25.78637, lng: 57.01767 },  // Auroura
+  "9262912": { lat: 25.78629, lng: 57.01769 },  // Auroura
   "9288095": { lat: 34.95571, lng: 121.23693 },  // Lan Jing
   "9299563": { lat: 1.98130, lng: 102.15010 },  // North Star
   "1120510": { lat: 25.54027, lng: 55.28587 },  // Maria
@@ -132,7 +132,7 @@ const REAL_POSITIONS = {
   "9325049": { lat: 29.56028, lng: 48.84260 },  // Sonangol Namibe
   "9330563": { lat: 24.91220, lng: 54.28352 },  // Sanmar Herald
   "9416422": { lat: 4.76787, lng: 99.14541 },  // Ocean Thunder
-  "9397327": { lat: 24.45409, lng: 66.95840 },  // Al Kharaitiyat
+  "9397327": { lat: 24.45736, lng: 66.95277 },  // Al Kharaitiyat
 };
 
 // Strait of Hormuz coordinates
