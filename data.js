@@ -95,7 +95,7 @@ const PARTICIPANTS = [
 const REAL_POSITIONS = {
   "9785835": { lat: 25.67638, lng: 55.19518 },  // Monte Urbasa
   "9779848": { lat: 25.60952, lng: 54.96870 },  // Shaden
-  "9307750": { lat: -29.84240, lng: 31.14472 },  // Jag Vasant
+  "9307750": { lat: -29.82718, lng: 31.12967 },  // Jag Vasant
   "9275983": { lat: 23.75040, lng: 59.13793 },  // Rose 25
   "9385037": { lat: 25.57424, lng: 53.71502 },  // Long Wind
   "9460136": { lat: 25.15693, lng: 56.75095 },  // P.ALIKI
@@ -115,8 +115,8 @@ const REAL_POSITIONS = {
   "9976927": { lat: 25.95092, lng: 51.61300 },  // Lebrethah
   "9903413": { lat: 18.78931, lng: 38.01237 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
-  "9750050": { lat: 25.54719, lng: 54.86908 },  // Diligent Warrior
-  "9251585": { lat: 1.82605, lng: 104.77330 },  // Nature Heart
+  "9750050": { lat: 25.54714, lng: 54.86910 },  // Diligent Warrior
+  "9251585": { lat: 1.82580, lng: 104.77290 },  // Nature Heart
   "9254850": { lat: 25.33831, lng: 56.53863 },  // Camilla
   "1028762": { lat: 25.67626, lng: 55.19491 },  // Stoic Warrior
   "9315680": { lat: 6.95736, lng: 79.83034 },  // Pine Gas
@@ -126,13 +126,13 @@ const REAL_POSITIONS = {
   "9493779": { lat: 25.47168, lng: 35.82517 },  // Smyrni
   "9308766": { lat: 25.37920, lng: 56.44605 },  // Parimal
   "9410399": { lat: 6.28228, lng: 92.54974 },  // Serifos
-  "9626285": { lat: 25.80702, lng: 51.80780 },  // GasLog Skagen
-  "9718777": { lat: 27.07787, lng: 49.68133 },  // Mahadah Silver
+  "9626285": { lat: 25.80701, lng: 51.80712 },  // GasLog Skagen
+  "9718777": { lat: 27.07789, lng: 49.68131 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.36501, lng: 55.38056 },  // Sonangol Namibe
-  "9330563": { lat: 25.53347, lng: 54.83860 },  // Sanmar Herald
+  "9330563": { lat: 25.53384, lng: 54.83896 },  // Sanmar Herald
   "9416422": { lat: 6.30621, lng: 92.64800 },  // Ocean Thunder
-  "9397327": { lat: 24.77090, lng: 67.31218 },  // Al Kharaitiyat
+  "9397327": { lat: 24.77091, lng: 67.31214 },  // Al Kharaitiyat
 };
 
 // Strait of Hormuz coordinates
