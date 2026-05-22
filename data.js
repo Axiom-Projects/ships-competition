@@ -116,16 +116,16 @@ const REAL_POSITIONS = {
   "9903413": { lat: 24.64500, lng: 59.02052 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
   "9750050": { lat: 25.54949, lng: 54.87406 },  // Diligent Warrior
-  "9251585": { lat: 1.82568, lng: 104.77203 },  // Nature Heart
+  "9251585": { lat: 1.82788, lng: 104.77307 },  // Nature Heart
   "9254850": { lat: 25.33962, lng: 56.53943 },  // Camilla
   "1028762": { lat: 25.70582, lng: 54.81988 },  // Stoic Warrior
   "9315680": { lat: -20.65595, lng: 53.10500 },  // Pine Gas
   "9174361": { lat: 13.44350, lng: -16.57734 },  // Galaxy Gas
   "9832262": { lat: 6.28810, lng: 3.37290 },  // Front Shanghai
   "9937103": { lat: 2.20103, lng: 102.00514 },  // Front Beauly
-  "9493779": { lat: 39.78496, lng: 25.93052 },  // Smyrni
+  "9493779": { lat: 39.78485, lng: 25.93075 },  // Smyrni
   "9308766": { lat: 25.81516, lng: 56.89711 },  // Parimal
-  "9410399": { lat: 5.92861, lng: 80.00085 },  // Serifos
+  "9410399": { lat: 5.92619, lng: 79.98633 },  // Serifos
   "9626285": { lat: 25.90443, lng: 53.14912 },  // GasLog Skagen
   "9718777": { lat: 25.50239, lng: 54.00086 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
