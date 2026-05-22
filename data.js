@@ -96,7 +96,7 @@ const REAL_POSITIONS = {
   "9785835": { lat: 25.70573, lng: 54.81963 },  // Monte Urbasa
   "9779848": { lat: 25.60952, lng: 54.96870 },  // Shaden
   "9307750": { lat: -33.56296, lng: 17.94886 },  // Jag Vasant
-  "9275983": { lat: 25.94774, lng: 56.49618 },  // Rose 25
+  "9275983": { lat: 25.94768, lng: 56.49624 },  // Rose 25
   "9385037": { lat: 25.69929, lng: 54.82542 },  // Long Wind
   "9460136": { lat: 24.79435, lng: 66.98326 },  // P.ALIKI
   "9608867": { lat: 25.52571, lng: 52.96693 },  // Magic Victoria
@@ -112,21 +112,21 @@ const REAL_POSITIONS = {
   "9220940": { lat: 24.81876, lng: 56.99120 },  // Sands
   "9284960": { lat: 20.26627, lng: 63.39028 },  // Ocean Lily
   "9933547": { lat: 25.64016, lng: 55.07168 },  // Advantage Victory
-  "9976927": { lat: 25.93330, lng: 51.61759 },  // Lebrethah
+  "9976927": { lat: 25.93267, lng: 51.61744 },  // Lebrethah
   "9903413": { lat: 24.64500, lng: 59.02052 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
   "9750050": { lat: 25.54949, lng: 54.87406 },  // Diligent Warrior
-  "9251585": { lat: 1.82553, lng: 104.77232 },  // Nature Heart
+  "9251585": { lat: 1.82568, lng: 104.77203 },  // Nature Heart
   "9254850": { lat: 25.33962, lng: 56.53943 },  // Camilla
   "1028762": { lat: 25.70582, lng: 54.81988 },  // Stoic Warrior
   "9315680": { lat: -20.65595, lng: 53.10500 },  // Pine Gas
   "9174361": { lat: 13.44350, lng: -16.57734 },  // Galaxy Gas
   "9832262": { lat: 6.28810, lng: 3.37290 },  // Front Shanghai
   "9937103": { lat: 2.20103, lng: 102.00514 },  // Front Beauly
-  "9493779": { lat: 39.63277, lng: 25.76259 },  // Smyrni
+  "9493779": { lat: 39.78496, lng: 25.93052 },  // Smyrni
   "9308766": { lat: 25.81516, lng: 56.89711 },  // Parimal
-  "9410399": { lat: 5.92772, lng: 80.00017 },  // Serifos
-  "9626285": { lat: 25.92485, lng: 53.07026 },  // GasLog Skagen
+  "9410399": { lat: 5.92861, lng: 80.00085 },  // Serifos
+  "9626285": { lat: 25.90443, lng: 53.14912 },  // GasLog Skagen
   "9718777": { lat: 25.50239, lng: 54.00086 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 24.25542, lng: 53.29824 },  // Sonangol Namibe
