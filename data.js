@@ -93,12 +93,12 @@ const PARTICIPANTS = [
 // Real ship positions fetched from AIS data (myshiptracking.com)
 // Last updated: 2026-05-23
 const REAL_POSITIONS = {
-  "9785835": { lat: 25.81776, lng: 55.29542 },  // Monte Urbasa
+  "9785835": { lat: 25.80048, lng: 54.78934 },  // Monte Urbasa
   "9779848": { lat: 25.60952, lng: 54.96870 },  // Shaden
   "9307750": { lat: -33.56296, lng: 17.94886 },  // Jag Vasant
   "9275983": { lat: 25.94768, lng: 56.49624 },  // Rose 25
   "9385037": { lat: 24.68518, lng: 54.23510 },  // Long Wind
-  "9460136": { lat: 24.70734, lng: 66.88703 },  // P.ALIKI
+  "9460136": { lat: 24.58864, lng: 66.60837 },  // P.ALIKI
   "9608867": { lat: 25.41694, lng: 55.14475 },  // Magic Victoria
   "9982536": { lat: 24.42723, lng: 52.41154 },  // Nord Victor
   "9936549": { lat: 25.41688, lng: 55.14480 },  // Eco Oracle
@@ -113,17 +113,17 @@ const REAL_POSITIONS = {
   "9284960": { lat: 20.26627, lng: 63.39028 },  // Ocean Lily
   "9933547": { lat: 25.64016, lng: 55.07168 },  // Advantage Victory
   "9976927": { lat: 24.68468, lng: 54.23586 },  // Lebrethah
-  "9903413": { lat: 24.64500, lng: 59.02052 },  // Karachi
+  "9903413": { lat: 25.22556, lng: 56.45818 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
-  "9750050": { lat: 25.54931, lng: 54.87390 },  // Diligent Warrior
-  "9251585": { lat: 1.82700, lng: 104.77353 },  // Nature Heart
+  "9750050": { lat: 25.54965, lng: 54.87385 },  // Diligent Warrior
+  "9251585": { lat: 1.82733, lng: 104.77337 },  // Nature Heart
   "9254850": { lat: 25.34016, lng: 56.54186 },  // Camilla
   "1028762": { lat: 25.41696, lng: 55.14475 },  // Stoic Warrior
   "9315680": { lat: -20.65595, lng: 53.10500 },  // Pine Gas
   "9174361": { lat: 13.44350, lng: -16.57734 },  // Galaxy Gas
   "9832262": { lat: 6.28810, lng: 3.37290 },  // Front Shanghai
   "9937103": { lat: 2.20103, lng: 102.00514 },  // Front Beauly
-  "9493779": { lat: 40.82212, lng: 28.89840 },  // Smyrni
+  "9493779": { lat: 40.81970, lng: 28.90097 },  // Smyrni
   "9308766": { lat: 25.81516, lng: 56.89711 },  // Parimal
   "9410399": { lat: 8.76881, lng: 76.00589 },  // Serifos
   "9626285": { lat: 25.41690, lng: 55.14473 },  // GasLog Skagen
