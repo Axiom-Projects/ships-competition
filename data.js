@@ -98,7 +98,7 @@ const REAL_POSITIONS = {
   "9307750": { lat: -33.56296, lng: 17.94886 },  // Jag Vasant
   "9275983": { lat: 25.52136, lng: 56.36054 },  // Rose 25
   "9385037": { lat: 26.66900, lng: 51.89851 },  // Long Wind
-  "9460136": { lat: 22.52618, lng: 63.31748 },  // P.ALIKI
+  "9460136": { lat: 22.52133, lng: 63.31032 },  // P.ALIKI
   "9608867": { lat: 25.41694, lng: 55.14475 },  // Magic Victoria
   "9982536": { lat: 24.42723, lng: 52.41154 },  // Nord Victor
   "9936549": { lat: 25.41688, lng: 55.14480 },  // Eco Oracle
@@ -108,7 +108,7 @@ const REAL_POSITIONS = {
   "9262912": { lat: 25.12829, lng: 57.02961 },  // Auroura
   "9288095": { lat: 34.95571, lng: 121.23693 },  // Lan Jing
   "9299563": { lat: 1.68270, lng: 104.32540 },  // North Star
-  "1120510": { lat: 25.54063, lng: 55.28925 },  // Maria
+  "1120510": { lat: 25.54055, lng: 55.28919 },  // Maria
   "9220940": { lat: 24.81876, lng: 56.99120 },  // Sands
   "9284960": { lat: 20.26627, lng: 63.39028 },  // Ocean Lily
   "9933547": { lat: 25.64016, lng: 55.07168 },  // Advantage Victory
@@ -116,7 +116,7 @@ const REAL_POSITIONS = {
   "9903413": { lat: 25.22556, lng: 56.45818 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
   "9750050": { lat: 25.55024, lng: 54.87407 },  // Diligent Warrior
-  "9251585": { lat: 1.82600, lng: 104.77330 },  // Nature Heart
+  "9251585": { lat: 1.82603, lng: 104.77323 },  // Nature Heart
   "9254850": { lat: 25.33614, lng: 56.54172 },  // Camilla
   "1028762": { lat: 25.62148, lng: 54.85909 },  // Stoic Warrior
   "9315680": { lat: -20.65595, lng: 53.10500 },  // Pine Gas
