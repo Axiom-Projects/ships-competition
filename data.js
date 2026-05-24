@@ -116,7 +116,7 @@ const REAL_POSITIONS = {
   "9903413": { lat: 25.22556, lng: 56.45818 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
   "9750050": { lat: 25.55024, lng: 54.87407 },  // Diligent Warrior
-  "9251585": { lat: 1.82650, lng: 104.77350 },  // Nature Heart
+  "9251585": { lat: 1.82680, lng: 104.77350 },  // Nature Heart
   "9254850": { lat: 25.33614, lng: 56.54172 },  // Camilla
   "1028762": { lat: 25.62148, lng: 54.85909 },  // Stoic Warrior
   "9315680": { lat: -20.65595, lng: 53.10500 },  // Pine Gas
