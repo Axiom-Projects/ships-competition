@@ -93,7 +93,7 @@ const PARTICIPANTS = [
 // Real ship positions fetched from AIS data (myshiptracking.com)
 // Last updated: 2026-05-24
 const REAL_POSITIONS = {
-  "9785835": { lat: 25.80103, lng: 54.78900 },  // Monte Urbasa
+  "9785835": { lat: -0.01219, lng: 0.03529 },  // Monte Urbasa
   "9779848": { lat: 25.60952, lng: 54.96870 },  // Shaden
   "9307750": { lat: -33.56296, lng: 17.94886 },  // Jag Vasant
   "9275983": { lat: 25.52136, lng: 56.36054 },  // Rose 25
@@ -108,7 +108,7 @@ const REAL_POSITIONS = {
   "9262912": { lat: 25.12829, lng: 57.02961 },  // Auroura
   "9288095": { lat: 34.95571, lng: 121.23693 },  // Lan Jing
   "9299563": { lat: 1.68270, lng: 104.32540 },  // North Star
-  "1120510": { lat: 25.54055, lng: 55.28919 },  // Maria
+  "1120510": { lat: 25.28090, lng: 55.29012 },  // Maria
   "9220940": { lat: 24.81876, lng: 56.99120 },  // Sands
   "9284960": { lat: 20.26627, lng: 63.39028 },  // Ocean Lily
   "9933547": { lat: 25.64016, lng: 55.07168 },  // Advantage Victory
@@ -116,7 +116,7 @@ const REAL_POSITIONS = {
   "9903413": { lat: 25.22556, lng: 56.45818 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
   "9750050": { lat: 25.55024, lng: 54.87407 },  // Diligent Warrior
-  "9251585": { lat: 1.82840, lng: 104.77337 },  // Nature Heart
+  "9251585": { lat: 1.82838, lng: 104.77318 },  // Nature Heart
   "9254850": { lat: 25.33614, lng: 56.54172 },  // Camilla
   "1028762": { lat: 25.62148, lng: 54.85909 },  // Stoic Warrior
   "9315680": { lat: -20.65595, lng: 53.10500 },  // Pine Gas
@@ -126,7 +126,7 @@ const REAL_POSITIONS = {
   "9493779": { lat: 41.35168, lng: 29.29381 },  // Smyrni
   "9308766": { lat: 25.52187, lng: 56.35475 },  // Parimal
   "9410399": { lat: 8.76881, lng: 76.00589 },  // Serifos
-  "9626285": { lat: 25.96088, lng: 53.01879 },  // GasLog Skagen
+  "9626285": { lat: 26.15778, lng: 52.67198 },  // GasLog Skagen
   "9718777": { lat: 24.61777, lng: 52.29239 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.41693, lng: 55.14474 },  // Sonangol Namibe
