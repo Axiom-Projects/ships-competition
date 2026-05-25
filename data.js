@@ -93,7 +93,7 @@ const PARTICIPANTS = [
 // Real ship positions fetched from AIS data (myshiptracking.com)
 // Last updated: 2026-05-25
 const REAL_POSITIONS = {
-  "9785835": { lat: 26.08385, lng: 55.54316 },  // Monte Urbasa
+  "9785835": { lat: 26.08366, lng: 55.54313 },  // Monte Urbasa
   "9779848": { lat: 25.60952, lng: 54.96870 },  // Shaden
   "9307750": { lat: -33.56296, lng: 17.94886 },  // Jag Vasant
   "9275983": { lat: 25.52136, lng: 56.36054 },  // Rose 25
@@ -101,8 +101,8 @@ const REAL_POSITIONS = {
   "9460136": { lat: 22.52133, lng: 63.31032 },  // P.ALIKI
   "9608867": { lat: 26.08099, lng: 55.53988 },  // Magic Victoria
   "9982536": { lat: 23.98360, lng: 58.37640 },  // Nord Victor
-  "9936549": { lat: 25.41688, lng: 55.14480 },  // Eco Oracle
-  "9833735": { lat: 26.08367, lng: 55.54318 },  // Siena
+  "9936549": { lat: 26.08371, lng: 55.54304 },  // Eco Oracle
+  "9833735": { lat: 26.08367, lng: 55.54313 },  // Siena
   "9489027": { lat: 25.19268, lng: 56.51604 },  // Abu Dhabi III
   "1137745": { lat: 25.63992, lng: 55.07155 },  // Spade
   "9262912": { lat: 25.12829, lng: 57.02961 },  // Auroura
@@ -115,10 +115,10 @@ const REAL_POSITIONS = {
   "9976927": { lat: 26.08370, lng: 55.54314 },  // Lebrethah
   "9903413": { lat: 25.22556, lng: 56.45818 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
-  "9750050": { lat: 26.08381, lng: 55.54316 },  // Diligent Warrior
-  "9251585": { lat: 1.82635, lng: 104.77348 },  // Nature Heart
+  "9750050": { lat: 26.08800, lng: 55.54941 },  // Diligent Warrior
+  "9251585": { lat: 1.82617, lng: 104.77345 },  // Nature Heart
   "9254850": { lat: 25.33614, lng: 56.54172 },  // Camilla
-  "1028762": { lat: 25.62148, lng: 54.85909 },  // Stoic Warrior
+  "1028762": { lat: 26.08369, lng: 55.54314 },  // Stoic Warrior
   "9315680": { lat: -20.65595, lng: 53.10500 },  // Pine Gas
   "9174361": { lat: 13.44350, lng: -16.57734 },  // Galaxy Gas
   "9832262": { lat: 6.28810, lng: 3.37290 },  // Front Shanghai
