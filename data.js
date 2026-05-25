@@ -100,7 +100,7 @@ const REAL_POSITIONS = {
   "9385037": { lat: 26.66900, lng: 51.89851 },  // Long Wind
   "9460136": { lat: 22.52133, lng: 63.31032 },  // P.ALIKI
   "9608867": { lat: 25.41694, lng: 55.14475 },  // Magic Victoria
-  "9982536": { lat: 24.42723, lng: 52.41154 },  // Nord Victor
+  "9982536": { lat: 23.98360, lng: 58.37640 },  // Nord Victor
   "9936549": { lat: 25.41688, lng: 55.14480 },  // Eco Oracle
   "9833735": { lat: -0.01217, lng: 0.03546 },  // Siena
   "9489027": { lat: 25.19268, lng: 56.51604 },  // Abu Dhabi III
@@ -108,7 +108,7 @@ const REAL_POSITIONS = {
   "9262912": { lat: 25.12829, lng: 57.02961 },  // Auroura
   "9288095": { lat: 34.95571, lng: 121.23693 },  // Lan Jing
   "9299563": { lat: 1.68270, lng: 104.32540 },  // North Star
-  "1120510": { lat: -0.01207, lng: 0.03533 },  // Maria
+  "1120510": { lat: 25.54145, lng: 55.29050 },  // Maria
   "9220940": { lat: 24.81876, lng: 56.99120 },  // Sands
   "9284960": { lat: 20.26627, lng: 63.39028 },  // Ocean Lily
   "9933547": { lat: 25.64016, lng: 55.07168 },  // Advantage Victory
@@ -116,7 +116,7 @@ const REAL_POSITIONS = {
   "9903413": { lat: 25.22556, lng: 56.45818 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
   "9750050": { lat: 25.55024, lng: 54.87407 },  // Diligent Warrior
-  "9251585": { lat: 1.82947, lng: 104.77223 },  // Nature Heart
+  "9251585": { lat: 1.82920, lng: 104.77195 },  // Nature Heart
   "9254850": { lat: 25.33614, lng: 56.54172 },  // Camilla
   "1028762": { lat: 25.62148, lng: 54.85909 },  // Stoic Warrior
   "9315680": { lat: -20.65595, lng: 53.10500 },  // Pine Gas
@@ -126,7 +126,7 @@ const REAL_POSITIONS = {
   "9493779": { lat: 41.35168, lng: 29.29381 },  // Smyrni
   "9308766": { lat: 25.52187, lng: 56.35475 },  // Parimal
   "9410399": { lat: 8.76881, lng: 76.00589 },  // Serifos
-  "9626285": { lat: 26.15778, lng: 52.67198 },  // GasLog Skagen
+  "9626285": { lat: 25.07511, lng: 54.40152 },  // GasLog Skagen
   "9718777": { lat: 24.61777, lng: 52.29239 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.41693, lng: 55.14474 },  // Sonangol Namibe
