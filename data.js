@@ -100,7 +100,7 @@ const REAL_POSITIONS = {
   "9385037": { lat: 26.66900, lng: 51.89851 },  // Long Wind
   "9460136": { lat: 22.52133, lng: 63.31032 },  // P.ALIKI
   "9608867": { lat: 0.15902, lng: 0.39056 },  // Magic Victoria
-  "9982536": { lat: 14.53800, lng: 67.97580 },  // Nord Victor
+  "9982536": { lat: 13.56930, lng: 68.84230 },  // Nord Victor
   "9936549": { lat: 26.08360, lng: 55.54374 },  // Eco Oracle
   "9833735": { lat: 0.15852, lng: 0.39002 },  // Siena
   "9489027": { lat: 25.19268, lng: 56.51604 },  // Abu Dhabi III
@@ -116,7 +116,7 @@ const REAL_POSITIONS = {
   "9903413": { lat: 25.22556, lng: 56.45818 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
   "9750050": { lat: 0.15916, lng: 0.39043 },  // Diligent Warrior
-  "9251585": { lat: 1.83355, lng: 104.77025 },  // Nature Heart
+  "9251585": { lat: 1.83365, lng: 104.76943 },  // Nature Heart
   "9254850": { lat: 25.33614, lng: 56.54172 },  // Camilla
   "1028762": { lat: 0.15915, lng: 0.39031 },  // Stoic Warrior
   "9315680": { lat: -32.74493, lng: 29.97809 },  // Pine Gas
@@ -132,7 +132,7 @@ const REAL_POSITIONS = {
   "9325049": { lat: 25.41693, lng: 55.14474 },  // Sonangol Namibe
   "9330563": { lat: 0.15936, lng: 0.39007 },  // Sanmar Herald
   "9416422": { lat: 26.15514, lng: 35.13072 },  // Ocean Thunder
-  "9397327": { lat: 2.94502, lng: 100.84975 },  // Al Kharaitiyat
+  "9397327": { lat: 2.48019, lng: 101.54637 },  // Al Kharaitiyat
 };
 
 // Strait of Hormuz coordinates
