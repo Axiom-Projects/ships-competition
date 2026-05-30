@@ -100,23 +100,23 @@ const REAL_POSITIONS = {
   "9385037": { lat: 0.11151, lng: 0.37050 },  // Long Wind
   "9460136": { lat: 20.31089, lng: 38.28049 },  // P.ALIKI
   "9608867": { lat: 0.11175, lng: 0.36986 },  // Magic Victoria
-  "9982536": { lat: 6.38170, lng: 77.81670 },  // Nord Victor
+  "9982536": { lat: 6.26000, lng: 78.16670 },  // Nord Victor
   "9936549": { lat: 0.11180, lng: 0.37000 },  // Eco Oracle
   "9833735": { lat: 0.11177, lng: 0.36957 },  // Siena
   "9489027": { lat: 25.19268, lng: 56.51604 },  // Abu Dhabi III
   "1137745": { lat: 25.63992, lng: 55.07155 },  // Spade
   "9262912": { lat: 25.12829, lng: 57.02961 },  // Auroura
   "9288095": { lat: 24.66071, lng: 122.57695 },  // Lan Jing
-  "9299563": { lat: 6.00720, lng: 95.84295 },  // North Star
+  "9299563": { lat: 6.10896, lng: 95.43194 },  // North Star
   "1120510": { lat: 26.08369, lng: 55.54315 },  // Maria
   "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands
-  "9284960": { lat: 5.82165, lng: 96.62818 },  // Ocean Lily
+  "9284960": { lat: 5.77311, lng: 96.83285 },  // Ocean Lily
   "9933547": { lat: 25.64016, lng: 55.07168 },  // Advantage Victory
   "9976927": { lat: 0.11168, lng: 0.36987 },  // Lebrethah
   "9903413": { lat: 25.22556, lng: 56.45818 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
   "9750050": { lat: 0.11161, lng: 0.36983 },  // Diligent Warrior
-  "9251585": { lat: 1.83353, lng: 104.76962 },  // Nature Heart
+  "9251585": { lat: 1.83347, lng: 104.76943 },  // Nature Heart
   "9254850": { lat: 25.33614, lng: 56.54172 },  // Camilla
   "1028762": { lat: 0.11181, lng: 0.37022 },  // Stoic Warrior
   "9315680": { lat: -32.74493, lng: 29.97809 },  // Pine Gas
@@ -131,8 +131,8 @@ const REAL_POSITIONS = {
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 0.11173, lng: 0.36979 },  // Sonangol Namibe
   "9330563": { lat: 0.11183, lng: 0.37075 },  // Sanmar Herald
-  "9416422": { lat: 32.28389, lng: 26.35080 },  // Ocean Thunder
-  "9397327": { lat: 1.16325, lng: 103.71997 },  // Al Kharaitiyat
+  "9416422": { lat: 32.27989, lng: 26.09366 },  // Ocean Thunder
+  "9397327": { lat: 1.16313, lng: 103.71993 },  // Al Kharaitiyat
 };
 
 // Strait of Hormuz coordinates
