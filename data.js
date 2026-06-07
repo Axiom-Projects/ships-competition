@@ -106,8 +106,8 @@ const REAL_POSITIONS = {
   "9489027": { lat: 25.19268, lng: 56.51604 },  // Abu Dhabi III
   "1137745": { lat: 26.81729, lng: 56.52546 },  // Spade
   "9262912": { lat: 25.12829, lng: 57.02961 },  // Auroura
-  "9288095": { lat: 4.32258, lng: 99.56543 },  // Lan Jing
-  "9299563": { lat: 5.96070, lng: 79.97383 },  // North Star
+  "9288095": { lat: 4.45834, lng: 99.41207 },  // Lan Jing
+  "9299563": { lat: 5.96060, lng: 79.97372 },  // North Star
   "1120510": { lat: 25.28090, lng: 55.29012 },  // Maria
   "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands
   "9284960": { lat: 7.40409, lng: 108.56398 },  // Ocean Lily
@@ -116,22 +116,22 @@ const REAL_POSITIONS = {
   "9903413": { lat: 24.24908, lng: 65.37523 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
   "9750050": { lat: 25.93715, lng: 54.51936 },  // Diligent Warrior
-  "9251585": { lat: 1.83398, lng: 104.76898 },  // Nature Heart
+  "9251585": { lat: 1.83407, lng: 104.76910 },  // Nature Heart
   "9254850": { lat: 25.33614, lng: 56.54172 },  // Camilla
   "1028762": { lat: 25.91841, lng: 54.51360 },  // Stoic Warrior
   "9315680": { lat: -32.74493, lng: 29.97809 },  // Pine Gas
   "9174361": { lat: 13.44350, lng: -16.57734 },  // Galaxy Gas
   "9832262": { lat: 6.28810, lng: 3.37290 },  // Front Shanghai
   "9937103": { lat: 2.20103, lng: 102.00514 },  // Front Beauly
-  "9493779": { lat: 31.62165, lng: 32.10413 },  // Smyrni
-  "9308766": { lat: 30.19936, lng: 47.88049 },  // Parimal
-  "9410399": { lat: 6.27472, lng: 92.78411 },  // Serifos
-  "9626285": { lat: 24.84007, lng: 52.43428 },  // GasLog Skagen
+  "9493779": { lat: 31.50996, lng: 32.23059 },  // Smyrni
+  "9308766": { lat: 30.19926, lng: 47.88057 },  // Parimal
+  "9410399": { lat: 6.28384, lng: 93.01900 },  // Serifos
+  "9626285": { lat: 26.02302, lng: 53.00743 },  // GasLog Skagen
   "9718777": { lat: 25.91988, lng: 54.51280 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.43971, lng: 55.30039 },  // Sonangol Namibe
   "9330563": { lat: 25.93707, lng: 54.51813 },  // Sanmar Herald
-  "9416422": { lat: 36.16544, lng: -5.39415 },  // Ocean Thunder
+  "9416422": { lat: 36.16484, lng: -5.39406 },  // Ocean Thunder
   "9397327": { lat: 7.61077, lng: 76.76754 },  // Al Kharaitiyat
 };
 
