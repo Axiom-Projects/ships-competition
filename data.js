@@ -94,13 +94,13 @@ const PARTICIPANTS = [
 // Last updated: 2026-06-27
 const REAL_POSITIONS = {
   "9785835": { lat: 25.43521, lng: 56.77056 },  // Monte Urbasa
-  "9779848": { lat: 5.71097, lng: 81.48090 },  // Shaden
+  "9779848": { lat: 5.78425, lng: 92.69670 },  // Shaden
   "9307750": { lat: 26.11340, lng: -90.79764 },  // Jag Vasant
   "9275983": { lat: 24.78031, lng: 56.55934 },  // Rose 25
-  "9385037": { lat: 25.85218, lng: 53.88854 },  // Long Wind
+  "9385037": { lat: 25.85303, lng: 53.88799 },  // Long Wind
   "9460136": { lat: 22.47966, lng: 38.27484 },  // P.ALIKI
   "9608867": { lat: 24.92639, lng: 56.85954 },  // Magic Victoria
-  "9982536": { lat: 25.95379, lng: 55.73434 },  // Nord Victor
+  "9982536": { lat: 25.23111, lng: 56.82636 },  // Nord Victor
   "9936549": { lat: 26.10285, lng: 56.01964 },  // Eco Oracle
   "9833735": { lat: 29.07424, lng: 48.21570 },  // Siena
   "9489027": { lat: 24.63914, lng: 57.13212 },  // Abu Dhabi III
@@ -115,10 +115,10 @@ const REAL_POSITIONS = {
   "9976927": { lat: -22.02208, lng: 53.12956 },  // Lebrethah
   "9903413": { lat: 20.33397, lng: 38.46669 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
-  "9750050": { lat: 25.24905, lng: 56.51086 },  // Diligent Warrior
-  "9251585": { lat: 1.83413, lng: 104.76928 },  // Nature Heart
+  "9750050": { lat: 25.25293, lng: 56.51256 },  // Diligent Warrior
+  "9251585": { lat: 1.83412, lng: 104.76927 },  // Nature Heart
   "9254850": { lat: 25.34355, lng: 56.51289 },  // Camilla
-  "1028762": { lat: 25.22112, lng: 56.55432 },  // Stoic Warrior
+  "1028762": { lat: 25.22482, lng: 56.55159 },  // Stoic Warrior
   "9315680": { lat: 29.01546, lng: -94.44584 },  // Pine Gas
   "9174361": { lat: 13.44350, lng: -16.57734 },  // Galaxy Gas
   "9832262": { lat: 6.28810, lng: 3.37290 },  // Front Shanghai
@@ -127,7 +127,7 @@ const REAL_POSITIONS = {
   "9308766": { lat: 25.91906, lng: 57.00801 },  // Parimal
   "9410399": { lat: 8.66216, lng: 76.07364 },  // Serifos
   "9626285": { lat: 28.74679, lng: 48.49466 },  // GasLog Skagen
-  "9718777": { lat: 25.66983, lng: 54.84766 },  // Mahadah Silver
+  "9718777": { lat: 25.66828, lng: 54.85148 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.43971, lng: 55.30039 },  // Sonangol Namibe
   "9330563": { lat: 6.69018, lng: 77.11361 },  // Sanmar Herald
