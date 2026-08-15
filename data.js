@@ -93,7 +93,7 @@ const PARTICIPANTS = [
 // Real ship positions fetched from AIS data (myshiptracking.com)
 // Last updated: 2026-08-15
 const REAL_POSITIONS = {
-  "9785835": { lat: 1.21958, lng: 103.90283 },  // Monte Urbasa
+  "9785835": { lat: 1.17963, lng: 103.81721 },  // Monte Urbasa
   "9779848": { lat: 17.52832, lng: 117.50743 },  // Shaden
   "9307750": { lat: -19.46830, lng: 57.40273 },  // Jag Vasant
   "9275983": { lat: 25.34574, lng: 56.50276 },  // Rose 25
@@ -116,17 +116,17 @@ const REAL_POSITIONS = {
   "9903413": { lat: 24.65508, lng: 66.79760 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
   "9750050": { lat: 29.79433, lng: 122.11818 },  // Diligent Warrior
-  "9251585": { lat: 1.83112, lng: 104.76603 },  // Nature Heart
+  "9251585": { lat: 1.83112, lng: 104.76600 },  // Nature Heart
   "9254850": { lat: 25.42132, lng: 56.61900 },  // Camilla
-  "1028762": { lat: 31.45692, lng: 32.30527 },  // Stoic Warrior
+  "1028762": { lat: 31.45681, lng: 32.30524 },  // Stoic Warrior
   "9315680": { lat: -11.87847, lng: 47.67690 },  // Pine Gas
   "9174361": { lat: 26.17525, lng: 55.48503 },  // Galaxy Gas
-  "9832262": { lat: 51.96854, lng: 4.06957 },  // Front Shanghai
+  "9832262": { lat: 51.96857, lng: 4.06971 },  // Front Shanghai
   "9937103": { lat: -34.06553, lng: 11.72440 },  // Front Beauly
   "9493779": { lat: 24.68683, lng: 122.63380 },  // Smyrni
   "9308766": { lat: 29.68018, lng: 48.76011 },  // Parimal
   "9410399": { lat: 6.31746, lng: 93.24311 },  // Serifos
-  "9626285": { lat: 25.61960, lng: 53.43330 },  // GasLog Skagen
+  "9626285": { lat: 25.61946, lng: 53.43333 },  // GasLog Skagen
   "9718777": { lat: 15.06319, lng: 119.62404 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.43794, lng: 55.29513 },  // Sonangol Namibe
