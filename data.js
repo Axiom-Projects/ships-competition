@@ -94,44 +94,44 @@ const PARTICIPANTS = [
 // Last updated: 2026-08-16
 const REAL_POSITIONS = {
   "9785835": { lat: 4.51655, lng: 99.31263 },  // Monte Urbasa
-  "9779848": { lat: 14.19481, lng: 114.17330 },  // Shaden
+  "9779848": { lat: 14.17499, lng: 114.15058 },  // Shaden
   "9307750": { lat: -19.46830, lng: 57.40273 },  // Jag Vasant
   "9275983": { lat: 25.13847, lng: 56.46138 },  // Rose 25
-  "9385037": { lat: 5.86059, lng: 80.26043 },  // Long Wind
+  "9385037": { lat: 5.87229, lng: 80.22250 },  // Long Wind
   "9460136": { lat: 24.70870, lng: 66.90122 },  // P.ALIKI
   "9608867": { lat: 7.74369, lng: 108.78016 },  // Magic Victoria
   "9982536": { lat: 34.46335, lng: 128.54811 },  // Nord Victor
   "9936549": { lat: 5.58781, lng: 80.05057 },  // Eco Oracle
   "9833735": { lat: -34.09197, lng: 17.70994 },  // Siena
   "9489027": { lat: 25.92463, lng: 51.71006 },  // Abu Dhabi III
-  "1137745": { lat: 25.51866, lng: 55.36008 },  // Spade
+  "1137745": { lat: 25.51899, lng: 55.35850 },  // Spade
   "9262912": { lat: 24.76163, lng: 56.53459 },  // Auroura
   "9288095": { lat: 20.46861, lng: 59.54476 },  // Lan Jing
-  "9299563": { lat: 2.06661, lng: 104.65358 },  // North Star
+  "9299563": { lat: 2.06667, lng: 104.65333 },  // North Star
   "1120510": { lat: 26.08368, lng: 55.54316 },  // Maria (stale)
   "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands
   "9284960": { lat: 25.19934, lng: 56.57684 },  // Ocean Lily
   "9933547": { lat: 26.93641, lng: -94.31577 },  // Advantage Victory
   "9976927": { lat: 10.28203, lng: -75.55720 },  // Lebrethah
-  "9903413": { lat: 24.66526, lng: 66.79527 },  // Karachi
+  "9903413": { lat: 24.66376, lng: 66.81373 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
   "9750050": { lat: 29.79433, lng: 122.11818 },  // Diligent Warrior
-  "9251585": { lat: 1.83157, lng: 104.76660 },  // Nature Heart
+  "9251585": { lat: 1.83162, lng: 104.76662 },  // Nature Heart
   "9254850": { lat: 25.42128, lng: 56.61625 },  // Camilla
   "1028762": { lat: 29.87545, lng: 32.55042 },  // Stoic Warrior
   "9315680": { lat: -11.87847, lng: 47.67690 },  // Pine Gas
   "9174361": { lat: 26.17525, lng: 55.48503 },  // Galaxy Gas
-  "9832262": { lat: 51.96858, lng: 4.06962 },  // Front Shanghai
+  "9832262": { lat: 51.98384, lng: 4.06757 },  // Front Shanghai
   "9937103": { lat: -34.06553, lng: 11.72440 },  // Front Beauly
   "9493779": { lat: 24.68683, lng: 122.63380 },  // Smyrni
   "9308766": { lat: 29.68018, lng: 48.76011 },  // Parimal
   "9410399": { lat: 5.80882, lng: 80.87303 },  // Serifos
-  "9626285": { lat: 25.62048, lng: 53.43279 },  // GasLog Skagen
+  "9626285": { lat: 25.62004, lng: 53.43298 },  // GasLog Skagen
   "9718777": { lat: 15.06319, lng: 119.62404 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.43794, lng: 55.29513 },  // Sonangol Namibe
   "9330563": { lat: 9.90060, lng: 76.10363 },  // Sanmar Herald
-  "9416422": { lat: -2.09228, lng: 108.69947 },  // Ocean Thunder
+  "9416422": { lat: -2.27314, lng: 109.30197 },  // Ocean Thunder
   "9397327": { lat: 25.82196, lng: 51.87571 },  // Al Kharaitiyat
 };
 
