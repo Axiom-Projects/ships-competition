@@ -93,11 +93,11 @@ const PARTICIPANTS = [
 // Real ship positions fetched from AIS data (myshiptracking.com)
 // Last updated: 2026-08-16
 const REAL_POSITIONS = {
-  "9785835": { lat: 4.37095, lng: 99.47545 },  // Monte Urbasa
+  "9785835": { lat: 4.44505, lng: 99.38939 },  // Monte Urbasa
   "9779848": { lat: 14.19481, lng: 114.17330 },  // Shaden
   "9307750": { lat: -19.46830, lng: 57.40273 },  // Jag Vasant
   "9275983": { lat: 25.13847, lng: 56.46138 },  // Rose 25
-  "9385037": { lat: 5.82800, lng: 80.46358 },  // Long Wind
+  "9385037": { lat: 5.83328, lng: 80.36736 },  // Long Wind
   "9460136": { lat: 24.70870, lng: 66.90122 },  // P.ALIKI
   "9608867": { lat: 7.74369, lng: 108.78016 },  // Magic Victoria
   "9982536": { lat: 34.46335, lng: 128.54811 },  // Nord Victor
@@ -116,17 +116,17 @@ const REAL_POSITIONS = {
   "9903413": { lat: 24.66526, lng: 66.79527 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
   "9750050": { lat: 29.79433, lng: 122.11818 },  // Diligent Warrior
-  "9251585": { lat: 1.83140, lng: 104.76632 },  // Nature Heart
+  "9251585": { lat: 1.83150, lng: 104.76640 },  // Nature Heart
   "9254850": { lat: 25.42128, lng: 56.61625 },  // Camilla
   "1028762": { lat: 29.87545, lng: 32.55042 },  // Stoic Warrior
   "9315680": { lat: -11.87847, lng: 47.67690 },  // Pine Gas
   "9174361": { lat: 26.17525, lng: 55.48503 },  // Galaxy Gas
-  "9832262": { lat: 51.96856, lng: 4.06969 },  // Front Shanghai
+  "9832262": { lat: 51.96857, lng: 4.06966 },  // Front Shanghai
   "9937103": { lat: -34.06553, lng: 11.72440 },  // Front Beauly
   "9493779": { lat: 24.68683, lng: 122.63380 },  // Smyrni
   "9308766": { lat: 29.68018, lng: 48.76011 },  // Parimal
-  "9410399": { lat: 5.81056, lng: 80.92104 },  // Serifos
-  "9626285": { lat: 25.62141, lng: 53.43230 },  // GasLog Skagen
+  "9410399": { lat: 5.80882, lng: 80.87303 },  // Serifos
+  "9626285": { lat: 25.62080, lng: 53.43268 },  // GasLog Skagen
   "9718777": { lat: 15.06319, lng: 119.62404 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.43794, lng: 55.29513 },  // Sonangol Namibe
