@@ -93,13 +93,13 @@ const PARTICIPANTS = [
 // Real ship positions fetched from AIS data (myshiptracking.com)
 // Last updated: 2026-08-17
 const REAL_POSITIONS = {
-  "9785835": { lat: 6.16362, lng: 95.59571 },  // Monte Urbasa
+  "9785835": { lat: 6.20527, lng: 95.46626 },  // Monte Urbasa
   "9779848": { lat: 11.66709, lng: 112.08656 },  // Shaden
   "9307750": { lat: -19.46830, lng: 57.40273 },  // Jag Vasant
   "9275983": { lat: 25.13847, lng: 56.46138 },  // Rose 25
-  "9385037": { lat: 7.07284, lng: 77.03187 },  // Long Wind
+  "9385037": { lat: 7.14903, lng: 76.91315 },  // Long Wind
   "9460136": { lat: 23.93393, lng: 61.04973 },  // P.ALIKI
-  "9608867": { lat: 7.74709, lng: 108.86995 },  // Magic Victoria
+  "9608867": { lat: 7.64846, lng: 108.79891 },  // Magic Victoria
   "9982536": { lat: 34.46335, lng: 128.54811 },  // Nord Victor
   "9936549": { lat: 5.58781, lng: 80.05057 },  // Eco Oracle
   "9833735": { lat: -34.09197, lng: 17.70994 },  // Siena
@@ -121,18 +121,18 @@ const REAL_POSITIONS = {
   "1028762": { lat: 26.23005, lng: 35.22861 },  // Stoic Warrior
   "9315680": { lat: -11.87847, lng: 47.67690 },  // Pine Gas
   "9174361": { lat: 26.17525, lng: 55.48503 },  // Galaxy Gas
-  "9832262": { lat: 52.17195, lng: 3.55664 },  // Front Shanghai
+  "9832262": { lat: 52.17192, lng: 3.55675 },  // Front Shanghai
   "9937103": { lat: -34.06553, lng: 11.72440 },  // Front Beauly
   "9493779": { lat: 30.15498, lng: 122.28626 },  // Smyrni
-  "9308766": { lat: 25.71652, lng: 55.10104 },  // Parimal
-  "9410399": { lat: 6.99636, lng: 77.14194 },  // Serifos
-  "9626285": { lat: 25.61876, lng: 53.42871 },  // GasLog Skagen
+  "9308766": { lat: 25.71657, lng: 55.10099 },  // Parimal
+  "9410399": { lat: 7.04549, lng: 77.07681 },  // Serifos
+  "9626285": { lat: 25.61920, lng: 53.42838 },  // GasLog Skagen
   "9718777": { lat: 24.69221, lng: 122.63468 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.43794, lng: 55.29513 },  // Sonangol Namibe
   "9330563": { lat: 9.90060, lng: 76.10363 },  // Sanmar Herald
   "9416422": { lat: -3.79333, lng: 109.52501 },  // Ocean Thunder
-  "9397327": { lat: 25.82219, lng: 51.87649 },  // Al Kharaitiyat
+  "9397327": { lat: 25.82233, lng: 51.87414 },  // Al Kharaitiyat
 };
 
 // Strait of Hormuz coordinates
