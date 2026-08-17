@@ -93,7 +93,7 @@ const PARTICIPANTS = [
 // Real ship positions fetched from AIS data (myshiptracking.com)
 // Last updated: 2026-08-17
 const REAL_POSITIONS = {
-  "9785835": { lat: 5.18965, lng: 93.41947 },  // Monte Urbasa
+  "9785835": { lat: 5.12024, lng: 93.33364 },  // Monte Urbasa
   "9779848": { lat: 10.11523, lng: 111.00814 },  // Shaden
   "9307750": { lat: -19.46830, lng: 57.40273 },  // Jag Vasant
   "9275983": { lat: 25.13888, lng: 56.46200 },  // Rose 25
@@ -116,7 +116,7 @@ const REAL_POSITIONS = {
   "9903413": { lat: 24.80458, lng: 66.97711 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
   "9750050": { lat: 29.79433, lng: 122.11818 },  // Diligent Warrior
-  "9251585": { lat: 1.83163, lng: 104.76650 },  // Nature Heart
+  "9251585": { lat: 1.83170, lng: 104.76660 },  // Nature Heart
   "9254850": { lat: 25.41955, lng: 56.61967 },  // Camilla
   "1028762": { lat: 26.23005, lng: 35.22861 },  // Stoic Warrior
   "9315680": { lat: -11.87847, lng: 47.67690 },  // Pine Gas
@@ -124,15 +124,15 @@ const REAL_POSITIONS = {
   "9832262": { lat: 53.07320, lng: 3.43356 },  // Front Shanghai
   "9937103": { lat: -34.06553, lng: 11.72440 },  // Front Beauly
   "9493779": { lat: 30.15498, lng: 122.28626 },  // Smyrni
-  "9308766": { lat: 25.71588, lng: 55.10150 },  // Parimal
+  "9308766": { lat: 25.71579, lng: 55.10155 },  // Parimal
   "9410399": { lat: 8.31047, lng: 76.24395 },  // Serifos
-  "9626285": { lat: 25.61977, lng: 53.43263 },  // GasLog Skagen
+  "9626285": { lat: 25.61910, lng: 53.43226 },  // GasLog Skagen
   "9718777": { lat: 24.69221, lng: 122.63468 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.43794, lng: 55.29513 },  // Sonangol Namibe
   "9330563": { lat: 9.90060, lng: 76.10363 },  // Sanmar Herald
   "9416422": { lat: -3.79333, lng: 109.52501 },  // Ocean Thunder
-  "9397327": { lat: 25.82567, lng: 51.87790 },  // Al Kharaitiyat
+  "9397327": { lat: 25.82625, lng: 51.87727 },  // Al Kharaitiyat
 };
 
 // Strait of Hormuz coordinates
