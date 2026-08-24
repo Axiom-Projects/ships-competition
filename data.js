@@ -108,31 +108,31 @@ const REAL_POSITIONS = {
   "9262912": { lat: 24.79174, lng: 56.56398 },  // Auroura
   "9288095": { lat: 20.46861, lng: 59.54476 },  // Lan Jing
   "9299563": { lat: 3.31484, lng: 105.46085 },  // North Star
-  "1120510": { lat: 26.08368, lng: 55.54316 },  // Maria
+  "1120510": { lat: 26.08368, lng: 55.54316 },  // Maria (stale)
   "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands
   "9284960": { lat: 5.61199, lng: 81.27542 },  // Ocean Lily
-  "9933547": { lat: 28.78129, lng: -94.95262 },  // Advantage Victory
-  "9976927": { lat: 11.80491, lng: -63.24595 },  // Lebrethah
+  "9933547": { lat: 28.78190, lng: -94.95391 },  // Advantage Victory
+  "9976927": { lat: 11.90362, lng: -63.50305 },  // Lebrethah
   "9903413": { lat: 24.53443, lng: 56.73269 },  // Karachi
-  "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird
+  "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
   "9750050": { lat: 29.79433, lng: 122.11818 },  // Diligent Warrior
-  "9251585": { lat: 1.83138, lng: 104.76627 },  // Nature Heart
-  "9254850": { lat: 25.02062, lng: 56.65455 },  // Camilla
+  "9251585": { lat: 1.83155, lng: 104.76640 },  // Nature Heart
+  "9254850": { lat: 24.99045, lng: 56.65285 },  // Camilla
   "1028762": { lat: 18.10152, lng: 39.68330 },  // Stoic Warrior
   "9315680": { lat: -11.87847, lng: 47.67690 },  // Pine Gas
-  "9174361": { lat: 13.44164, lng: -16.57881 },  // Galaxy Gas
-  "9832262": { lat: 58.91210, lng: -3.06035 },  // Front Shanghai
+  "9174361": { lat: 26.17525, lng: 55.48503 },  // Galaxy Gas
+  "9832262": { lat: 58.91209, lng: -3.06035 },  // Front Shanghai
   "9937103": { lat: -34.06553, lng: 11.72440 },  // Front Beauly
   "9493779": { lat: 30.15729, lng: 122.28093 },  // Smyrni
-  "9308766": { lat: 26.06461, lng: 54.55813 },  // Parimal
+  "9308766": { lat: 26.06487, lng: 54.55837 },  // Parimal
   "9410399": { lat: 24.48923, lng: 57.02105 },  // Serifos
-  "9626285": { lat: 25.62100, lng: 53.43279 },  // GasLog Skagen
+  "9626285": { lat: 25.62085, lng: 53.43294 },  // GasLog Skagen
   "9718777": { lat: 31.92919, lng: 120.19419 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.43993, lng: 55.29770 },  // Sonangol Namibe
-  "9330563": { lat: 29.43576, lng: 32.65049 },  // Sanmar Herald
-  "9416422": { lat: 35.40779, lng: 129.45827 },  // Ocean Thunder
-  "9397327": { lat: 26.99338, lng: 50.51948 },  // Al Kharaitiyat
+  "9330563": { lat: 29.52144, lng: 32.60472 },  // Sanmar Herald
+  "9416422": { lat: -7.82232, lng: 109.08600 },  // Ocean Thunder
+  "9397327": { lat: 26.10251, lng: 51.76367 },  // Al Kharaitiyat
 };
 
 // Strait of Hormuz coordinates
