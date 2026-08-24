@@ -111,26 +111,26 @@ const REAL_POSITIONS = {
   "1120510": { lat: 26.08368, lng: 55.54316 },  // Maria (stale)
   "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands
   "9284960": { lat: 5.61199, lng: 81.27542 },  // Ocean Lily
-  "9933547": { lat: 29.05682, lng: -94.67914 },  // Advantage Victory
-  "9976927": { lat: 10.58711, lng: -61.82704 },  // Lebrethah
+  "9933547": { lat: 29.05675, lng: -94.67908 },  // Advantage Victory
+  "9976927": { lat: 10.68339, lng: -61.79126 },  // Lebrethah
   "9903413": { lat: 24.53443, lng: 56.73269 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
   "9750050": { lat: 29.79433, lng: 122.11818 },  // Diligent Warrior
-  "9251585": { lat: 1.83205, lng: 104.76713 },  // Nature Heart
+  "9251585": { lat: 1.83160, lng: 104.76653 },  // Nature Heart
   "9254850": { lat: 25.41884, lng: 56.61930 },  // Camilla
   "1028762": { lat: 18.10152, lng: 39.68330 },  // Stoic Warrior
   "9315680": { lat: -11.87847, lng: 47.67690 },  // Pine Gas
   "9174361": { lat: 26.17525, lng: 55.48503 },  // Galaxy Gas
-  "9832262": { lat: 58.91271, lng: -3.05911 },  // Front Shanghai
+  "9832262": { lat: 58.91278, lng: -3.05883 },  // Front Shanghai
   "9937103": { lat: -34.06553, lng: 11.72440 },  // Front Beauly
   "9493779": { lat: 30.15729, lng: 122.28093 },  // Smyrni
-  "9308766": { lat: 26.05607, lng: 54.67553 },  // Parimal
+  "9308766": { lat: 26.06323, lng: 54.58873 },  // Parimal
   "9410399": { lat: 24.48923, lng: 57.02105 },  // Serifos
-  "9626285": { lat: 25.61795, lng: 53.43179 },  // GasLog Skagen
+  "9626285": { lat: 25.61837, lng: 53.43244 },  // GasLog Skagen
   "9718777": { lat: 31.92919, lng: 120.19419 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.43993, lng: 55.29770 },  // Sonangol Namibe
-  "9330563": { lat: 27.29169, lng: 34.33188 },  // Sanmar Herald
+  "9330563": { lat: 27.35164, lng: 34.28014 },  // Sanmar Herald
   "9416422": { lat: -7.82232, lng: 109.08600 },  // Ocean Thunder
   "9397327": { lat: 26.10251, lng: 51.76367 },  // Al Kharaitiyat
 };
