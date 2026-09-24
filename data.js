@@ -91,23 +91,23 @@ const PARTICIPANTS = [
 ];
 
 // Real ship positions fetched from AIS data (myshiptracking.com)
-// Last updated: 2026-09-23
+// Last updated: 2026-09-24
 const REAL_POSITIONS = {
   "9785835": { lat: -35.13059, lng: 18.95920 },  // Monte Urbasa
   "9779848": { lat: 1.26075, lng: 103.91965 },  // Shaden
-  "9307750": { lat: 11.35047, lng: -18.09362 },  // Jag Vasant
+  "9307750": { lat: 18.80378, lng: -18.35702 },  // Jag Vasant
   "9275983": { lat: 25.13440, lng: 56.50910 },  // Rose 25
-  "9385037": { lat: 22.26592, lng: 122.31151 },  // Long Wind
+  "9385037": { lat: 17.01783, lng: 117.18936 },  // Long Wind
   "9460136": { lat: 7.18450, lng: 76.92565 },  // P.ALIKI
   "9608867": { lat: -34.14545, lng: 17.79295 },  // Magic Victoria
-  "9982536": { lat: 1.43724, lng: 104.00920 },  // Nord Victor
-  "9936549": { lat: -28.92162, lng: 32.12921 },  // Eco Oracle
+  "9982536": { lat: 1.43723, lng: 104.00920 },  // Nord Victor
+  "9936549": { lat: -28.91871, lng: 32.12843 },  // Eco Oracle
   "9833735": { lat: 12.61790, lng: -67.10528 },  // Siena
   "9489027": { lat: 25.92463, lng: 51.71006 },  // Abu Dhabi III
   "1137745": { lat: 25.65703, lng: 55.05408 },  // Spade
   "9262912": { lat: 24.78074, lng: 56.55233 },  // Auroura
   "9288095": { lat: 20.46861, lng: 59.54476 },  // Lan Jing
-  "9299563": { lat: 20.05667, lng: 118.99500 },  // North Star
+  "9299563": { lat: 19.74557, lng: 118.61115 },  // North Star
   "1120510": { lat: 25.56679, lng: 55.08333 },  // Maria
   "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands (stale)
   "9284960": { lat: 20.49454, lng: 65.17760 },  // Ocean Lily
@@ -116,7 +116,7 @@ const REAL_POSITIONS = {
   "9903413": { lat: 24.63734, lng: 66.75385 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
   "9750050": { lat: 24.95216, lng: 57.19512 },  // Diligent Warrior
-  "9251585": { lat: 5.25125, lng: 106.38187 },  // Nature Heart
+  "9251585": { lat: 5.25033, lng: 106.38243 },  // Nature Heart
   "9254850": { lat: 25.42747, lng: 56.59642 },  // Camilla
   "1028762": { lat: 7.12373, lng: 76.77890 },  // Stoic Warrior
   "9315680": { lat: 8.30997, lng: 76.92073 },  // Pine Gas
