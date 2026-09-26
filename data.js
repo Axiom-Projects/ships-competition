@@ -95,29 +95,29 @@ const PARTICIPANTS = [
 const REAL_POSITIONS = {
   "9785835": { lat: -35.13059, lng: 18.95920 },  // Monte Urbasa
   "9779848": { lat: 1.26075, lng: 103.91965 },  // Shaden
-  "9307750": { lat: 28.00002, lng: -13.71242 },  // Jag Vasant
+  "9307750": { lat: 28.90072, lng: -13.02473 },  // Jag Vasant
   "9275983": { lat: 24.99380, lng: 56.61280 },  // Rose 25
-  "9385037": { lat: 17.01783, lng: 117.18936 },  // Long Wind
+  "9385037": { lat: 7.59457, lng: 108.32724 },  // Long Wind
   "9460136": { lat: 7.18450, lng: 76.92565 },  // P.ALIKI
   "9608867": { lat: -34.14545, lng: 17.79295 },  // Magic Victoria
-  "9982536": { lat: 1.25804, lng: 103.91742 },  // Nord Victor
+  "9982536": { lat: 1.25856, lng: 103.91580 },  // Nord Victor
   "9936549": { lat: -28.91871, lng: 32.12843 },  // Eco Oracle
   "9833735": { lat: 5.22938, lng: -3.97440 },  // Siena
   "9489027": { lat: 25.92463, lng: 51.71006 },  // Abu Dhabi III
   "1137745": { lat: 25.60417, lng: 55.11674 },  // Spade
   "9262912": { lat: 24.78074, lng: 56.55233 },  // Auroura
   "9288095": { lat: 20.46861, lng: 59.54476 },  // Lan Jing
-  "9299563": { lat: 13.67597, lng: 113.73209 },  // North Star
-  "1120510": { lat: 25.56710, lng: 55.08300 },  // Maria
-  "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands (stale)
+  "9299563": { lat: 12.94333, lng: 113.16500 },  // North Star
+  "1120510": { lat: 25.56710, lng: 55.08300 },  // Maria (stale)
+  "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands
   "9284960": { lat: 25.20948, lng: 56.58039 },  // Ocean Lily
   "9933547": { lat: 19.76774, lng: -81.05231 },  // Advantage Victory
   "9976927": { lat: 9.81629, lng: -79.71652 },  // Lebrethah
   "9903413": { lat: 24.63734, lng: 66.75385 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
   "9750050": { lat: 25.22245, lng: 56.55106 },  // Diligent Warrior
-  "9251585": { lat: 5.25177, lng: 106.37872 },  // Nature Heart
-  "9254850": { lat: 25.42735, lng: 56.59652 },  // Camilla
+  "9251585": { lat: 5.25025, lng: 106.37730 },  // Nature Heart
+  "9254850": { lat: 25.42775, lng: 56.59582 },  // Camilla
   "1028762": { lat: 7.12373, lng: 76.77890 },  // Stoic Warrior
   "9315680": { lat: 8.46410, lng: 76.64157 },  // Pine Gas
   "9174361": { lat: 26.17525, lng: 55.48503 },  // Galaxy Gas
