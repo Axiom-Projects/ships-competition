@@ -95,28 +95,28 @@ const PARTICIPANTS = [
 const REAL_POSITIONS = {
   "9785835": { lat: -35.13059, lng: 18.95920 },  // Monte Urbasa
   "9779848": { lat: 1.26075, lng: 103.91965 },  // Shaden
-  "9307750": { lat: 34.57050, lng: -7.83533 },  // Jag Vasant
+  "9307750": { lat: 35.05837, lng: -7.25191 },  // Jag Vasant
   "9275983": { lat: 24.73814, lng: 56.57724 },  // Rose 25
-  "9385037": { lat: 1.42133, lng: 104.45736 },  // Long Wind
+  "9385037": { lat: 1.30376, lng: 104.29551 },  // Long Wind
   "9460136": { lat: 25.22495, lng: 56.53401 },  // P.ALIKI
   "9608867": { lat: -34.14545, lng: 17.79295 },  // Magic Victoria
-  "9982536": { lat: 4.23988, lng: 99.20040 },  // Nord Victor
+  "9982536": { lat: 4.62484, lng: 98.68026 },  // Nord Victor
   "9936549": { lat: -28.91871, lng: 32.12843 },  // Eco Oracle
   "9833735": { lat: 5.20489, lng: -4.04211 },  // Siena
   "9489027": { lat: 25.92463, lng: 51.71006 },  // Abu Dhabi III
   "1137745": { lat: 25.52592, lng: 55.30224 },  // Spade
   "9262912": { lat: 24.78074, lng: 56.55233 },  // Auroura
   "9288095": { lat: 20.46861, lng: 59.54476 },  // Lan Jing
-  "9299563": { lat: 9.02500, lng: 110.32722 },  // North Star
+  "9299563": { lat: 8.40500, lng: 109.90500 },  // North Star
   "1120510": { lat: 25.56665, lng: 55.08311 },  // Maria (stale)
   "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands
   "9284960": { lat: 25.20980, lng: 56.57996 },  // Ocean Lily
   "9933547": { lat: 11.66632, lng: -61.30016 },  // Advantage Victory
-  "9976927": { lat: 18.51322, lng: -81.73221 },  // Lebrethah
+  "9976927": { lat: 18.97818, lng: -82.31078 },  // Lebrethah
   "9903413": { lat: 24.22224, lng: 63.89478 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
   "9750050": { lat: 25.22245, lng: 56.55106 },  // Diligent Warrior
-  "9251585": { lat: 5.25215, lng: 106.37988 },  // Nature Heart
+  "9251585": { lat: 5.25135, lng: 106.37837 },  // Nature Heart
   "9254850": { lat: 25.42760, lng: 56.59613 },  // Camilla
   "1028762": { lat: 7.12373, lng: 76.77890 },  // Stoic Warrior
   "9315680": { lat: 8.46410, lng: 76.64157 },  // Pine Gas
