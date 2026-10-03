@@ -95,9 +95,9 @@ const PARTICIPANTS = [
 const REAL_POSITIONS = {
   "9785835": { lat: -23.23394, lng: 56.84089 },  // Monte Urbasa
   "9779848": { lat: 1.26075, lng: 103.91965 },  // Shaden
-  "9307750": { lat: 35.81569, lng: -0.24526 },  // Jag Vasant
+  "9307750": { lat: 35.81569, lng: -0.24524 },  // Jag Vasant
   "9275983": { lat: 25.13615, lng: 56.49310 },  // Rose 25
-  "9385037": { lat: 3.72437, lng: 105.11091 },  // Long Wind
+  "9385037": { lat: 3.72526, lng: 105.10971 },  // Long Wind
   "9460136": { lat: 25.22495, lng: 56.53401 },  // P.ALIKI
   "9608867": { lat: -34.14545, lng: 17.79295 },  // Magic Victoria
   "9982536": { lat: 5.37477, lng: 93.22459 },  // Nord Victor
@@ -107,22 +107,22 @@ const REAL_POSITIONS = {
   "1137745": { lat: 25.53078, lng: 55.26456 },  // Spade
   "9262912": { lat: 24.65944, lng: 56.73122 },  // Auroura
   "9288095": { lat: 20.46861, lng: 59.54476 },  // Lan Jing
-  "9299563": { lat: 2.01762, lng: 104.68491 },  // North Star
-  "1120510": { lat: 25.56611, lng: 55.08303 },  // Maria (stale)
-  "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands
+  "9299563": { lat: 2.01790, lng: 104.68535 },  // North Star
+  "1120510": { lat: 25.56602, lng: 55.08299 },  // Maria
+  "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands (stale)
   "9284960": { lat: 25.20980, lng: 56.57996 },  // Ocean Lily
   "9933547": { lat: 11.66632, lng: -61.30016 },  // Advantage Victory
   "9976927": { lat: 29.22015, lng: -93.21228 },  // Lebrethah
-  "9903413": { lat: 24.26286, lng: 64.11089 },  // Karachi
+  "9903413": { lat: 24.24742, lng: 65.31890 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
   "9750050": { lat: 25.22245, lng: 56.55106 },  // Diligent Warrior
-  "9251585": { lat: 5.25088, lng: 106.38097 },  // Nature Heart
+  "9251585": { lat: 5.25105, lng: 106.38058 },  // Nature Heart
   "9254850": { lat: 25.42727, lng: 56.59602 },  // Camilla
   "1028762": { lat: 22.68976, lng: 69.94192 },  // Stoic Warrior
-  "9315680": { lat: 9.74595, lng: 76.12964 },  // Pine Gas
+  "9315680": { lat: 9.74922, lng: 76.13206 },  // Pine Gas
   "9174361": { lat: 26.17525, lng: 55.48503 },  // Galaxy Gas (stale)
   "9832262": { lat: -34.98652, lng: 18.26068 },  // Front Shanghai
-  "9937103": { lat: 51.93841, lng: 4.18477 },  // Front Beauly
+  "9937103": { lat: 51.93843, lng: 4.18478 },  // Front Beauly
   "9493779": { lat: 23.30699, lng: 122.38569 },  // Smyrni
   "9308766": { lat: 24.75760, lng: 57.58932 },  // Parimal
   "9410399": { lat: 31.31641, lng: 32.37165 },  // Serifos
