@@ -93,46 +93,46 @@ const PARTICIPANTS = [
 // Real ship positions fetched from AIS data (myshiptracking.com)
 // Last updated: 2026-10-13
 const REAL_POSITIONS = {
-  "9785835": { lat: 2.19383, lng: 102.11339 },  // Monte Urbasa
+  "9785835": { lat: 2.19692, lng: 102.10918 },  // Monte Urbasa
   "9779848": { lat: 1.26075, lng: 103.91965 },  // Shaden
   "9307750": { lat: 17.41442, lng: -18.49433 },  // Jag Vasant
   "9275983": { lat: 25.18620, lng: 56.36175 },  // Rose 25
   "9385037": { lat: 1.24943, lng: 103.90456 },  // Long Wind (stale)
   "9460136": { lat: 25.22495, lng: 56.53401 },  // P.ALIKI
-  "9608867": { lat: -25.95939, lng: 12.03310 },  // Magic Victoria
+  "9608867": { lat: -27.31888, lng: 12.61905 },  // Magic Victoria
   "9982536": { lat: -31.62401, lng: 31.53304 },  // Nord Victor
   "9936549": { lat: -14.34039, lng: 40.80101 },  // Eco Oracle
   "9833735": { lat: 5.23329, lng: -3.96418 },  // Siena
   "9489027": { lat: 25.92463, lng: 51.71006 },  // Abu Dhabi III
-  "1137745": { lat: 25.84705, lng: 55.35021 },  // Spade
+  "1137745": { lat: 25.84705, lng: 55.35021 },  // Spade (stale)
   "9262912": { lat: 24.70492, lng: 56.66038 },  // Auroura
-  "9288095": { lat: 20.46861, lng: 59.54476 },  // Lan Jing
-  "9299563": { lat: 2.02184, lng: 104.68133 },  // North Star
-  "1120510": { lat: 25.40489, lng: 55.29495 },  // Maria (stale)
-  "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands (stale)
+  "9288095": { lat: 20.46861, lng: 59.54476 },  // Lan Jing (stale)
+  "9299563": { lat: 2.02252, lng: 104.68172 },  // North Star
+  "1120510": { lat: 25.36848, lng: 55.37706 },  // Maria
+  "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands
   "9284960": { lat: 5.54895, lng: 81.15480 },  // Ocean Lily
   "9933547": { lat: 11.66632, lng: -61.30016 },  // Advantage Victory
   "9976927": { lat: 26.35505, lng: -79.41442 },  // Lebrethah
   "9903413": { lat: 24.62239, lng: 56.72566 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
   "9750050": { lat: 14.72980, lng: 41.76929 },  // Diligent Warrior
-  "9251585": { lat: 5.24470, lng: 106.37795 },  // Nature Heart
+  "9251585": { lat: 5.24497, lng: 106.37762 },  // Nature Heart
   "9254850": { lat: 25.42758, lng: 56.59481 },  // Camilla
-  "1028762": { lat: 23.46986, lng: 66.06281 },  // Stoic Warrior
-  "9315680": { lat: 5.81285, lng: 80.11988 },  // Pine Gas
+  "1028762": { lat: 23.45067, lng: 66.26246 },  // Stoic Warrior
+  "9315680": { lat: 6.95599, lng: 79.74354 },  // Pine Gas
   "9174361": { lat: 13.43055, lng: -16.56355 },  // Galaxy Gas (stale)
   "9832262": { lat: -22.05626, lng: 57.11028 },  // Front Shanghai
   "9937103": { lat: 48.58320, lng: -9.64679 },  // Front Beauly
-  "9493779": { lat: 6.33409, lng: 94.92999 },  // Smyrni
+  "9493779": { lat: 5.80481, lng: 80.98936 },  // Smyrni
   "9308766": { lat: 24.86012, lng: 56.89757 },  // Parimal
-  "9410399": { lat: 36.28598, lng: -10.94488 },  // Serifos
+  "9410399": { lat: 36.00972, lng: -25.54421 },  // Serifos
   "9626285": { lat: 38.17384, lng: 122.43085 },  // GasLog Skagen
   "9718777": { lat: 34.92186, lng: 129.35294 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
-  "9325049": { lat: 25.43716, lng: 55.29919 },  // Sonangol Namibe (stale)
+  "9325049": { lat: 25.43716, lng: 55.29919 },  // Sonangol Namibe
   "9330563": { lat: -11.69446, lng: 47.66649 },  // Sanmar Herald
   "9416422": { lat: 22.56882, lng: 69.55846 },  // Ocean Thunder (stale)
-  "9397327": { lat: 12.00595, lng: 69.84673 },  // Al Kharaitiyat (stale)
+  "9397327": { lat: 10.32114, lng: 71.28915 },  // Al Kharaitiyat
 };
 
 // Strait of Hormuz coordinates
