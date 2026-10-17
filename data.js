@@ -93,7 +93,7 @@ const PARTICIPANTS = [
 // Real ship positions fetched from AIS data (myshiptracking.com)
 // Last updated: 2026-10-17
 const REAL_POSITIONS = {
-  "9785835": { lat: 2.75931, lng: 101.34803 },  // Monte Urbasa
+  "9785835": { lat: 2.75702, lng: 101.34839 },  // Monte Urbasa
   "9779848": { lat: 1.26075, lng: 103.91965 },  // Shaden
   "9307750": { lat: -17.37715, lng: 2.97376 },  // Jag Vasant
   "9275983": { lat: 25.37520, lng: 56.48819 },  // Rose 25
@@ -110,23 +110,23 @@ const REAL_POSITIONS = {
   "9299563": { lat: 2.01667, lng: 104.68333 },  // North Star
   "1120510": { lat: 25.36848, lng: 55.37706 },  // Maria (stale)
   "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands (stale)
-  "9284960": { lat: 5.15792, lng: 106.57383 },  // Ocean Lily
+  "9284960": { lat: 5.49068, lng: 106.72242 },  // Ocean Lily
   "9933547": { lat: -35.31542, lng: 19.69056 },  // Advantage Victory
-  "9976927": { lat: 51.36926, lng: 2.53626 },  // Lebrethah
-  "9903413": { lat: 24.63384, lng: 66.76384 },  // Karachi
+  "9976927": { lat: 51.40662, lng: 3.05572 },  // Lebrethah
+  "9903413": { lat: 24.63302, lng: 66.76371 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
   "9750050": { lat: 31.35296, lng: 32.38243 },  // Diligent Warrior
-  "9251585": { lat: 5.24622, lng: 106.38200 },  // Nature Heart
+  "9251585": { lat: 5.24693, lng: 106.38252 },  // Nature Heart
   "9254850": { lat: 25.42438, lng: 56.59629 },  // Camilla
   "1028762": { lat: 23.17375, lng: 65.55535 },  // Stoic Warrior
   "9315680": { lat: 6.95418, lng: 79.85513 },  // Pine Gas
   "9174361": { lat: 13.43055, lng: -16.56355 },  // Galaxy Gas (stale)
   "9832262": { lat: -0.90219, lng: 86.20066 },  // Front Shanghai
   "9937103": { lat: 48.58320, lng: -9.64679 },  // Front Beauly
-  "9493779": { lat: 5.94920, lng: 79.98848 },  // Smyrni
-  "9308766": { lat: 24.81703, lng: 56.54005 },  // Parimal
+  "9493779": { lat: 5.95052, lng: 79.99002 },  // Smyrni
+  "9308766": { lat: 24.81657, lng: 56.53854 },  // Parimal
   "9410399": { lat: 31.04342, lng: -51.24311 },  // Serifos
-  "9626285": { lat: 2.09307, lng: 104.96234 },  // GasLog Skagen
+  "9626285": { lat: 1.67657, lng: 104.73828 },  // GasLog Skagen
   "9718777": { lat: 34.92186, lng: 129.35294 },  // Mahadah Silver
   "9593517": { lat: 25.89098, lng: 55.41337 },  // Safeen Prestige
   "9325049": { lat: 25.43716, lng: 55.29919 },  // Sonangol Namibe (stale)
