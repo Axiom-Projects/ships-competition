@@ -98,10 +98,10 @@ const REAL_POSITIONS = {
   "9307750": { lat: -35.06014, lng: 19.66939 },  // Jag Vasant
   "9275983": { lat: 25.30990, lng: 56.62647 },  // Rose 25
   "9385037": { lat: 1.24943, lng: 103.90456 },  // Long Wind (stale)
-  "9460136": { lat: 27.08710, lng: 49.71846 },  // P.ALIKI
+  "9460136": { lat: 27.08723, lng: 49.71818 },  // P.ALIKI
   "9608867": { lat: -11.85101, lng: 47.85825 },  // Magic Victoria
   "9982536": { lat: 4.72793, lng: -12.88003 },  // Nord Victor
-  "9936549": { lat: 33.60612, lng: 29.85228 },  // Eco Oracle
+  "9936549": { lat: 34.03985, lng: 29.37208 },  // Eco Oracle
   "9833735": { lat: 5.20199, lng: -4.05915 },  // Siena
   "9489027": { lat: 25.92463, lng: 51.71006 },  // Abu Dhabi III
   "1137745": { lat: 25.83377, lng: 55.33311 },  // Spade (stale)
@@ -112,17 +112,17 @@ const REAL_POSITIONS = {
   "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands (stale)
   "9284960": { lat: 21.89418, lng: 114.73404 },  // Ocean Lily
   "9933547": { lat: -23.10152, lng: 57.40822 },  // Advantage Victory
-  "9976927": { lat: 36.15423, lng: -7.02445 },  // Lebrethah
+  "9976927": { lat: 36.49386, lng: -6.60641 },  // Lebrethah
   "9903413": { lat: 25.12961, lng: 57.00606 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
-  "9750050": { lat: 38.83125, lng: 26.95040 },  // Diligent Warrior
-  "9251585": { lat: 5.25880, lng: 106.35011 },  // Nature Heart
+  "9750050": { lat: 38.83120, lng: 26.95039 },  // Diligent Warrior
+  "9251585": { lat: 5.25897, lng: 106.35194 },  // Nature Heart
   "9254850": { lat: 25.42215, lng: 56.60062 },  // Camilla
   "1028762": { lat: 23.27050, lng: 65.83912 },  // Stoic Warrior
   "9315680": { lat: 6.95418, lng: 79.85508 },  // Pine Gas
   "9174361": { lat: 13.43055, lng: -16.56355 },  // Galaxy Gas (stale)
   "9832262": { lat: 7.77107, lng: 108.43545 },  // Front Shanghai
-  "9937103": { lat: 27.81999, lng: -97.20759 },  // Front Beauly
+  "9937103": { lat: 27.81998, lng: -97.20759 },  // Front Beauly
   "9493779": { lat: 5.95784, lng: 79.98446 },  // Smyrni
   "9308766": { lat: 24.81501, lng: 56.53950 },  // Parimal
   "9410399": { lat: 22.97858, lng: -79.10445 },  // Serifos
