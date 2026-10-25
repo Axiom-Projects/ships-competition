@@ -101,7 +101,7 @@ const REAL_POSITIONS = {
   "9460136": { lat: 27.26595, lng: 50.00422 },  // P.ALIKI
   "9608867": { lat: -11.85101, lng: 47.85825 },  // Magic Victoria
   "9982536": { lat: 4.72793, lng: -12.88003 },  // Nord Victor
-  "9936549": { lat: 34.98815, lng: 28.30307 },  // Eco Oracle
+  "9936549": { lat: 36.12346, lng: 27.23256 },  // Eco Oracle
   "9833735": { lat: 5.20199, lng: -4.05915 },  // Siena
   "9489027": { lat: 25.92463, lng: 51.71006 },  // Abu Dhabi III
   "1137745": { lat: 25.83377, lng: 55.33311 },  // Spade (stale)
@@ -112,19 +112,19 @@ const REAL_POSITIONS = {
   "9220940": { lat: 25.35089, lng: 56.47142 },  // Sands (stale)
   "9284960": { lat: 21.89418, lng: 114.73404 },  // Ocean Lily
   "9933547": { lat: -23.10152, lng: 57.40822 },  // Advantage Victory
-  "9976927": { lat: 36.49393, lng: -6.60507 },  // Lebrethah
+  "9976927": { lat: 36.49506, lng: -6.60340 },  // Lebrethah
   "9903413": { lat: 25.12961, lng: 57.00606 },  // Karachi
   "9088536": { lat: 25.39266, lng: 56.60021 },  // Sea Bird (stale)
-  "9750050": { lat: 38.83125, lng: 26.95040 },  // Diligent Warrior
-  "9251585": { lat: 5.25688, lng: 106.35026 },  // Nature Heart
+  "9750050": { lat: 38.89458, lng: 26.12143 },  // Diligent Warrior
+  "9251585": { lat: 5.25805, lng: 106.35174 },  // Nature Heart
   "9254850": { lat: 25.42597, lng: 56.60162 },  // Camilla
-  "1028762": { lat: 23.36568, lng: 65.88801 },  // Stoic Warrior
+  "1028762": { lat: 23.41457, lng: 65.89805 },  // Stoic Warrior
   "9315680": { lat: 6.95418, lng: 79.85508 },  // Pine Gas
   "9174361": { lat: 13.43055, lng: -16.56355 },  // Galaxy Gas (stale)
   "9832262": { lat: 7.77107, lng: 108.43545 },  // Front Shanghai
-  "9937103": { lat: 27.81999, lng: -97.20759 },  // Front Beauly
+  "9937103": { lat: 27.82000, lng: -97.20761 },  // Front Beauly
   "9493779": { lat: 5.95784, lng: 79.98446 },  // Smyrni
-  "9308766": { lat: 24.81721, lng: 56.53945 },  // Parimal
+  "9308766": { lat: 24.81530, lng: 56.54048 },  // Parimal
   "9410399": { lat: 22.97858, lng: -79.10445 },  // Serifos
   "9626285": { lat: 5.92119, lng: 79.85404 },  // GasLog Skagen
   "9718777": { lat: 32.48687, lng: 136.82453 },  // Mahadah Silver
